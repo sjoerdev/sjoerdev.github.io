@@ -1,0 +1,7 @@
+name: Sjoerd Wouters
+tagline: Software Developer
+pagination: 10
+menu:
+  - ["resume", "resume.html"]
+  - ["projects", "projects.html"]
+  - ["blog", "archive.html"]
