@@ -1,0 +1,54 @@
+{
+  "marmite_version": "0.2.3",
+  "posts": 1,
+  "pages": 3,
+  "generated_at": "2024-12-23 16:13:22.548932 +01:00",
+  "timestamp": 1734966802,
+  "elapsed_time": 0.0293,
+  "config": {
+    "name": "Sjoerd Wouters",
+    "tagline": "Software Developer",
+    "url": "",
+    "footer": "<div>Powered by <a href=\"https://github.com/rochacbruno/marmite\">Marmite</a> | <small><a href=\"https://creativecommons.org/licenses/by-nc-sa/4.0/\">CC-BY_NC-SA</a></small></div>",
+    "language": "en",
+    "pagination": 10,
+    "pages_title": "Pages",
+    "tags_title": "Tags",
+    "tags_content_title": "Posts tagged with '$tag'",
+    "archives_title": "Archive",
+    "archives_content_title": "Posts from '$year'",
+    "streams_title": "Streams",
+    "streams_content_title": "Posts from '$stream'",
+    "default_author": "",
+    "authors_title": "Authors",
+    "enable_search": false,
+    "search_title": "Search",
+    "content_path": "content",
+    "site_path": "",
+    "templates_path": "templates",
+    "static_path": "static",
+    "media_path": "media",
+    "card_image": "",
+    "banner_image": "",
+    "logo_image": "",
+    "default_date_format": "%b %e, %Y",
+    "menu": [
+      [
+        "resume",
+        "resume.html"
+      ],
+      [
+        "projects",
+        "projects.html"
+      ],
+      [
+        "blog",
+        "archive.html"
+      ]
+    ],
+    "extra": null,
+    "authors": {},
+    "toc": false,
+    "json_feed": false
+  }
+}
