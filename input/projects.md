@@ -32,6 +32,11 @@
         <img src="media/lean.png"/>
       </a>
     </td>
+    <td style="width:33%">
+      <a href="https://github.com" target="_blank">
+        <img src="media/test.png"/>
+      </a>
+    </td>
   </tr>
 
 </table>
