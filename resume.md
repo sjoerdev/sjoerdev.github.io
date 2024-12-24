@@ -9,7 +9,7 @@ My name is Sjoerd, and im a 20 year old software developer with a passion for ga
 
 - Discord: [sjoerdev](https://discordapp.com/users/906668622099927041)
 - Email: [sjoerdwouters2004@gmail.com](mailto:sjoerdwouters2004@gmail.com)
-- Phone: [0628860939](tel:0628860939)
+- Phone: [+31628860939](tel:+31628860939)
 
 ### Skills
 
