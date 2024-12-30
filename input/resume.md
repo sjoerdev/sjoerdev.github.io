@@ -1,9 +1,7 @@
 ## Resume
 ---
 
-### About
-
-My name is Sjoerd, and im a 20 year old software developer with a passion for gamedev and graphics programming. I also love math and enjoy solving problems.
+<div style="height: 16px"></div>
 
 ### Contact
 
@@ -11,14 +9,13 @@ My name is Sjoerd, and im a 20 year old software developer with a passion for ga
 📧 Email: [sjoerdwouters2004@gmail.com](mailto:sjoerdwouters2004@gmail.com) <br>
 📞 Phone: [+31628860939](tel:+31628860939)
 
+<div style="height: 1px"></div>
+
 ### Skills
 
-- The [C#][1] programming language
-- The [GLSL][2] and [HLSL][3] shader languages
-- The [Unity][4] and [Godot][5] game engines
-- The [OpenGL][6] graphics api
-- The [OpenTK][7] and [Silk.NET][8] bindings
-- The [GLTF][9] model format
+✒️ Languages: [C#][1] / [GLSL][2] / [HLSL][3] <br>
+⚙️ Engines: [Unity][4] / [Godot][5] <br>
+📷 Rendering: [OpenGL][6] / [OpenTK][7] / [Silk.NET][8] / [GLTF][9] <br>
 
 [1]: https://learn.microsoft.com/en-us/dotnet/csharp/
 [2]: https://en.wikipedia.org/wiki/OpenGL_Shading_Language
@@ -30,42 +27,54 @@ My name is Sjoerd, and im a 20 year old software developer with a passion for ga
 [8]: https://dotnet.github.io/Silk.NET/
 [9]: https://en.wikipedia.org/wiki/GlTF
 
+<div style="height: 1px"></div>
+
 ### Experience
 
-> **Monobanda / Gameplay and Shader Programmer** <br>
-> Januari 2024 - February 2025
+<table><tr><td style="padding-top: 20px">
+
+**Monobanda / Gameplay and Shader Programmer** <br>
+Januari 2024 - February 2025
 
 - Worked on their award winning game [Soulpaint](https://www.soulpaint.co/)
 - Worked on their virtual reality game [Deep](https://monobanda.eu/project/deep)
 - Worked on their mobile game [Call of The Void](https://monobanda.eu/project/cotv)
-- Worked on gameplay and shaders and procuderal generation
 
----
+</td></tr></table>
 
-> **Trixel Creative LLC / Gameplay Programmer** <br>
-> November 2021 - May 2022
+<table><tr><td style="padding-top: 20px">
+
+**Trixel Creative LLC / Gameplay Programmer** <br>
+November 2021 - May 2022
 
 - Worked on their flagship game [Restitched](https://www.trixelcreative.com/restitched)
 - Worked on core gameplay mechanics and polished existing ones
 - Worked on level creation tools that were central to the game
-- Leaned to collaborate with devs and artists using git and scrum
+
+</td></tr></table>
+
+<div style="height: 1px"></div>
 
 ### Education
 
-> **Grafisch Lyceum Utrecht / Software Development** <br>
-> 2021 - 2025
+<table><tr><td style="padding-top: 20px">
+
+**Grafisch Lyceum Utrecht / Software Development** <br>
+2021 - 2025
 
 - Object oriented programming in C#
 - Game development using the Unity engine
 - Version control using git(hub)
 - Collaborating using scrum
 
----
+</td></tr></table>
 
-> **Niftarlake College / Higher General Secondary Education** <br>
-> 2016 - 2020
+<table><tr><td style="padding-top: 20px">
+
+**Niftarlake College / Higher General Secondary Education** <br>
+2016 - 2020
 
 - Basically the dutch version of highschool
 - Learned basic linear algebra and calculus
 
----
+</td></tr></table>
