@@ -7,7 +7,8 @@
 
 👾 Discord: [sjoerdev](https://discordapp.com/users/906668622099927041) <br>
 📧 Email: [sjoerdwouters2004@gmail.com](mailto:sjoerdwouters2004@gmail.com) <br>
-📞 Phone: [+31628860939](tel:+31628860939)
+📞 Phone: [+31628860939](tel:+31628860939) <br>
+💻 Github: [github.com/sjoerdev](https://github.com/sjoerdev)
 
 <div style="height: 1px"></div>
 
