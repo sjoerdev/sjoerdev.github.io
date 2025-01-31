@@ -25,9 +25,9 @@ url: "/projects"
 </style>
 
 <div class="image-grid">
-    <a href="https://github.com/sjoerdev/voxel-engine" target="_blank"><img src="/images/voxelengine.png"></a>
-    <a href="https://github.com/sjoerdev/concrete" target="_blank"><img src="/images/concrete.png"></a>
-    <a href="https://github.com/sjoerdev/unity-mandelbulb" target="_blank"><img src="/images/mandelbulb.png"></a>
-    <a href="https://github.com/sjoerdev/gradius-clone" target="_blank"><img src="/images/gradiusclone.png"></a>
-    <a href="https://github.com/sjoerdev/lean" target="_blank"><img src="/images/lean.png"></a>
+    <a style="all: unset !important;" href="https://github.com/sjoerdev/voxel-engine" target="_blank"><img src="/images/voxelengine.png"></a>
+    <a style="all: unset !important;" href="https://github.com/sjoerdev/concrete" target="_blank"><img src="/images/concrete.png"></a>
+    <a style="all: unset !important;" href="https://github.com/sjoerdev/unity-mandelbulb" target="_blank"><img src="/images/mandelbulb.png"></a>
+    <a style="all: unset !important;" href="https://github.com/sjoerdev/gradius-clone" target="_blank"><img src="/images/gradiusclone.png"></a>
+    <a style="all: unset !important;" href="https://github.com/sjoerdev/lean" target="_blank"><img src="/images/lean.png"></a>
 </div>
