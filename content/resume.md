@@ -2,6 +2,7 @@
 title: "Resume"
 url: "/resume"
 showtoc: false
+tocopen: false
 ---
 
 ## Contact
