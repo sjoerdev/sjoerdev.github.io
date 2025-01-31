@@ -1,0 +1,442 @@
+---
+title: "C++ guide for C# devs"
+date: "2025-01-31"
+description: |
+    In this guide i will be comparing only the major differences between the languages, all the similarities will be left out.
+    This guide started as a personal reference card for myself to hold on to when writing C++ at work.
+    As a C# developer you don't need to learn C++ from the ground up, you just need to know the major differrences.
+
+summary: "In this guide i will be comparing only the major differences between C# and C++"
+ShowToc: true
+TocOpen: true
+---
+
+## References
+
+In C++ classes are value types by default, not reference types like in C#.
+
+Passing a class instance by reference to a function in C# is:
+```csharp
+// csharp
+void Example(Class instance)
+{
+    // changes the original instance
+    instance.variable = 1;
+
+    // this creates a copy
+    Class instance_copy = instance.Clone();
+}
+```
+
+Passing a class instance by reference to a function in C++ is:
+```cpp
+// cpp
+void Example(Class& instance)
+{
+    // changes the original instance
+    instance.variable = 1;
+
+    // this creates a copy
+    Class instance_copy = instance;
+}
+```
+
+You can also pass a class instance in C++ with a pointer:
+```cpp
+// cpp
+void Example(Class* instance_ptr)
+{
+    // changes the original instance
+    instance_ptr->variable = 1;
+
+    // changes the original instance
+    (*instance_ptr).variable = 1;
+
+    // this creates a copy
+    Class instance_copy = *instance_ptr;
+}
+```
+
+## Memory
+
+**Stack:**
+
+When creating a variable in C++ it uses the stack by default.
+Memory on the stack is local to its scope and gets released automatically when the variable goes out of scope.
+
+**Heap:**
+
+When you want memory to exist outside of the scope it is created in, you must allocate memory for it on the heap.
+You can allocate memory on the heap using ``malloc()`` and release it using ``free()``.
+But a better alternative is using ``auto variable = new Type();`` and release it using ``delete variable;``
+
+**Leaks:**
+
+In C++ heap memory does not automatically free when the application terminates. and in both C++ and C# OpenGL data like buffers and textures in vram also dont automatically free when the application terminates.
+Generally speaking the os will reclaim unfreed memory when the application terminates, but relying on this is bad practice.
+
+## Pointers
+
+**Basic:**
+
+Raw pointers in C++ work the same as in C#, the syntax is the exact same:
+```cpp
+int x = 1;
+int* ptr = &x;
+int y = *ptr;
+```
+
+it doesnt matter where in a pointer you use a space as it will all work:
+
+```cpp
+int* ptr = &x;
+int *ptr = &x;
+int*ptr = &x;
+```
+
+**Smart:**
+
+There are 3 types of smart pointers: ``std::unique_ptr`` ``std::shared_ptr`` ``std::weak_ptr``, to use them with ``#include <memory>``
+
+## Headers
+
+**What are they?:**
+
+All code goes in ``.cpp`` files, and then every file has a header ``.hpp`` file with the same exact name which contains all the declerations (names) of your functions.
+
+**How are they used?:**
+
+You can access code from other files only by using ``#include "file.h"`` at the top of your code. Which will simply copy the entire header to that point.
+You can include a header in 2 ways: ``#include "file.h"`` or ``#include <file.h>``. Using quotes will search the header in your current directory and using angled brackets will search the header in the include directory.
+
+**Further Reading:**
+
+- [header files](https://www.learncpp.com/cpp-tutorial/header-files/)
+- [build mechanics](https://hackingcpp.com/cpp/lang/separate_compilation.html)
+
+**Overview:**
+
+<img width="500" src="https://github.com/user-attachments/assets/b17a67fe-1ad6-4712-a9cb-2b1491038404">
+
+## Public / Private
+
+In C# you can put public or private before any member of a class like so:
+
+```csharp
+class Person
+{
+    public float a;
+    private float b;
+    public float c;
+}
+```
+
+In C++ you put all public member under ``public:`` and all private members under ``private:`` like so:
+
+```cpp
+class Person
+{
+    public:
+        float a;
+        float c;
+    private:
+        float b;
+}
+```
+
+## Lambda Expressions
+
+A lambda expression like in C# is a lambda calculus function. In simple terms it can be described as an inline function.
+
+This is how lambdas in C# look:
+```csharp
+// csharp
+
+// single line lambda
+var add = (int a, int b) => a + b;
+
+// multi line lambda
+var add_and_mult = (int a, int b) =>
+{
+    var x = a + b;
+    var y = x * 2;
+    return y;
+};
+```
+
+This is how lambdas in C++ look:
+```cpp
+// cpp
+
+// single line lambda
+auto add = [](int a, int b) { return a + b; };
+
+// multi line lambda
+auto add_and_mult = [](int a, int b)
+{
+    auto x = a + b;
+    auto y = x * 2;
+    return y;
+};
+
+// lambda with explicit return type
+auto add = [](int a, int b) -> int
+{
+    return a + b;
+};
+```
+
+When using C++ lambda expressions also have the ability to capture variables from their surrounding scope.
+Capturing determines how variables from the surrounding scope are made available to inside the lambda.
+You determine how do capture variabled based on what you place inside the ``[ ]`` capture brackets.
+```cpp
+// cpp
+
+int first = 10;
+int second = 20;
+
+// capture all surrounding variabled by value
+auto lambda = [=](int a)
+{
+    a = first + second;
+    first = a; // doesnt change the original
+};
+
+// capture all surrounding variabled by reference
+auto lambda = [&](int a)
+{
+    a = first + second;
+    first = a; // changes the original
+};
+
+// captures 'int first' by value and 'int second' by reference
+auto lambda = [first, &second](int a)
+{
+    a = first + second;
+    first = a; // doesnt change the original
+};
+
+// captures 'int first' by reference and 'int second' by value
+auto lambda = [&first, second](int a)
+{
+    a = first + second;
+    first = a; // changes the original
+};
+```
+
+## Operator overloading
+
+In C# operator overloading works like this:
+```csharp
+// csharp
+public static Type operator +(Type a, Type b)
+{
+    return new Type(a.value + b.value);
+}
+```
+
+In C# you always need to make an operator overload ``public`` and ``static``, in C++ you dont.
+Also as you can see for C# we use the ``new`` keyword because that makes the object exist on the heap and it returns a type by reference, thats default for C#.
+
+In C++ operator overloading works like this:
+```cpp
+// cpp
+Type operator +(Type& b)
+{
+    return Type(this->value + b.value);
+}
+```
+
+Also as you can see for C++ we dont use the ``new`` keyword because in C++ everything is a value type by default which are on the stack, the ``new`` keyword makes objects on the heap.
+
+## Arrays / Lists
+
+Important differences:
+- In C# you write ``int[] name``, while in C++ you write ``int name[]``, it differs where you place the brackets.
+- In C# arrays are always on the heap and made with ``new``, while in C++ arrays are on the stack.
+- In C# ``int[][]`` is a jagged array while in C++ ``int[][]`` is a multidimensional array.
+- In C++ a list is called a vector (yes thats really confusing).
+
+In C# you use arrays like so:
+
+```csharp
+// csharp
+
+// simple array
+int[] array = new int[8]; // create
+int value = array[0]; // index
+
+// multidimensional array
+int[,] array = new int[8, 8]; // create
+int value = array[0, 0]; // index
+
+// jagged array (array of arrays)
+int[][] array = new int[8][]; // create
+int value = array[0][0]; // index
+```
+
+In C++ you use arrays like so:
+```cpp
+// cpp
+
+// simple array
+int array[8]; // create
+int value = array[0] // index
+
+// multidimensional array
+int array[8][8]; // create
+int value = array[0][0]; // index
+```
+
+In C# you use lists like so:
+```csharp
+// csharp
+
+// create list
+List<int> list = new List<int>();
+
+// get length of list
+int length = list.Count;
+
+// add to list
+list.Add(4);
+
+// remove third element from list:
+list.RemoveAt(2);
+
+// index list
+int value = list[0];
+
+// clear list
+list.Clear();
+```
+
+In C++ you use lists (called vectors in c++) like so:
+```cpp
+// cpp
+
+// create vector
+vector<int> vector;
+
+// get length of vector
+int length = vector.size();
+
+// add to vector
+vector.push_back(4);
+
+// remove third element from vector
+vector.erase(vector.begin() + 2);
+
+// index vector
+int value = vector[0];
+
+// clear vector
+vector.clear();
+```
+
+## Generics / Templates
+
+In C# you create generics like so:
+```csharp
+// csharp
+
+// generic function
+void Print<T>(T value)
+{
+    Console.WriteLine("value: " + value);
+}
+
+// generic function with multiple parameters
+void Print<T1, T2>(T1 a, T2 b)
+{
+    Console.WriteLine("a: " + a + " b: " + b);
+}
+
+// generic class
+class Box<T>
+{
+    T value;
+}
+```
+
+In C++ you create generics like so:
+```cpp
+// cpp
+
+// generic function
+template <typename T>
+void Print(T value)
+{
+    cout << "value: " << value;
+}
+
+// generic function with multiple parameters
+template <typename T1, typename T2>
+void Print(T1 a, T2 b)
+{
+    cout << "a: " << a << " b: " << b;
+}
+
+// generic class
+template <typename T>
+class Box
+{
+    T value;
+};
+```
+
+## Strings
+
+In C# you use strings like so:
+```csharp
+// csharp
+
+// creating a string
+string hello = "hello";
+
+// combining strings
+string combined = hello + "world";
+
+// comparing strings
+bool test = ("apple" == "orange");
+
+// number to string
+int age = 22;
+string message = age.ToString() + " years old";
+
+// get length of string
+string test = "test";
+int length = test.Length;
+
+// indexing a string
+string test = "test";
+char index = test[0];
+```
+
+In C++ you use strings like so:
+```cpp
+// cpp
+
+// creating a string
+string hello = "hello"; // c++ style
+char hello[] = "hello"; // plain c style
+char* hello = "hello"; // plain c style
+
+// combining strings
+string combined = hello + "world";
+
+// comparing strings
+bool test = ("apple" == "orange");
+
+// number to string
+int age = 22;
+string message = to_string(age) + " years old";
+
+// get length of string
+string test = "test";
+int length = test.length();
+
+// indexing a string
+string test = "test";
+char index = test[0];
+```
