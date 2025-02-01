@@ -115,9 +115,8 @@ You can include a header in 2 ways: ``#include "file.h"`` or ``#include <file.h>
 - [header files](https://www.learncpp.com/cpp-tutorial/header-files/)
 - [build mechanics](https://hackingcpp.com/cpp/lang/separate_compilation.html)
 
-**Overview:**
-
-<img width="500" src="https://github.com/user-attachments/assets/b17a67fe-1ad6-4712-a9cb-2b1491038404">
+**Build Model Overview:**
+![build-model](https://hackingcpp.com/cpp/slides/cpp_separate_compilation_03.svg)
 
 ## Public / Private
 
