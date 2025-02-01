@@ -31,6 +31,9 @@ params:
   ShowToc: true
   images: ["images/papermod-cover.png"]
 
+  assets:
+    favicon: "assets/favicon.svg"
+
   profileMode:
     enabled: true
     title: Sjoerd Wouters
