@@ -7,7 +7,7 @@ url: "/projects"
 .image-grid
 {
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(3, auto);
     grid-template-rows: repeat(6, auto);
     gap: 10px;
     width: 100%;
