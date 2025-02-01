@@ -29,7 +29,6 @@ params:
   ShowAllPagesInArchive: true
   ShowPageNums: true
   ShowToc: true
-  images: ["images/papermod-cover.png"]
 
   assets:
     favicon: "assets/favicon.svg"
