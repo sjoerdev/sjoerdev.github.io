@@ -4,7 +4,7 @@ summary: "summary"
 description: this is the description
 
 cover:
-    image: "images/concrete/concrete2.png"
+    image: "images/concrete/concrete5.png"
 
 ShowBreadCrumbs: true
 ShowToc: true
