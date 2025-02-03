@@ -4,11 +4,13 @@ summary: "summary"
 description: this is the description
 
 cover:
-    # image: "images/voxelengine.png"
+    image: "images/voxel/voxelengine1.png"
 
 ShowBreadCrumbs: true
 ShowToc: true
 TocOpen: true
+
+weight: 1
 ---
 
 # Header
