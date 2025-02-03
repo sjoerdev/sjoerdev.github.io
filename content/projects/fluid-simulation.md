@@ -9,6 +9,8 @@ cover:
 ShowBreadCrumbs: true
 ShowToc: false
 TocOpen: false
+
+weight: 3
 ---
 
 > Download and source-code can be found [on this website](https://github.com/sjoerdev/fluid-simulation)
