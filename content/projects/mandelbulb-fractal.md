@@ -9,8 +9,6 @@ cover:
 ShowBreadCrumbs: true
 ShowToc: true
 TocOpen: true
-
-weight: 6
 ---
 
 # Header

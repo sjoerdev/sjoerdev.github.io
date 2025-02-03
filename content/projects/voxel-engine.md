@@ -1,7 +1,7 @@
 ---
 title: "Voxel Engine"
-summary: "This engine tries to ray-trace pure voxels as fast as possible without sacrificing dynamic geometry."
-description: "This is a 3d graphics engine that focusses on rendering voxels as fast as possible without sacrificing dynamic geometry."
+summary: "This engine tries to ray-trace pure voxels as fast as possible without sacrificing dynamic geometry"
+description: "This is a 3d graphics engine that focusses on rendering voxels as fast as possible without sacrificing dynamic geometry"
 
 cover:
     image: "images/voxel/voxelengine5.png"
