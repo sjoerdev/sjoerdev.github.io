@@ -101,9 +101,14 @@ There are 3 types of smart pointers: ``std::unique_ptr`` ``std::shared_ptr`` ``s
 
 ## Headers
 
+![headers](/images/headers.png)
+
 **What are they?:**
 
+In C# you can acces functions that are in a different ``.cs`` file by just making them both use the same namespace. In C++, its a little bit more complex.
+Header files can be seen as an outline of all the functions contained in a ``.cpp`` file.
 All code goes in ``.cpp`` files, and then every file has a header ``.hpp`` file with the same exact name which contains all the declerations (names) of your functions.
+Using headers help the compiler understand how source files are connected, which is one of the reasons C++ code compiles so very fast compared to C# code.
 
 **How are they used?:**
 
@@ -114,9 +119,6 @@ You can include a header in 2 ways: ``#include "file.h"`` or ``#include <file.h>
 
 - [header files](https://www.learncpp.com/cpp-tutorial/header-files/)
 - [build mechanics](https://hackingcpp.com/cpp/lang/separate_compilation.html)
-
-**Build Model Overview:**
-![build-model](https://hackingcpp.com/cpp/slides/cpp_separate_compilation_03.svg)
 
 ## Public / Private
 
