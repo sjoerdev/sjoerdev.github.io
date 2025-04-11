@@ -16,7 +16,7 @@ tocopen: false
 
 ✒️ Languages: [C#][1] / [GLSL][2] / [HLSL][3] <br>
 ⚙️ Engines: [Unity][4] / [Godot][5] <br>
-📷 Rendering: [OpenGL][6] / [OpenTK][7] / [Silk.NET][8] / [GLTF][9] <br>
+📷 Rendering: [OpenGL][6] / [OpenTK][7] / [Silk.NET][8] <br>
 
 [1]: https://learn.microsoft.com/en-us/dotnet/csharp/
 [2]: https://en.wikipedia.org/wiki/OpenGL_Shading_Language
@@ -26,7 +26,6 @@ tocopen: false
 [6]: https://www.opengl.org/
 [7]: https://opentk.net/
 [8]: https://dotnet.github.io/Silk.NET/
-[9]: https://en.wikipedia.org/wiki/GlTF
 
 ## Experience
 
@@ -47,15 +46,17 @@ November 2021 - May 2022
 ## Education
 
 **Grafisch Lyceum Utrecht / Software Development** <br>
-2021 - 2025
+August 2021 - August 2025
 - Object oriented programming in C#
 - Game development using the Unity engine
+- Programming HLSL and GLSL shaders
 - Version control using git(hub)
 - Collaborating using scrum
 
 <br>
 
 **Niftarlake College / Higher General Secondary Education** <br>
-2016 - 2020
-- Basically the dutch version of highschool
-- Learned basic linear algebra and calculus
+August 2018 - August 2021
+- Learned math related stuff
+- Learned physics related stuff
+- Learned fluent english
