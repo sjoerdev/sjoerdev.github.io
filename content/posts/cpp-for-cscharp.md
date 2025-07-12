@@ -125,6 +125,7 @@ You can include a header in 2 ways: ``#include "file.h"`` or ``#include <file.h>
 In C# you can put public or private before any member of a class like so:
 
 ```csharp
+// csharp
 class Person
 {
     public float a;
@@ -136,6 +137,7 @@ class Person
 In C++ you put all public member under ``public:`` and all private members under ``private:`` like so:
 
 ```cpp
+// cpp
 class Person
 {
     public:
@@ -144,6 +146,40 @@ class Person
     private:
         float b;
 }
+```
+
+## Structs
+
+In C/C++ you define structs syntactically slightly different than in C#
+
+In C# you define a scruct like this:
+
+```csharp
+struct Point
+{
+    int x;
+    int y;
+}
+```
+
+In C++ you define a struct like this:
+
+```cpp
+struct Point
+{
+    int x;
+    int y;
+}; // <- semicolon is required
+```
+
+In plain C you define a struct like this:
+
+```cpp
+typedef struct Point // <- typedef is required
+{
+    int x;
+    int y;
+} Point; // <- typedef is required
 ```
 
 ## Lambda Expressions
