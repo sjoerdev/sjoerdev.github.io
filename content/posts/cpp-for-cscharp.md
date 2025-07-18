@@ -12,6 +12,13 @@ TocOpen: true
 ShowBreadCrumbs: true
 ---
 
+## Types
+
+In C++ most types have the same or a similar name as in C#, but not always. 
+This is a table that hold a comparison of all fundamental types you should know about:
+
+![types](/images/table-types.png)
+
 ## References
 
 In C++ classes are value types by default, not reference types like in C#.
@@ -119,6 +126,55 @@ You can include a header in 2 ways: ``#include "file.h"`` or ``#include <file.h>
 
 - [header files](https://www.learncpp.com/cpp-tutorial/header-files/)
 - [build mechanics](https://hackingcpp.com/cpp/lang/separate_compilation.html)
+
+## Standard Library
+
+There are a set of build in header libraries you can use for common operations called the ``Standard Libary`` or ``std`` for short. You can look at the standard library as the conceptual equivelant to the ``System`` namespace in the C# language, it provides libraries for common operations like input and output and file operations as well as containers like strings, lists, dictionaries and others.
+
+This table describes the most commonly used headers in the standard library:
+![standardlibrary](/images/table-headers.png)
+
+## Initialization
+
+C++ allows you to initialize objects on the stack or the heap. But In C# you don't get to choose, classes will be on the heap because they are reference types and structs on the stack because they are value types, and in C# you must always use the ``new`` keyword.
+
+Initializing on the stack in C++ syntax:
+```cpp
+// cpp
+
+// with parentheses
+Type test(args);
+Type test = Type(args);
+
+// with curly braces
+Type test{args};
+Type test = Type{args};
+Type test = {args};
+```
+
+Initializing on the heap in C++ syntax:
+```cpp
+// cpp
+Type* test = new Type(args); // with parentheses
+Type* test = new Type{args}; // with curly braces
+```
+
+Initializing on the heap in C# syntax (only way):
+```csharp
+// csharp
+Type test = new Type(args); // with parentheses
+```
+
+here is a crude comparison table of how the C++ ways translate to C# syntax:
+
+![init](/images/table-init.png)
+
+Things to remember about initialization:
+
+- C++ gives more control over stack vs heap
+- C++ supports multiple syntaxes: parentheses and curly braces
+- C# classes are reference types (heap), structs are value types (stack)
+- C# always requires new for both structs and classes
 
 ## Public / Private
 
