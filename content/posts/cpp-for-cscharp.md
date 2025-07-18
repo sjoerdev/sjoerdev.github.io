@@ -262,7 +262,38 @@ auto lambda = [&first, second](int a)
 };
 ```
 
-## Operator overloading
+## Trailing Return Types
+
+In C++ you can use something called trailing return types, which is just a different syntax for declaring an explicit return type of a function or a lambda.
+
+Instead of placing the return type before the function name, it is placed after the parameter list using the ``->`` syntax.
+
+The syntax for declaring an explicit return type is ``auto foo() -> type { }`` instead of the more usual ``type foo() { }`` which you are used to as a C# developer.
+
+These are all the ways you can declare an explicit return type in C++ syntax:
+```cpp
+// cpp
+
+// normal return type
+int Add(int a, int b)
+{
+    return a + b;
+}
+
+// trailing return type
+auto Add(int a, int b) -> int // notice the "-> int"
+{
+    return a + b;
+}
+
+// trailing return type
+auto add = [](int a, int b) -> int // notice the "-> int"
+{
+    return a + b;
+};
+```
+
+## Operator Overloading
 
 In C# operator overloading works like this:
 ```csharp
