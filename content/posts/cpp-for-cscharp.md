@@ -333,19 +333,19 @@ These are all the ways you can declare an explicit return type in C++ syntax:
 ```cpp
 // cpp
 
-// normal return type
+// normal
 int Add(int a, int b)
 {
     return a + b;
 }
 
-// trailing return type
+// trailing
 auto Add(int a, int b) -> int // notice the "-> int"
 {
     return a + b;
 }
 
-// trailing return type
+// trailing (lambda)
 auto add = [](int a, int b) -> int // notice the "-> int"
 {
     return a + b;
