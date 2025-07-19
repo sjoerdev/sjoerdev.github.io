@@ -136,45 +136,48 @@ This table describes the most commonly used headers in the standard library:
 
 ## Initialization
 
+**Stack / Heap:**
+
 C++ allows you to initialize objects on the stack or the heap. But In C# you don't get to choose, classes will be on the heap because they are reference types and structs on the stack because they are value types, and in C# you must always use the ``new`` keyword.
 
-Initializing on the stack in C++ syntax:
+**Copy / Direct:**
+
+Another thing to keep in mind about C++ initialization in particular is that there is a distinction between copy and direct initialization, direct initialization is slightly faster because there is no need for an unnecessary copy operation to be done.
+
+**C++ stack initialization:**
 ```cpp
-// cpp
+// direct
+Type test(x); // parentices
+Type test{x}; // curly braces
 
-// with parentheses
-Type test(args);
-Type test = Type(args);
+// copy
+Type test = Type(x); // parentices
+Type test = Type{x}; // curly braces
 
-// with curly braces
-Type test{args};
-Type test = Type{args};
-Type test = {args};
+// copy (shorthand)
+Type test = x; // implicit conversion
+Type test = (x); // same as the above because () does nothing
+Type test = {x}; // prevents narrowing conversions
 ```
 
-Initializing on the heap in C++ syntax:
+**C++ heap initialization:**
 ```cpp
-// cpp
-Type* test = new Type(args); // with parentheses
-Type* test = new Type{args}; // with curly braces
+Type* test = new Type(x); // parentheses
+Type* test = new Type{x}; // curly braces
 ```
 
-Initializing on the heap in C# syntax (only way):
+**C# initialization:**
 ```csharp
-// csharp
-Type test = new Type(args); // with parentheses
+Type test = new Type(x); // the only way in csharp
 ```
 
-here is a crude comparison table of how the C++ ways translate to C# syntax:
-
-![init](/images/table-init.png)
-
-Things to remember about initialization:
+**Things to remember about initialization:**
 
 - C++ gives more control over stack vs heap
 - C++ supports multiple syntaxes: parentheses and curly braces
+- C++ gives more control about when copy operations are used
 - C# classes are reference types (heap), structs are value types (stack)
-- C# always requires new for both structs and classes
+- C# always requires the new keyword for both structs and classes
 
 ## Public / Private
 
