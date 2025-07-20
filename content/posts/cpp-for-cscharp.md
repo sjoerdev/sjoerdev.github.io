@@ -147,28 +147,29 @@ Another thing to keep in mind about C++ initialization in particular is that the
 **C++ stack initialization:**
 ```cpp
 // direct
-Type test(x); // parentices
-Type test{x}; // curly braces
+Type name; // uninitialized
+Type name{}; // initializes with default value
+Type test(x);
+Type test{x};
+Type test{x, y, z}; // works on collections like arrays
 
 // copy
-Type test = Type(x); // parentices
-Type test = Type{x}; // curly braces
-
-// copy (shorthand)
-Type test = x; // implicit conversion
-Type test = (x); // same as the above because () does nothing
-Type test = {x}; // prevents narrowing conversions
+Type test = Type(x);
+Type test = Type{x};
+Type test = {x, y, z}; // works on collections like arrays
 ```
 
 **C++ heap initialization:**
 ```cpp
-Type* test = new Type(x); // parentheses
-Type* test = new Type{x}; // curly braces
+Type* test = new Type(x);
+Type* test = new Type{x};
 ```
 
 **C# initialization:**
 ```csharp
-Type test = new Type(x); // the only way in csharp
+Type test; // uninitialized
+Type test = new Type(x); // standard way of initializing
+Type test = [x, y, z]; // works on collections like arrays and lists
 ```
 
 **Things to remember about initialization:**
