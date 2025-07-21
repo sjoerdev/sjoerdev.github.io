@@ -60,5 +60,5 @@ markup:
     renderer:
       unsafe: true
   highlight:
-    style: monokai
     codeFences: true
+    noClasses: false
