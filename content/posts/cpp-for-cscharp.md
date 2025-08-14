@@ -147,8 +147,8 @@ Another thing to keep in mind about C++ initialization in particular is that the
 **C++ stack initialization:**
 ```cpp
 // direct
-Type name; // uninitialized
-Type name{}; // initializes with default value
+Type test; // uninitialized
+Type test{}; // initializes with default value
 Type test(x);
 Type test{x};
 Type test{x, y, z}; // works on collections like arrays
