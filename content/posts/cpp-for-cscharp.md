@@ -163,6 +163,7 @@ Type test = {x, y, z}; // works on collections like arrays
 ```cpp
 Type* test = new Type(x);
 Type* test = new Type{x};
+Type& test = *new Type(x); // get as reference instead of pointer
 ```
 
 **C# initialization:**
@@ -245,6 +246,10 @@ typedef struct Point // <- typedef is required
 ## Lambda Expressions
 
 A lambda expression like in C# is a lambda calculus function. In simple terms it can be described as an inline function.
+
+The basic structure of a lambda:
+- csharp: ``(input)=>{body};``
+- cpp: ``[catch](input){body};``
 
 This is how lambdas in C# look:
 ```csharp
