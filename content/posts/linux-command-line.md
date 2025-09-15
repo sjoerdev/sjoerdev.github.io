@@ -72,6 +72,7 @@ But you can be sure that all major Linux distros come with the binaries of those
         <tr><td>uname</td><td>gnu</td><td>Show system and kernel information</td></tr>
         <tr><td>uptime</td><td>procps-ng</td><td>Show system uptime and load</td></tr>
         <tr><td>who</td><td>util-linux</td><td>Show who is logged in</td></tr>
+        <tr><td>whoami</td><td>gnu</td><td>Show current user</td></tr>
         <tr><td>id</td><td>gnu</td><td>Show user and group IDs</td></tr>
         <tr><td>groups</td><td>gnu</td><td>List groups for a user</td></tr>
         <tr><td>tar</td><td>gnu</td><td>Archive or extract files</td></tr>
@@ -92,6 +93,11 @@ But you can be sure that all major Linux distros come with the binaries of those
         <tr><td>fdisk</td><td>util-linux</td><td>Manages disks or drives</td></tr>
         <tr><td>curl</td><td>other</td><td>Downloads files from the web</td></tr>
         <tr><td>wget</td><td>other</td><td>Downloads files from the web</td></tr>
+        <tr><td>su</td><td>util-linux</td><td>Switch to root user</td></tr>
+        <tr><td>sudo</td><td>other</td><td>Execute command as root user</td></tr>
+        <tr><td>shutdown</td><td>util-linux</td><td>Shut down the system</td></tr>
+        <tr><td>reboot</td><td>util-linux</td><td>Reboot the system</td></tr>
+        <tr><td>clear</td><td>gnu</td><td>Clears the terminal output</td></tr>
     </tbody>
 </table>
 
