@@ -7,7 +7,7 @@ description: |
     I will also be covering command commands that every person should know.
     And i will cover the basics of shell scripting.
 
-summary: "In this guide i will be comparing only the major differences between C# and C++"
+summary: "In this guide i will be covering the linux command line basics"
 ShowToc: true
 TocOpen: true
 ShowBreadCrumbs: true
