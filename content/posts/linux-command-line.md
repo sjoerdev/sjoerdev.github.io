@@ -135,7 +135,7 @@ But you can be sure that all major Linux distros come with the binaries of those
   </thead>
   <tbody>
     <tr><td>mount</td><td>util-linux</td><td>Mount disks or drive</td><td>mount /dev/sda1 /mnt/usb</td></tr>
-    <tr><td>unmount</td><td>util-linux</td><td>Unmount disks or drive</td><td>unmount /mnt/usb</td></tr>
+    <tr><td>umount</td><td>util-linux</td><td>Unmount disks or drive</td><td>umount /mnt/usb</td></tr>
     <tr><td>fdisk</td><td>util-linux</td><td>Manages disks or drives</td><td>fdisk -l</td></tr>
   </tbody>
 </table>
