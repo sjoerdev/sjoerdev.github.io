@@ -49,55 +49,58 @@ But you can be sure that all major Linux distros come with the binaries of those
             <th>Command</th>
             <th>Project</th>
             <th>Description</th>
+            <th>Example</th>
         </tr>
     </thead>
     <tbody>
-        <tr><td>ls</td><td>gnu</td><td>List files and directories</td></tr>
-        <tr><td>cd</td><td>bash</td><td>Change the current directory</td></tr>
-        <tr><td>pwd</td><td>gnu</td><td>Print current working directory</td></tr>
-        <tr><td>cp</td><td>gnu</td><td>Copy files or directories</td></tr>
-        <tr><td>mv</td><td>gnu</td><td>Move or rename files/directories</td></tr>
-        <tr><td>rm</td><td>gnu</td><td>Remove files or directories</td></tr>
-        <tr><td>mkdir</td><td>gnu</td><td>Create directories</td></tr>
-        <tr><td>rmdir</td><td>gnu</td><td>Remove empty directories</td></tr>
-        <tr><td>touch</td><td>gnu</td><td>Create empty file or update timestamp</td></tr>
-        <tr><td>cat</td><td>gnu</td><td>Display or concatenate file contents</td></tr>
-        <tr><td>echo</td><td>bash</td><td>Print text to stdout</td></tr>
-        <tr><td>chmod</td><td>gnu</td><td>Change file permissions</td></tr>
-        <tr><td>chown</td><td>gnu</td><td>Change file owner and group</td></tr>
-        <tr><td>find</td><td>gnu</td><td>Search for files in directories</td></tr>
-        <tr><td>grep</td><td>gnu</td><td>Search text in files using patterns</td></tr>
-        <tr><td>ps</td><td>procps-ng</td><td>Show currently running processes</td></tr>
-        <tr><td>kill</td><td>gnu</td><td>Terminate a process by PID</td></tr>
-        <tr><td>uname</td><td>gnu</td><td>Show system and kernel information</td></tr>
-        <tr><td>uptime</td><td>procps-ng</td><td>Show system uptime and load</td></tr>
-        <tr><td>who</td><td>util-linux</td><td>Show who is logged in</td></tr>
-        <tr><td>whoami</td><td>gnu</td><td>Show current user</td></tr>
-        <tr><td>id</td><td>gnu</td><td>Show user and group IDs</td></tr>
-        <tr><td>groups</td><td>gnu</td><td>List groups for a user</td></tr>
-        <tr><td>tar</td><td>gnu</td><td>Archive or extract files</td></tr>
-        <tr><td>gzip</td><td>gnu</td><td>Compress files</td></tr>
-        <tr><td>gunzip</td><td>gnu</td><td>Decompress gzip files</td></tr>
-        <tr><td>ping</td><td>iputils</td><td>Test network connectivity</td></tr>
-        <tr><td>ip</td><td>iproute2</td><td>Show or configure network interfaces</td></tr>
-        <tr><td>which</td><td>other</td><td>Locate a command in PATH</td></tr>
-        <tr><td>whereis</td><td>util-linux</td><td>Locate binaries, source, and manuals</td></tr>
-        <tr><td>type</td><td>bash</td><td>Show command type information</td></tr>
-        <tr><td>basename</td><td>gnu</td><td>Strip directory path from filename</td></tr>
-        <tr><td>dirname</td><td>gnu</td><td>Strip filename to show directory path</td></tr>
-        <tr><td>xargs</td><td>gnu</td><td>Build and execute commands from input</td></tr>
-        <tr><td>env</td><td>gnu</td><td>Show or set environment variables</td></tr>
-        <tr><td>export</td><td>gnu</td><td>Set environment variables for child processes</td></tr>
-        <tr><td>mount</td><td>util-linux</td><td>Mount disks or drive</td></tr>
-        <tr><td>unmount</td><td>util-linux</td><td>Unmount disks or drive</td></tr>
-        <tr><td>fdisk</td><td>util-linux</td><td>Manages disks or drives</td></tr>
-        <tr><td>curl</td><td>other</td><td>Downloads files from the web</td></tr>
-        <tr><td>wget</td><td>other</td><td>Downloads files from the web</td></tr>
-        <tr><td>su</td><td>util-linux</td><td>Switch to root user</td></tr>
-        <tr><td>sudo</td><td>other</td><td>Execute command as root user</td></tr>
-        <tr><td>shutdown</td><td>util-linux</td><td>Shut down the system</td></tr>
-        <tr><td>reboot</td><td>util-linux</td><td>Reboot the system</td></tr>
-        <tr><td>clear</td><td>gnu</td><td>Clears the terminal output</td></tr>
+        <tr><td>ls</td><td>gnu</td><td>List files and directories</td><td>example</td></tr>
+        <tr><td>cd</td><td>bash</td><td>Change the current directory</td><td>example</td></tr>
+        <tr><td>pwd</td><td>gnu</td><td>Print current working directory</td><td>example</td></tr>
+        <tr><td>cp</td><td>gnu</td><td>Copy files or directories</td><td>example</td></tr>
+        <tr><td>mv</td><td>gnu</td><td>Move or rename files/directories</td><td>example</td></tr>
+        <tr><td>rm</td><td>gnu</td><td>Remove files or directories</td><td>example</td></tr>
+        <tr><td>mkdir</td><td>gnu</td><td>Create directories</td><td>example</td></tr>
+        <tr><td>rmdir</td><td>gnu</td><td>Remove empty directories</td><td>example</td></tr>
+        <tr><td>touch</td><td>gnu</td><td>Create empty file or update timestamp</td><td>example</td></tr>
+        <tr><td>cat</td><td>gnu</td><td>Display or concatenate file contents</td><td>example</td></tr>
+        <tr><td>echo</td><td>bash</td><td>Print text to stdout</td><td>example</td></tr>
+        <tr><td>chmod</td><td>gnu</td><td>Change file permissions</td><td>example</td></tr>
+        <tr><td>chown</td><td>gnu</td><td>Change file owner and group</td><td>example</td></tr>
+        <tr><td>find</td><td>gnu</td><td>Search for files in directories</td><td>example</td></tr>
+        <tr><td>grep</td><td>gnu</td><td>Search text in files using patterns</td><td>example</td></tr>
+        <tr><td>sed</td><td>gnu</td><td>Filters text using given rules</td><td>example</td></tr>
+        <tr><td>ps</td><td>procps-ng</td><td>Show currently running processes</td><td>example</td></tr>
+        <tr><td>kill</td><td>gnu</td><td>Terminate a process by PID</td><td>example</td></tr>
+        <tr><td>pkill</td><td>gnu</td><td>Terminate a process by name</td><td>example</td></tr>
+        <tr><td>uname</td><td>gnu</td><td>Show system and kernel information</td><td>example</td></tr>
+        <tr><td>uptime</td><td>procps-ng</td><td>Show system uptime and load</td><td>example</td></tr>
+        <tr><td>who</td><td>util-linux</td><td>Show who is logged in</td><td>example</td></tr>
+        <tr><td>whoami</td><td>gnu</td><td>Show current user</td><td>example</td></tr>
+        <tr><td>id</td><td>gnu</td><td>Show user and group IDs</td><td>example</td></tr>
+        <tr><td>groups</td><td>gnu</td><td>List groups for a user</td><td>example</td></tr>
+        <tr><td>tar</td><td>gnu</td><td>Archive or extract files</td><td>example</td></tr>
+        <tr><td>gzip</td><td>gnu</td><td>Compress files</td><td>example</td></tr>
+        <tr><td>gunzip</td><td>gnu</td><td>Decompress gzip files</td><td>example</td></tr>
+        <tr><td>ping</td><td>iputils</td><td>Test network connectivity</td><td>example</td></tr>
+        <tr><td>ip</td><td>iproute2</td><td>Show or configure network interfaces</td><td>example</td></tr>
+        <tr><td>which</td><td>other</td><td>Locate a command in PATH</td><td>example</td></tr>
+        <tr><td>whereis</td><td>util-linux</td><td>Locate binaries, source, and manuals</td><td>example</td></tr>
+        <tr><td>type</td><td>bash</td><td>Show command type information</td><td>example</td></tr>
+        <tr><td>basename</td><td>gnu</td><td>Strip directory path from filename</td><td>example</td></tr>
+        <tr><td>dirname</td><td>gnu</td><td>Strip filename to show directory path</td><td>example</td></tr>
+        <tr><td>xargs</td><td>gnu</td><td>Build and execute commands from input</td><td>example</td></tr>
+        <tr><td>env</td><td>gnu</td><td>Show or set environment variables</td><td>example</td></tr>
+        <tr><td>export</td><td>gnu</td><td>Set environment variables for child processes</td><td>example</td></tr>
+        <tr><td>mount</td><td>util-linux</td><td>Mount disks or drive</td><td>example</td></tr>
+        <tr><td>unmount</td><td>util-linux</td><td>Unmount disks or drive</td><td>example</td></tr>
+        <tr><td>fdisk</td><td>util-linux</td><td>Manages disks or drives</td><td>example</td></tr>
+        <tr><td>curl</td><td>other</td><td>Downloads files from the web</td><td>example</td></tr>
+        <tr><td>wget</td><td>other</td><td>Downloads files from the web</td><td>example</td></tr>
+        <tr><td>su</td><td>util-linux</td><td>Switch to root user</td><td>example</td></tr>
+        <tr><td>sudo</td><td>other</td><td>Execute command as root user</td><td>example</td></tr>
+        <tr><td>shutdown</td><td>util-linux</td><td>Shut down the system</td><td>example</td></tr>
+        <tr><td>reboot</td><td>util-linux</td><td>Reboot the system</td><td>example</td></tr>
+        <tr><td>clear</td><td>gnu</td><td>Clears the terminal output</td><td>example</td></tr>
     </tbody>
 </table>
 
