@@ -163,6 +163,109 @@ But you can be sure that all major Linux distros come with the binaries of those
   </tbody>
 </table>
 
+## Shebangs
+
+description of shebangs here.
+
+### Bash Shebangs
+
+<table>
+  <tr>
+    <th>Shebang</th>
+    <th>Comment</th>
+    <th>Debian</th>
+    <th>Arch</th>
+    <th>Fedora</th>
+    <th>macOS</th>
+    <th>FreeBSD</th>
+  </tr>
+  <tr>
+    <td>#!/bin/bash</td>
+    <td>the default bash location on linux</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>⚠️</td>
+    <td>⚠️</td>
+  </tr>
+  <tr>
+    <td>#!/usr/bin/bash</td>
+    <td>works on freebsd</td>
+    <td>⚠️</td>
+    <td>⚠️</td>
+    <td>⚠️</td>
+    <td>⚠️</td>
+    <td>✅</td>
+  </tr>
+  <tr>
+    <td>#!/bin/env bash</td>
+    <td>the env binary is almost never in bin</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
+  </tr>
+  <tr>
+    <td>#!/usr/bin/env bash</td>
+    <td>finds bash via the path</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+  </tr>
+</table>
+
+### Posix Shebangs
+
+<table>
+  <tr>
+    <th>Shebang</th>
+    <th>Comment</th>
+    <th>Debian</th>
+    <th>Arch</th>
+    <th>Fedora</th>
+    <th>macOS</th>
+    <th>FreeBSD</th>
+  </tr>
+    <tr>
+    <td>#!/bin/sh</td>
+    <td>the default sh location on most systems</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+  </tr>
+  <tr>
+    <td>#!/usr/bin/sh</td>
+    <td>works on freebsd</td>
+    <td>⚠️</td>
+    <td>⚠️</td>
+    <td>⚠️</td>
+    <td>⚠️</td>
+    <td>✅</td>
+  </tr>
+  <tr>
+    <td>#!/bin/env sh</td>
+    <td>the env binary is almost never in bin</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
+  </tr>
+  <tr>
+    <td>#!/usr/bin/env sh</td>
+    <td>finds sh via the path</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+  </tr>
+</table>
 
 ## Basics of bash and scripting
 
