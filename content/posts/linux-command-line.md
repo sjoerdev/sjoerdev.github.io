@@ -181,25 +181,25 @@ description of shebangs here.
   </tr>
   <tr>
     <td>#!/bin/bash</td>
-    <td>the default bash location on linux</td>
+    <td>the classic bash location on linux</td>
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
-    <td>⚠️</td>
-    <td>⚠️</td>
+    <td>❌</td>
+    <td>❌</td>
   </tr>
   <tr>
     <td>#!/usr/bin/bash</td>
-    <td>works on freebsd</td>
-    <td>⚠️</td>
-    <td>⚠️</td>
-    <td>⚠️</td>
-    <td>⚠️</td>
+    <td>the modern bash location on linux</td>
     <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>❌</td>
+    <td>❌</td>
   </tr>
   <tr>
     <td>#!/bin/env bash</td>
-    <td>the env binary is almost never in bin</td>
+    <td>the env binary is almost never in bin/</td>
     <td>❌</td>
     <td>❌</td>
     <td>❌</td>
@@ -240,16 +240,16 @@ description of shebangs here.
   </tr>
   <tr>
     <td>#!/usr/bin/sh</td>
-    <td>works on freebsd</td>
-    <td>⚠️</td>
-    <td>⚠️</td>
-    <td>⚠️</td>
-    <td>⚠️</td>
-    <td>✅</td>
+    <td>the sh binary is almost never in usr/bin/</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
   </tr>
   <tr>
     <td>#!/bin/env sh</td>
-    <td>the env binary is almost never in bin</td>
+    <td>the env binary is almost never in bin/</td>
     <td>❌</td>
     <td>❌</td>
     <td>❌</td>
