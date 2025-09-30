@@ -8,8 +8,7 @@ description: |
     And i will cover the basics of shell scripting.
 
 summary: "In this guide i will be covering the linux command line basics"
-ShowToc: true
-TocOpen: true
+ShowToc: false
 ShowBreadCrumbs: true
 ---
 
@@ -165,9 +164,12 @@ But you can be sure that all major Linux distros come with the binaries of those
 
 ## Shebangs
 
-description of shebangs here.
+You will often encounter shell scripts starting with ``#!/bin/bash``, the ``#!`` is called a shebang. It is used to specify which interpreter will be used to run the script. 
+So if your script uses bash specific scripting syntax, then you put a bash shebang on the first line of your script. 
+If you want your script to be posix compatible so it can run on other unix like systems that don't have bash, then you use the sh shebang. 
+The sh shell is compatible with alot more unix like operating systems than just linux, making your scripts more portable at the cost of bash specific scripting features.
 
-### Bash Shebangs
+### Bash Compatible:
 
 <table>
   <tr>
@@ -217,7 +219,7 @@ description of shebangs here.
   </tr>
 </table>
 
-### Posix Shebangs
+### Posix Compatible:
 
 <table>
   <tr>
@@ -266,6 +268,14 @@ description of shebangs here.
     <td>✅</td>
   </tr>
 </table>
+
+### Conclusion:
+
+Just use ``#!/bin/bash`` for linux bash scripts.
+
+Just use ``#!/usr/bin/env bash`` for cross platform bash scripts.
+
+Just use ``#!/bin/bash`` or ``#!/usr/bin/env sh`` for cross platform posix scripts.
 
 ## Basics of bash and scripting
 
