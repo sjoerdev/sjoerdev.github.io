@@ -43,20 +43,56 @@ But you can be sure that all major Linux distros come with the binaries of those
 ## Commonly used commands
 
 <style>
-  .table
+  .command-table
   {
-    width: 100%;
+    width: 100% !important;
+    font-size: 1rem !important;
+    table-layout: fixed !important;
   }
 
-  .table th, .table td
+  .command-table th, .command-table td
   {
-    border: 1px solid;
-    text-align: left;
+    border: 1px solid !important;
+    text-align: left !important;
+    padding: 6px !important;
+  }
+
+  .command-table th:nth-child(1),
+  .command-table td:nth-child(1)
+  {
+    width: 15% !important;
+  }
+
+  .command-table th:nth-child(2),
+  .command-table td:nth-child(2)
+  {
+    width: 10% !important;
+  }
+
+  .command-table th:nth-child(3),
+  .command-table td:nth-child(3)
+  {
+    width: 40% !important;
+  }
+</style>
+
+<style>
+  .shebang-table
+  {
+    width: 100% !important;
+    font-size: 1rem !important;
+  }
+
+  .shebang-table th, .shebang-table td
+  {
+    border: 1px solid !important;
+    text-align: left !important;
+    padding: 6px !important;
   }
 </style>
 
 <h3>📂 Files & Directories</h3>
-<table class="table">
+<table class="command-table">
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
   </thead>
@@ -78,7 +114,7 @@ But you can be sure that all major Linux distros come with the binaries of those
 </table>
 
 <h3>🔒 Privileges & Ownership</h3>
-<table>
+<table class="command-table">
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
   </thead>
@@ -91,20 +127,20 @@ But you can be sure that all major Linux distros come with the binaries of those
 </table>
 
 <h3>🔍 Search & Filters</h3>
-<table>
+<table class="command-table">
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
   </thead>
   <tbody>
-    <tr><td>find</td><td>gnu</td><td>Search for files in directories</td><td>find . -name "*.txt"</td></tr>
+    <tr><td>find</td><td>gnu</td><td>Search for files in directories</td><td>find /home -name "*.txt"</td></tr>
     <tr><td>grep</td><td>gnu</td><td>Search text in files using patterns</td><td>grep "error" log.txt</td></tr>
-    <tr><td>sed</td><td>gnu</td><td>Filters text using given rules</td><td>sed 's/pattern/replacement/' file.txt</td></tr>
-    <tr><td>xargs</td><td>gnu</td><td>Build and execute commands from input</td><td>find /home -name "*.txt" | xargs rm</td></tr>
+    <tr><td>sed</td><td>gnu</td><td>Filters text using given rules</td><td>sed 's/old/new/' file.txt</td></tr>
+    <tr><td>xargs</td><td>gnu</td><td>Use output as arguments</td><td>cat dirs.txt | xargs rmdir</td></tr>
   </tbody>
 </table>
 
 <h3>⚙️ Processes</h3>
-<table>
+<table class="command-table">
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
   </thead>
@@ -116,7 +152,7 @@ But you can be sure that all major Linux distros come with the binaries of those
 </table>
 
 <h3>📦 Archiving & Compression</h3>
-<table>
+<table class="command-table">
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
   </thead>
@@ -128,7 +164,7 @@ But you can be sure that all major Linux distros come with the binaries of those
 </table>
 
 <h3>🌐 Networking</h3>
-<table>
+<table class="command-table">
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
   </thead>
@@ -141,7 +177,7 @@ But you can be sure that all major Linux distros come with the binaries of those
 </table>
 
 <h3>💾 Storage & Disks</h3>
-<table>
+<table class="command-table">
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
   </thead>
@@ -153,7 +189,7 @@ But you can be sure that all major Linux distros come with the binaries of those
 </table>
 
 <h3>🖥️ System & Other</h3>
-<table>
+<table class="command-table">
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
   </thead>
@@ -161,8 +197,8 @@ But you can be sure that all major Linux distros come with the binaries of those
     <tr><td>shutdown</td><td>util-linux</td><td>Shut down the system</td><td>shutdown</td></tr>
     <tr><td>reboot</td><td>util-linux</td><td>Reboot the system</td><td>reboot</td></tr>
     <tr><td>clear</td><td>gnu</td><td>Clears the terminal output</td><td>clear</td></tr>
-    <tr><td>env</td><td>gnu</td><td>Show or set environment variables</td><td>env</td></tr>
-    <tr><td>export</td><td>gnu</td><td>Set environment variables for child processes</td><td>export VAR=value</td></tr>
+    <tr><td>env</td><td>gnu</td><td>Configure environment variables</td><td>env</td></tr>
+    <tr><td>export</td><td>gnu</td><td>Configure temp environment variables</td><td>export VAR=value</td></tr>
     <tr><td>which</td><td>other</td><td>Locate a command in PATH</td><td>which cat</td></tr>
     <tr><td>whereis</td><td>util-linux</td><td>Locate binaries</td><td>whereis cat</td></tr>
     <tr><td>type</td><td>bash</td><td>Show command type information</td><td>type cat</td></tr>
@@ -184,7 +220,7 @@ The sh shell is compatible with alot more unix like operating systems than just 
 
 ### Bash Compatible:
 
-<table>
+<table class="shebang-table">
   <tr>
     <th>Shebang</th>
     <th>Comment</th>
@@ -234,7 +270,7 @@ The sh shell is compatible with alot more unix like operating systems than just 
 
 ### Posix Compatible:
 
-<table>
+<table class="shebang-table">
   <tr>
     <th>Shebang</th>
     <th>Comment</th>
