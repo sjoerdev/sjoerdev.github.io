@@ -42,8 +42,21 @@ But you can be sure that all major Linux distros come with the binaries of those
 
 ## Commonly used commands
 
+<style>
+  .table
+  {
+    width: 100%;
+  }
+
+  .table th, .table td
+  {
+    border: 1px solid;
+    text-align: left;
+  }
+</style>
+
 <h3>📂 Files & Directories</h3>
-<table>
+<table class="table">
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
   </thead>
