@@ -227,7 +227,7 @@ The sh shell is compatible with alot more unix like operating systems than just 
     <th>Debian</th>
     <th>Arch</th>
     <th>Fedora</th>
-    <th>macOS</th>
+    <th>MacOS</th>
     <th>FreeBSD</th>
   </tr>
   <tr>
@@ -277,7 +277,7 @@ The sh shell is compatible with alot more unix like operating systems than just 
     <th>Debian</th>
     <th>Arch</th>
     <th>Fedora</th>
-    <th>macOS</th>
+    <th>MacOS</th>
     <th>FreeBSD</th>
   </tr>
     <tr>
