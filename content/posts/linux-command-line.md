@@ -43,6 +43,20 @@ But you can be sure that all major Linux distros come with the binaries of those
 ## Commonly used commands
 
 <style>
+  .table
+  {
+    font-size: 1rem !important;
+  }
+
+  .table th, .table td
+  {
+    border: 1px solid !important;
+    text-align: left !important;
+    padding: 6px !important;
+  }
+</style>
+
+<style>
   .command-table
   {
     width: 100% !important;
@@ -325,6 +339,65 @@ Just use ``#!/bin/bash`` for linux bash scripts.
 Just use ``#!/usr/bin/env bash`` for cross platform bash scripts.
 
 Just use ``#!/bin/bash`` or ``#!/usr/bin/env sh`` for cross platform posix scripts.
+
+## File globbing
+
+In many tools including many shells you can filter your file or directory selection with something called **Globbing**,
+and its a way of quickly filtering your file or directory selection selection. If you want to select a specific set of files or directories
+from the command line you can use this following specific syntax that is specifically designed for that purpose.
+
+### Basics:
+
+<table class="table">
+  <tr>
+    <td><code>.</code></td>
+    <td>Current directory</td>
+  </tr>
+  <tr>
+    <td><code>..</code></td>
+    <td>Parent directory</td>
+  </tr>
+  <tr>
+    <td><code>~</code></td>
+    <td>Home directory</td>
+  </tr>
+  <tr>
+    <td><code>*</code></td>
+    <td>Matches any file or directory</td>
+  </tr>
+  <tr>
+    <td><code>**</code></td>
+    <td>Matches any file or directory recursively</td>
+  </tr>
+  <tr>
+    <td><code>/</code></td>
+    <td>Directory separator</td>
+  </tr>
+</table>
+
+### Examples
+
+```bash
+ls ./* # list all files and dirs in this dir
+ls ./** # list all files and dirs recursively starting from this dir
+ls ./*.txt # list all text files in this dir
+ls ./**/*.txt # list all text files recursively starting from this dir
+ls ./*.* # list any files with any extension in this directory
+
+ls home/* # list all files and dirs inside home
+ls home/** # list all files and dirs recursively starting from home
+ls home/**/*.txt # list all text files recursively starting from home
+
+cd .. # move to the parent directory
+cd ~ # move to the home directory
+cd / # move to the root directory
+
+ls ./** # list all files and dirs recursively starting from this dir
+ls ./**/*.txt # list all text files recursively starting from this dir
+ls ./**/*.* # list all files with any extension recursively starting from this dir
+ls src/**/*.cpp # list all cpp files recursively starting from the src dir
+ls ./**/*.sh # list all shell scripts recursively starting from this dir
+```
 
 ## Basics of bash and scripting
 
