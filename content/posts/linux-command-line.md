@@ -334,11 +334,11 @@ The sh shell is compatible with alot more unix like operating systems than just 
 
 ### Conclusion:
 
-Just use ``#!/bin/bash`` for linux bash scripts.
+Just use ``#!/bin/bash`` or ``#!/usr/bin/bash`` for linux bash scripts.
 
 Just use ``#!/usr/bin/env bash`` for cross platform bash scripts.
 
-Just use ``#!/bin/bash`` or ``#!/usr/bin/env sh`` for cross platform posix scripts.
+Just use ``#!/bin/sh`` or ``#!/usr/bin/env sh`` for cross platform posix scripts.
 
 ## File globbing
 
