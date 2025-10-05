@@ -42,69 +42,6 @@ But you can be sure that all major Linux distros come with the binaries of those
 
 ## Commonly used commands
 
-<style>
-  .table
-  {
-    font-size: 1rem !important;
-  }
-
-  .table th, .table td
-  {
-    border: 1px solid !important;
-    text-align: left !important;
-    padding: 6px !important;
-  }
-</style>
-
-<style>
-  .command-table
-  {
-    width: 100% !important;
-    font-size: 1rem !important;
-    table-layout: fixed !important;
-  }
-
-  .command-table th, .command-table td
-  {
-    border: 1px solid !important;
-    text-align: left !important;
-    padding: 6px !important;
-  }
-
-  .command-table th:nth-child(1),
-  .command-table td:nth-child(1)
-  {
-    width: 15% !important;
-  }
-
-  .command-table th:nth-child(2),
-  .command-table td:nth-child(2)
-  {
-    width: 10% !important;
-  }
-
-  .command-table th:nth-child(3),
-  .command-table td:nth-child(3)
-  {
-    width: 40% !important;
-  }
-</style>
-
-<style>
-  .shebang-table
-  {
-    width: 100% !important;
-    font-size: 1rem !important;
-  }
-
-  .shebang-table th, .shebang-table td
-  {
-    border: 1px solid !important;
-    text-align: left !important;
-    padding: 6px !important;
-  }
-</style>
-
 <h3>📂 Files & Directories</h3>
 <table class="command-table">
   <thead>
@@ -406,3 +343,64 @@ comming soon...
 ## Posix and compatibility
 
 comming soon...
+
+<!-- this style block only exists for overriding the papermod hugo theme tables -->
+<style>
+  .table
+  {
+    font-size: 1rem !important;
+  }
+
+  .table th, .table td
+  {
+    border: 1px solid !important;
+    text-align: left !important;
+    padding: 6px !important;
+  }
+
+  .command-table
+  {
+    width: 100% !important;
+    font-size: 1rem !important;
+    table-layout: fixed !important;
+  }
+
+  .command-table th, .command-table td
+  {
+    border: 1px solid !important;
+    text-align: left !important;
+    padding: 6px !important;
+  }
+
+  .command-table th:nth-child(1),
+  .command-table td:nth-child(1)
+  {
+    width: 15% !important;
+  }
+
+  .command-table th:nth-child(2),
+  .command-table td:nth-child(2)
+  {
+    width: 10% !important;
+  }
+
+  .command-table th:nth-child(3),
+  .command-table td:nth-child(3)
+  {
+    width: 40% !important;
+  }
+
+  .shebang-table
+  {
+    width: 100% !important;
+    font-size: 1rem !important;
+  }
+
+  .shebang-table th, .shebang-table td
+  {
+    border: 1px solid !important;
+    text-align: left !important;
+    padding: 6px !important;
+  }
+</style>
+<!-- this style block only exists for overriding the papermod hugo theme tables -->
