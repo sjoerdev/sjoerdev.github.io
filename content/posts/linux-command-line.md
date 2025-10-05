@@ -315,25 +315,40 @@ from the command line you can use this following specific syntax that is specifi
 ### Examples
 
 ```bash
-ls ./* # list all files and dirs in this dir
-ls ./** # list all files and dirs recursively starting from this dir
-ls ./*.txt # list all text files in this dir
-ls ./**/*.txt # list all text files recursively starting from this dir
-ls ./*.* # list any files with any extension in this directory
+ls ./* # list files and dirs in this dir
+ls ./** # list files and dirs recursively starting from this dir
+ls ./*.txt # list text files in this dir
+ls ./**/*.txt # list text files recursively starting from this dir
+ls ./*.* # list files with any extension in this directory
 
-ls home/* # list all files and dirs inside home
-ls home/** # list all files and dirs recursively starting from home
-ls home/**/*.txt # list all text files recursively starting from home
+ls home/* # list files and dirs inside home
+ls home/** # list files and dirs recursively starting from home
+ls home/**/*.txt # list text files recursively starting from home
 
 cd .. # move to the parent directory
 cd ~ # move to the home directory
 cd / # move to the root directory
 
-ls ./** # list all files and dirs recursively starting from this dir
-ls ./**/*.txt # list all text files recursively starting from this dir
-ls ./**/*.* # list all files with any extension recursively starting from this dir
-ls src/**/*.cpp # list all cpp files recursively starting from the src dir
-ls ./**/*.sh # list all shell scripts recursively starting from this dir
+ls ./** # list files and dirs recursively starting from this dir
+ls ./**/*.txt # list text files recursively starting from this dir
+ls ./**/*.* # list files with any extension recursively starting from this dir
+ls src/**/*.cpp # list cpp files recursively starting from the src dir
+ls ./**/*.sh # list shell scripts recursively starting from this dir
+
+ls text* # list files and dirs starting with "text" in the name
+ls *text # list files and dirs ending with "text" in the name
+ls *text* # list files and dirs containing "text" anywhere in the name
+ls file.c* # list files with extensions starting with "c" (c, cpp, cs)
+
+ls file?.txt # list txt files named "file" + any character (file1.txt, file2.txt)
+ls file??.txt # list txt files named "file" + any 2 characters (file22.txt, file23.txt)
+
+ls file{1,2,3}.txt # list files: file1.txt, file2.txt, and file3.txt
+ls {foo,bar,hello}.txt # list files: foo.txt, bar.txt, and hello.txt
+
+ls file[123].txt # list files: file1.txt, file2.txt, and file3.txt
+ls file[a-f].txt # list files with a single char in the range a-c (fileb.txt, filec.txt)
+ls file[!0-9].txt # list files where the character after "file" is NOT a digit (0-9)
 ```
 
 ## Basics of bash and scripting
