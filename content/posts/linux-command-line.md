@@ -8,7 +8,8 @@ description: |
     And i will cover the basics of shell scripting.
 
 summary: "In this guide i will be covering the linux command line basics"
-ShowToc: false
+ShowToc: true
+TocOpen: true
 ShowBreadCrumbs: true
 ---
 
@@ -42,7 +43,7 @@ But you can be sure that all major Linux distros come with the binaries of those
 
 ## Commonly used commands
 
-<h3>📂 Files & Directories</h3>
+**📂 Files & Directories**
 <table class="command-table">
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
@@ -64,7 +65,7 @@ But you can be sure that all major Linux distros come with the binaries of those
   </tbody>
 </table>
 
-<h3>🔒 Privileges & Ownership</h3>
+**🔒 Privileges & Ownership**
 <table class="command-table">
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
@@ -77,7 +78,7 @@ But you can be sure that all major Linux distros come with the binaries of those
   </tbody>
 </table>
 
-<h3>🔍 Search & Filters</h3>
+**🔍 Search & Filters**
 <table class="command-table">
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
@@ -90,7 +91,7 @@ But you can be sure that all major Linux distros come with the binaries of those
   </tbody>
 </table>
 
-<h3>⚙️ Processes</h3>
+**⚙️ Processes**
 <table class="command-table">
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
@@ -102,7 +103,7 @@ But you can be sure that all major Linux distros come with the binaries of those
   </tbody>
 </table>
 
-<h3>📦 Archiving & Compression</h3>
+**📦 Archiving & Compression**
 <table class="command-table">
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
@@ -114,7 +115,7 @@ But you can be sure that all major Linux distros come with the binaries of those
   </tbody>
 </table>
 
-<h3>🌐 Networking</h3>
+**🌐 Networking**
 <table class="command-table">
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
@@ -127,7 +128,7 @@ But you can be sure that all major Linux distros come with the binaries of those
   </tbody>
 </table>
 
-<h3>💾 Storage & Disks</h3>
+**💾 Storage & Disks**
 <table class="command-table">
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
@@ -139,7 +140,7 @@ But you can be sure that all major Linux distros come with the binaries of those
   </tbody>
 </table>
 
-<h3>🖥️ System & Other</h3>
+**🖥️ System & Other**
 <table class="command-table">
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
@@ -169,8 +170,7 @@ So if your script uses bash specific scripting syntax, then you put a bash sheba
 If you want your script to be posix compatible so it can run on other unix like systems that don't have bash, then you use the sh shebang. 
 The sh shell is compatible with alot more unix like operating systems than just linux, making your scripts more portable at the cost of bash specific scripting features.
 
-### Bash Compatible:
-
+**Bash Compatible**
 <table class="shebang-table">
   <tr>
     <th>Shebang</th>
@@ -219,8 +219,7 @@ The sh shell is compatible with alot more unix like operating systems than just 
   </tr>
 </table>
 
-### Posix Compatible:
-
+**Posix Compatible**
 <table class="shebang-table">
   <tr>
     <th>Shebang</th>
@@ -269,7 +268,7 @@ The sh shell is compatible with alot more unix like operating systems than just 
   </tr>
 </table>
 
-### Conclusion:
+**Conclusion**
 
 Just use ``#!/bin/bash`` or ``#!/usr/bin/bash`` for linux bash scripts.
 
@@ -283,8 +282,7 @@ In many tools including many shells you can filter your file or directory select
 and its a way of quickly filtering your file or directory selection selection. If you want to select a specific set of files or directories
 from the command line you can use this following specific syntax that is specifically designed for that purpose.
 
-### Basics:
-
+**Basics**
 <table class="table">
   <tr>
     <td><code>.</code></td>
@@ -312,8 +310,7 @@ from the command line you can use this following specific syntax that is specifi
   </tr>
 </table>
 
-### Examples
-
+**Examples**
 ```bash
 ls * # list files and dirs in the current directory
 ls ** # list files and dirs recursively starting from this dir
