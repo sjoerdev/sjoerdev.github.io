@@ -574,3 +574,43 @@ int length = test.length();
 string test = "test";
 char index = test[0];
 ```
+
+## Immutables And Statics
+
+In both languages there is commonly some confusion about the differences between immutable variables,
+Because the keywords ``const`` and ``static`` have a different meaning in both languages.
+And both languages add extra keywords ``readonly`` (**C#**) and ``constexpr`` (**C++**), which adds to the confusion.
+
+In C# you use immutables and statics like so:
+```csharp
+// csharp
+
+// compile time immutable (also static by default)
+const int test = 1;
+
+// runtime immutable
+readonly int test = 1;
+
+// shared mutable (shared across all instances)
+static int test = 1;
+```
+
+In C++ you use immutables and statics like so:
+```cpp
+// cpp
+
+// compile time immutable
+constexpr int test = 1;
+
+// runtime immutable
+const int test = 1;
+
+// shared mutable (shared across file scope)
+static int test = 1;
+```
+
+Conclusion:
+
+- C# ``const`` ≈ C++ ``constexpr`` (compile-time immutable)
+- C# ``readonly`` ≈ C++ ``const`` (runtime immutable)
+- C# ``static`` ≈ C++ ``static`` (shared across a scope)
