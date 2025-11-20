@@ -617,7 +617,55 @@ Conclusion:
 
 ## Header Guards
 
-coming soon
+Imagine you have 4 C++ files that all use library.h and so all 4 files do ``#include <library.h>``, now what happens is that when compiling the code 
+the library gets included 4 times, and because of this it will give an error, because the declared functions in the header file are basically introduces 4 times into your code. 
+To make sure that no duplicate function declarations get introduces due to multiple files including a header file we use something called ``Header Guards``. 
+A header guard makes sure that a header only gets included once in the compilation with the help of the preprocessor even if multiple files need to include the header. 
+
+Consider you have ``first.cpp`` like this:
+```cpp
+// cpp
+
+#include "library.h"
+
+void func()
+{
+    library::SomeFunction();
+}
+```
+
+And you have ``second.cpp`` like this:
+```cpp
+// cpp
+
+#include "library.h"
+
+void func()
+{
+    library::SomeFunction();
+}
+```
+
+Now if we compile this with ``g++ first.cpp second.cpp -o program.exe``, the code inside ``library.h`` will exist double because we included the header twice in our code. 
+We can fix this by putting a header guard inside the ``library.h`` file like so:
+
+```cpp
+// cpp
+
+#ifndef LIBRARY_NAME
+#define LIBRARY_NAME
+
+// the library header code in here
+
+#endif
+```
+
+Now if we compile the code, when the preprocessor processes the code, 
+it will see if the header is already included somewhere once and will ignore further inclusions, 
+Allowing us to use the header from multiple C++ files without duplicate declaration errors. 
+Because ``#ifndef`` checks if ``LIBRARY_NAME`` was defined somewhere already indicating the file was already included, 
+and if not then it uses ``#define`` to make sure next time it is defined. 
+Making it so the contents of the header only get included once during the compilation.
 
 ## Preprocessor
 
