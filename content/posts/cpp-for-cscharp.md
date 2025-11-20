@@ -614,3 +614,11 @@ Conclusion:
 - C# ``const`` ≈ C++ ``constexpr`` (compile-time immutable)
 - C# ``readonly`` ≈ C++ ``const`` (runtime immutable)
 - C# ``static`` ≈ C++ ``static`` (shared across a scope)
+
+## Header Guards
+
+coming soon
+
+## Preprocessor
+
+coming soon
