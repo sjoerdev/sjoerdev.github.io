@@ -617,9 +617,9 @@ Conclusion:
 
 ## Header Guards
 
-Imagine you have 4 C++ files that all use library.h and so all 4 files do ``#include <library.h>``, now what happens is that when compiling the code 
-the library gets included 4 times, and because of this it will give an error, because the declared functions in the header file are basically introduces 4 times into your code. 
-To make sure that no duplicate function declarations get introduces due to multiple files including a header file we use something called ``Header Guards``. 
+Imagine you have 4 different C++ files that all use ``library.h`` and so all 4 different files do ``#include "library.h"``, now what happens is that when compiling the code 
+the library gets included 4 times, and because of this it will give an error, because the declared functions in the header file are basically introduced 4 times into your code. 
+To make sure that no duplicate function declarations get introduced due to multiple files including a header file we use something called header guards. 
 A header guard makes sure that a header only gets included once in the compilation with the help of the preprocessor even if multiple files need to include the header. 
 
 Consider you have ``first.cpp`` like this:
