@@ -670,3 +670,79 @@ Making it so the contents of the header only get included once during the compil
 ## Preprocessor
 
 coming soon
+
+## Plain C Exclusive Features
+
+people often say that all C code is valid C++ code, but that is hardly true, there are many things C can do that C++ can not do.
+
+**Designated Initializers:**
+
+Are used to initialize specific fields of a struct without having to init the struct members in a specific order.
+This feature was added in C++20, but most codebases are still using a lower version, making this mostly a plain C only feature.
+
+In C# we would initialize a struct with specific field values like so:
+```csharp
+// csharp
+
+struct Person
+{
+    int age;
+    string name;
+}
+
+Person person = new Person()
+{
+    age = 30,
+    name = "Alice"
+};
+```
+
+In plain C the same can be done using the ``.variable`` syntax:
+```c
+// plain c
+
+struct Person
+{
+    int age;
+    char name[16];
+};
+
+struct Person person =
+{
+    .age = 30,
+    .name = "Alice" // <- note how it has a dot before
+};
+```
+
+In C++ you have to use the exact order in which the variables 
+are declared:
+```cpp
+// cpp
+
+struct Person
+{
+    int age;
+    string name;
+};
+
+// C++ (pre-C++20)
+Person person =
+{
+    30, // <- the int has to be first
+    "Alice" // <- the string has to be second
+};
+```
+
+**Compound Literals:**
+
+Are a C only feature that makes a temporary variable using the ``(type){value}`` syntax:
+```c
+// compound literal for a basic type
+int x = (int){42};
+
+// compound literal for a typedef struct
+Vec3 v = (Vec3){1.0f, 2.0f, 3.0f};
+
+// compound literal for an array
+int* arr = (int[]){1, 2, 3, 4, 5};
+```
