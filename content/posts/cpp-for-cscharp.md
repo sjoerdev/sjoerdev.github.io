@@ -151,12 +151,14 @@ Type test; // uninitialized
 Type test{}; // initializes with default value
 Type test(x);
 Type test{x};
-Type test{x, y, z}; // works on collections like arrays
+Type test{x, y, z}; // works on aggregates (like arrays or structs)
+Type test{ .foo = x, .bar = y }; // works on structs (C++20 only)
 
 // copy
 Type test = Type(x);
 Type test = Type{x};
-Type test = {x, y, z}; // works on collections like arrays
+Type test = {x, y, z}; // works on aggregates (like arrays or structs)
+Type test = { .foo = x, .bar = y }; // works on structs (C++20 only)
 ```
 
 **C++ heap initialization:**
