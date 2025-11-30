@@ -44,7 +44,7 @@ But you can be sure that all major Linux distros come with the binaries of those
 ## Commonly used commands
 
 **📂 Files & Directories**
-<table class="command-table">
+<table>
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
   </thead>
@@ -66,7 +66,7 @@ But you can be sure that all major Linux distros come with the binaries of those
 </table>
 
 **🔒 Privileges & Ownership**
-<table class="command-table">
+<table>
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
   </thead>
@@ -79,7 +79,7 @@ But you can be sure that all major Linux distros come with the binaries of those
 </table>
 
 **🔍 Search & Filters**
-<table class="command-table">
+<table>
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
   </thead>
@@ -92,7 +92,7 @@ But you can be sure that all major Linux distros come with the binaries of those
 </table>
 
 **⚙️ Processes**
-<table class="command-table">
+<table>
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
   </thead>
@@ -104,7 +104,7 @@ But you can be sure that all major Linux distros come with the binaries of those
 </table>
 
 **📦 Archiving & Compression**
-<table class="command-table">
+<table>
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
   </thead>
@@ -116,7 +116,7 @@ But you can be sure that all major Linux distros come with the binaries of those
 </table>
 
 **🌐 Networking**
-<table class="command-table">
+<table>
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
   </thead>
@@ -129,7 +129,7 @@ But you can be sure that all major Linux distros come with the binaries of those
 </table>
 
 **💾 Storage & Disks**
-<table class="command-table">
+<table>
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
   </thead>
@@ -141,7 +141,7 @@ But you can be sure that all major Linux distros come with the binaries of those
 </table>
 
 **🖥️ System & Other**
-<table class="command-table">
+<table>
   <thead>
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
   </thead>
@@ -171,7 +171,7 @@ If you want your script to be posix compatible so it can run on other unix like 
 The sh shell is compatible with alot more unix like operating systems than just linux, making your scripts more portable at the cost of bash specific scripting features.
 
 **Bash Compatible**
-<table class="shebang-table">
+<table>
   <tr>
     <th>Shebang</th>
     <th>Comment</th>
@@ -220,7 +220,7 @@ The sh shell is compatible with alot more unix like operating systems than just 
 </table>
 
 **Posix Compatible**
-<table class="shebang-table">
+<table>
   <tr>
     <th>Shebang</th>
     <th>Comment</th>
@@ -283,7 +283,7 @@ and its a way of quickly filtering your file or directory selection selection. I
 from the command line you can use this following specific syntax that is specifically designed for that purpose.
 
 **Basics**
-<table class="table">
+<table>
   <tr>
     <td><code>.</code></td>
     <td>Current directory</td>
@@ -349,64 +349,3 @@ comming soon...
 ## Loops
 
 comming soon...
-
-<!-- this style block only exists for overriding the papermod hugo theme tables -->
-<style>
-  .table
-  {
-    font-size: 1rem !important;
-  }
-
-  .table th, .table td
-  {
-    border: 1px solid !important;
-    text-align: left !important;
-    padding: 6px !important;
-  }
-
-  .command-table
-  {
-    width: 100% !important;
-    font-size: 1rem !important;
-    table-layout: fixed !important;
-  }
-
-  .command-table th, .command-table td
-  {
-    border: 1px solid !important;
-    text-align: left !important;
-    padding: 6px !important;
-  }
-
-  .command-table th:nth-child(1),
-  .command-table td:nth-child(1)
-  {
-    width: 15% !important;
-  }
-
-  .command-table th:nth-child(2),
-  .command-table td:nth-child(2)
-  {
-    width: 10% !important;
-  }
-
-  .command-table th:nth-child(3),
-  .command-table td:nth-child(3)
-  {
-    width: 40% !important;
-  }
-
-  .shebang-table
-  {
-    width: 100% !important;
-    font-size: 1rem !important;
-  }
-
-  .shebang-table th, .shebang-table td
-  {
-    border: 1px solid !important;
-    text-align: left !important;
-    padding: 6px !important;
-  }
-</style>
-<!-- this style block only exists for overriding the papermod hugo theme tables -->
