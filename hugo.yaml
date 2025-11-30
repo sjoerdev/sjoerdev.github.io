@@ -17,8 +17,8 @@ menu:
 
 params:
   env: production
-  defaultTheme: auto
-  disableThemeToggle: false
+  defaultTheme: dark
+  disableThemeToggle: true
   hideFooter: true
   ShowShareButtons: false
   ShowReadingTime: false
