@@ -19,7 +19,7 @@ params:
   env: production
   defaultTheme: auto
   disableThemeToggle: false
-  hideFooter: false
+  hideFooter: true
   ShowShareButtons: false
   ShowReadingTime: false
   displayFullLangName: true
