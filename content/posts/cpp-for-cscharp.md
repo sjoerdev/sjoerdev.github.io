@@ -716,7 +716,7 @@ Making it so the contents of the header only get included once during the compil
 
 coming soon
 
-## Outside Class Member Definition:
+## Member Definition Outside The Class:
 
 Sometimes in C++ you will see something like this:
 ```cpp
