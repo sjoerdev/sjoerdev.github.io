@@ -716,9 +716,7 @@ Making it so the contents of the header only get included once during the compil
 
 coming soon
 
-## Other Notable C++ Features:
-
-**Out of class member definition:**
+## Outside Class Member Implementation:
 
 Sometimes in C++ you will see something like this:
 ```cpp
