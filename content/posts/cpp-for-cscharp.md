@@ -245,6 +245,22 @@ typedef struct Point // <- typedef is required
 } Point; // <- typedef is required
 ```
 
+If you plan on writing plain C instead of C++ then there are a couple more ways to declare a struct. 
+The rules for which do not apply when writing C++, for that usecase only ``struct Point { ... };`` is really commonly used, 
+since in C++ it automatically creates a type without requiring ``typedef`` to be used.
+In plain C you can write a struct declaration in one of the following ways:
+<table>
+  <thead>
+    <tr><th>Form</th><th>Has Tag</th><th>Has Typedef</th><th>Info</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>typedef struct Point { ... } Point</code></td><td>Yes</td><td>Yes</td><td>Modern way</td></tr>
+    <tr><td><code>struct Point { ... };</code></td><td>Yes</td><td>No</td><td>Classic way</td></tr>
+    <tr><td><code>typedef struct { ... } Point;</code></td><td>No</td><td>Yes</td><td>Uncommon</td></tr>
+    <tr><td><code>struct { ... } Point;</code></td><td>No</td><td>No</td><td>Uncommon</td></tr>
+  </tbody>
+</table>
+
 ## Lambda Expressions
 
 A lambda expression like in C# is a lambda calculus function. In simple terms it can be described as an inline function.
