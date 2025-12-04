@@ -716,7 +716,7 @@ Making it so the contents of the header only get included once during the compil
 
 coming soon
 
-## Outside Class Member Implementation:
+## Outside Class Member Definition:
 
 Sometimes in C++ you will see something like this:
 ```cpp
@@ -726,21 +726,23 @@ void ClassName::MethodName()
 }
 ```
 
-Why is the ``::`` syntax used? And why is ``ClassName`` there? It is the syntax for defining the definition (contents), of a class's method outside of the class itself, 
-often even in another file entirely, with the class only being forward declared in a header file:
+Why is the ``::`` syntax used? And why is ``ClassName`` there? It is the syntax for defining (implementing) a class's method outside of the class itself, 
+often even in another file entirely, with the class often only being declared in a header file:
 
+Inside the ``ClassName.h`` file:
 ```cpp
 // cpp
-
-// inside the ClassName.h file:
 
 class ClassName
 {
     public:
         void MethodName(); // declaration
 };
+```
 
-// inside the ClassName.cpp file:
+Inside the ``ClassName.cpp`` file:
+```cpp
+// cpp
 
 #include "ClassName.h"
 
