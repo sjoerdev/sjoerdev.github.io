@@ -261,6 +261,33 @@ In plain C you can write a struct declaration in one of the following ways:
   </tbody>
 </table>
 
+Examples showing each form of declaring a struct in plain C syntax:
+```cpp
+// modern way
+typedef struct Point {
+    int x;
+    int y;
+} Point;
+
+// classic way (no typedef)
+struct Point {
+    int x;
+    int y;
+};
+
+// uncommon (no tag)
+typedef struct {
+    int x;
+    int y;
+} Point;
+
+// uncommon (no tag or typedef)
+struct {
+    int x;
+    int y;
+} Point;
+```
+
 ## Lambda Expressions
 
 A lambda expression like in C# is a lambda calculus function. In simple terms it can be described as an inline function.
