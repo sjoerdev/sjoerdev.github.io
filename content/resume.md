@@ -14,25 +14,10 @@ tocopen: false
 
 ## Skills
 
-✒️ Programming Languages: [C#][1] / [C++][9] / [C][14] / [GLSL][2] / [HLSL][3] <br>
-⚙️ Game Engines: [Unity][4] / [Godot][5] <br>
-📷 Graphics Programming: [OpenGL][6] / [OpenTK][7] / [Silk.NET][8] <br>
-🧰 Other Tools: [Git][10] / [Linux][11] / [.NET][12] / [WSL][13] <br>
-
-[1]: https://learn.microsoft.com/en-us/dotnet/csharp/
-[2]: https://en.wikipedia.org/wiki/OpenGL_Shading_Language
-[3]: https://en.wikipedia.org/wiki/High-Level_Shader_Language
-[4]: https://unity.com/products/unity-engine
-[5]: https://godotengine.org/
-[6]: https://www.opengl.org/
-[7]: https://opentk.net/
-[8]: https://dotnet.github.io/Silk.NET/
-[9]: https://en.wikipedia.org/wiki/C++
-[10]: https://en.wikipedia.org/wiki/Git
-[11]: https://en.wikipedia.org/wiki/Linux
-[12]: https://dotnet.microsoft.com/en-us/
-[13]: https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux
-[14]: https://thevalleyofcode.com/#c
+✒️ Programming Languages: ``C#`` / ``C++`` / ``C`` / ``GLSL`` / ``HLSL`` <br>
+⚙️ Game Engines: ``Unity`` / ``Godot`` <br>
+📷 Graphics Programming: ``OpenGL`` / ``OpenTK`` / ``Silk.NET`` <br>
+🧰 Other Tools: ``Git`` / ``Linux`` / ``.NET`` / ``WSL`` <br>
 
 ## Experience
 
