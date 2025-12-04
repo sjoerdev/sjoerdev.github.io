@@ -765,12 +765,6 @@ In C# we would initialize a struct with specific field values like so:
 ```csharp
 // csharp
 
-struct Person
-{
-    int age;
-    string name;
-}
-
 Person person = new Person()
 {
     age = 30,
@@ -782,31 +776,18 @@ In plain C the same can be done using the ``.variable`` syntax:
 ```c
 // plain c
 
-struct Person
-{
-    int age;
-    char name[16];
-};
-
-struct Person person =
+Person person =
 {
     .age = 30,
     .name = "Alice" // <- note how it has a dot before
 };
 ```
 
-In C++ you have to use the exact order in which the variables 
+In C++ (before C++20) you have to use the exact order in which the variables 
 are declared:
 ```cpp
 // cpp
 
-struct Person
-{
-    int age;
-    string name;
-};
-
-// C++ (pre-C++20)
 Person person =
 {
     30, // <- the int has to be first
