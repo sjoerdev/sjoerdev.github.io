@@ -716,6 +716,42 @@ Making it so the contents of the header only get included once during the compil
 
 coming soon
 
+## Other Notable C++ Features:
+
+**Out of class member definition:**
+
+Sometimes in C++ you will see something like this:
+```cpp
+void ClassName::MethodName()
+{
+    // some code
+}
+```
+
+Why is the ``::`` syntax used? And why is ``ClassName`` there? It is the syntax for defining the definition (contents), of a class's method outside of the class itself, 
+often even in another file entirely, with the class only being forward declared in a header file:
+
+```cpp
+// cpp
+
+// inside the ClassName.h file:
+
+class ClassName
+{
+    public:
+        void MethodName(); // declaration
+};
+
+// inside the ClassName.cpp file:
+
+#include "ClassName.h"
+
+void ClassName::MethodName() // definition (implementation)
+{
+    // some code here
+}
+```
+
 ## Plain C Exclusive Features
 
 people often say that all C code is valid C++ code, but that is hardly true, there are many things C can do that C++ can not do.
