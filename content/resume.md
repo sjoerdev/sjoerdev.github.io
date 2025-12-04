@@ -14,9 +14,9 @@ tocopen: false
 
 ## Skills
 
-✒️ Programming Languages: [C#][1] / [C++][9] / [GLSL][2] / [HLSL][3] <br>
+✒️ Programming Languages: [C#][1] / [C++][9] / [C][14] / [GLSL][2] / [HLSL][3] <br>
 ⚙️ Game Engines: [Unity][4] / [Godot][5] <br>
-📷 Rendering Libraries: [OpenGL][6] / [OpenTK][7] / [Silk.NET][8] <br>
+📷 Graphics Programming: [OpenGL][6] / [OpenTK][7] / [Silk.NET][8] <br>
 🧰 Other Tools: [Git][10] / [Linux][11] / [.NET][12] / [WSL][13] <br>
 
 [1]: https://learn.microsoft.com/en-us/dotnet/csharp/
@@ -32,7 +32,7 @@ tocopen: false
 [11]: https://en.wikipedia.org/wiki/Linux
 [12]: https://dotnet.microsoft.com/en-us/
 [13]: https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux
-
+[14]: https://thevalleyofcode.com/#c
 
 ## Experience
 
