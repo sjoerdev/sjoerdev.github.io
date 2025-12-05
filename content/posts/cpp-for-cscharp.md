@@ -746,10 +746,10 @@ Here is another example of declaring some function pointers:
 void (*foo_ptr)() = &Foo;
 
 // creating a pointer that points to nothing yet
-void (*foo_ptr)() = NULL;
+void (*bar_ptr)() = NULL;
 
 // creating a pointer that points to a func that takes and returns nothing
-void (*bar_ptr)(void) = &Bar;
+void (*baz_ptr)(void) = &Baz;
 
 // creating a pointer that points to a rounding function
 int (*round_ptr)(float x) = &Round;
@@ -767,10 +767,23 @@ void (*Foo)(void);
 typedef void (*Foo)(void);
 
 // same as: "void (*func_ptr)(void)";
-Foo func_ptr;
+Foo func_ptr = &SomeFunc;
 
 // you can use the alias to pass the ptr
 SomeFunction(Foo func_ptr);
+```
+
+Other noteworthy things:
+```c
+
+// these two ways work the same (the '&' is optional)
+void (*foo_ptr)() = &Foo;
+void (*foo_ptr)() = Foo;
+
+// these are different
+void (*foo_ptr)(); // function taking an any number of parameters
+void (*foo_ptr)(void); // function taking no parameters
+
 ```
 
 ## Member Definition Outside The Class
