@@ -724,14 +724,8 @@ There is a specific syntax for function pointers, this ``output_type (*ptr_name)
 
 Simple example of a function pointer:
 ```c
-// testing function
-void Foo()
-{
-    printf("Hello, World!\n");
-}
-
 // declare a function pointer, pointing to Foo
-void (*foo_ptr)() = &Foo;
+void (*foo_ptr)(void) = &Foo;
 
 // dereference and call the function pointer
 (*foo_ptr)();
@@ -767,7 +761,7 @@ void (*Foo)(void);
 typedef void (*Foo)(void);
 
 // same as: "void (*func_ptr)(void)";
-Foo func_ptr = &SomeFunc;
+Foo func_ptr;
 
 // you can use the alias to pass the ptr
 SomeFunction(Foo func_ptr);
