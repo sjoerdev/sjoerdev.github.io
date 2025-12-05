@@ -20,6 +20,18 @@ if (Test-Path $outputDir)
 # create new project files directory
 New-Item -ItemType Directory -Path $outputDir | Out-Null
 
+function KebabToTitle($text)
+{
+    # replace hyphens with spaces, and split into words
+    $words = $text -replace '-', ' ' -split ' '
+    
+    # capitalize first letter of each word
+    $words = $words | ForEach-Object { $_.Substring(0,1).ToUpper() + $_.Substring(1) }
+    
+    # join back into a string
+    return $words -join ' '
+}
+
 foreach ($url in $projectUrls)
 {
     $weight = $projectUrls.IndexOf($url) + 1
@@ -58,7 +70,7 @@ foreach ($url in $projectUrls)
     $frontMatter = 
 @"
 ---
-title: "$repo"
+title: "$(KebabToTitle $repo)"
 summary: "$summary"
 ShowBreadCrumbs: true
 ShowToc: false

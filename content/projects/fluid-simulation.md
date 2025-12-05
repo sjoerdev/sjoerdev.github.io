@@ -1,5 +1,5 @@
 ﻿---
-title: "fluid-simulation"
+title: "Fluid Simulation"
 summary: "this is a smoothed particle hydrodynamics simulation"
 ShowBreadCrumbs: true
 ShowToc: false

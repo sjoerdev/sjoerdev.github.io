@@ -1,5 +1,5 @@
 ﻿---
-title: "concrete"
+title: "Concrete"
 summary: "Modern .NET based game engine"
 ShowBreadCrumbs: true
 ShowToc: false
