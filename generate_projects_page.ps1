@@ -2,9 +2,10 @@
 
 # project github links
 $projectUrls = @(
-    "https://github.com/username/project1",
-    "https://github.com/username/project2",
-    "https://github.com/username/project3"
+    "https://github.com/sjoerdev/voxel-engine",
+    "https://github.com/sjoerdev/concrete",
+    "https://github.com/sjoerdev/fluid-simulation",
+    "https://github.com/sjoerdev/mandelbulb-fractal"
 )
 
 # output directory
