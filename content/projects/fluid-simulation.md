@@ -1,7 +1,6 @@
 ﻿---
 title: "fluid-simulation"
-summary: "summary"
-description: "description"
+summary: "this is a smoothed particle hydrodynamics simulation"
 ShowBreadCrumbs: true
 ShowToc: false
 TocOpen: false

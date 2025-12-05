@@ -1,7 +1,6 @@
 ﻿---
 title: "voxel-engine"
-summary: "summary"
-description: "description"
+summary: "This is a 3d graphics engine that focusses on rendering voxels as fast as possible without sacrificing dynamic geometry."
 ShowBreadCrumbs: true
 ShowToc: false
 TocOpen: false

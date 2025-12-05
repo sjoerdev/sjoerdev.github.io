@@ -1,7 +1,6 @@
 ﻿---
 title: "unity-mandelbulb"
-summary: "summary"
-description: "description"
+summary: "mandelbulb fractal renderer using ray marching"
 ShowBreadCrumbs: true
 ShowToc: false
 TocOpen: false

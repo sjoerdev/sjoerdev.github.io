@@ -52,13 +52,14 @@ foreach ($url in $projectUrls)
         }
     }
 
+    $summary = (Invoke-RestMethod -Uri "https://api.github.com/repos/$username/$repo").description
+
     # hugo front matter
     $frontMatter = 
 @"
 ---
 title: "$repo"
-summary: "summary"
-description: "description"
+summary: "$summary"
 ShowBreadCrumbs: true
 ShowToc: false
 TocOpen: false
