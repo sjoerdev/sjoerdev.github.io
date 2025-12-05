@@ -5,7 +5,7 @@ $projectUrls = @(
     "https://github.com/sjoerdev/voxel-engine",
     "https://github.com/sjoerdev/concrete",
     "https://github.com/sjoerdev/fluid-simulation",
-    "https://github.com/sjoerdev/mandelbulb-fractal"
+    "https://github.com/sjoerdev/unity-mandelbulb"
 )
 
 # output directory
@@ -66,6 +66,7 @@ weight: $weight
 ---
 
 > Download and source-code can be found [on this website]($url)
+
 "@
 
     # combine into final markdown page
