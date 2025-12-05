@@ -21,6 +21,8 @@ New-Item -ItemType Directory -Path $outputDir | Out-Null
 
 foreach ($url in $projectUrls)
 {
+    $weight = $projectUrls.IndexOf($url) + 1
+
     # take username and reponame from url
     $path = $url.Replace("https://github.com/", "")
     $parts = $path.Split("/")
@@ -54,9 +56,15 @@ foreach ($url in $projectUrls)
 @"
 ---
 title: "$repo"
-date: $(Get-Date -Format "yyyy-MM-dd")
-github: "$url"
+summary: "summary"
+description: "description"
+ShowBreadCrumbs: true
+ShowToc: false
+TocOpen: false
+weight: $weight
 ---
+
+> Download and source-code can be found [on this website]($url)
 "@
 
     # combine into final markdown page
