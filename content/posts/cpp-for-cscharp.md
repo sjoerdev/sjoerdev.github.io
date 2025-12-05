@@ -716,6 +716,63 @@ Making it so the contents of the header only get included once during the compil
 
 coming soon
 
+## Function Pointers
+
+In C# if you want a reference to a function to for example pass as to another function as parameter you will probably have used an ``delegate`` or its ``Action`` abstraction. 
+In C and C++ you reference functions by having a direct pointer, pointing to the function. The function can then be called using that pointer. 
+There is a specific syntax for function pointers, this ``output_type (*ptr_name)(input_params);`` being the basis of declaring a function pointer.
+
+Simple example of a function pointer:
+```c
+// testing function
+void Foo()
+{
+    printf("Hello, World!\n");
+}
+
+// declare a function pointer, pointing to Foo
+void (*foo_ptr)() = &Foo;
+
+// dereference and call the function pointer
+(*foo_ptr)();
+
+// call with implicit dereference (works too)
+foo_ptr();
+```
+
+Here is another example of declaring some function pointers:
+```c
+// creating a pointer that points to a func returning nothing
+void (*foo_ptr)() = &Foo;
+
+// creating a pointer that points to nothing yet
+void (*foo_ptr)() = NULL;
+
+// creating a pointer that points to a func that takes and returns nothing
+void (*bar_ptr)(void) = &Bar;
+
+// creating a pointer that points to a rounding function
+int (*round_ptr)(float x) = &Round;
+
+// creating a pointer that points to a function that adds floats
+float (*add_ptr)(float a, float b) = &Add;
+```
+
+Using ``typedef`` on function pointers:
+```c
+// this declares a single pointer variable named Foo
+void (*Foo)(void);
+
+// this creates a type alias called Foo
+typedef void (*Foo)(void);
+
+// same as: "void (*func_ptr)(void)";
+Foo func_ptr;
+
+// you can use the alias to pass the ptr
+SomeFunction(Foo func_ptr);
+```
+
 ## Member Definition Outside The Class
 
 Sometimes in C++ you will see something like this:
