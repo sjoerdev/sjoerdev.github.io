@@ -5,6 +5,7 @@ $projectUrls = @(
     "https://github.com/sjoerdev/voxel-engine",
     "https://github.com/sjoerdev/concrete",
     "https://github.com/sjoerdev/fluid-simulation",
+    "https://github.com/sjoerdev/fluid-simulation-vitagl",
     "https://github.com/sjoerdev/unity-mandelbulb"
 )
 

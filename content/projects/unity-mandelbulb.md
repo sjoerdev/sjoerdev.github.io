@@ -4,7 +4,7 @@ summary: "mandelbulb fractal renderer using ray marching"
 ShowBreadCrumbs: true
 ShowToc: false
 TocOpen: false
-weight: 4
+weight: 5
 ---
 
 > Download and source-code can be found [on this website](https://github.com/sjoerdev/unity-mandelbulb)
