@@ -767,9 +767,29 @@ Foo func_ptr;
 SomeFunction(Foo func_ptr);
 ```
 
-Other noteworthy things:
+Casting a function pointer:
 ```c
+// creating the FuncPtr type
+typedef void (*FuncPtr)(void);
 
+// getting a function pointer to a dll
+void* fn = dlsym(...);
+
+// casting FuncPtr before calling
+((FuncPtr)fn)();
+
+// creating the AddFuncPtr type
+typedef float (*AddFuncPtr)(float a, float b);
+
+// getting a function pointer to a dll
+void* fn = dlsym(...);
+
+// casting AddFuncPtr before calling
+float added = ((AddFuncPtr)fn)(1.0f, 2.0f);
+```
+
+Other noteworthy stuff:
+```c
 // these two ways work the same (the '&' is optional)
 void (*foo_ptr)() = &Foo;
 void (*foo_ptr)() = Foo;
@@ -778,6 +798,9 @@ void (*foo_ptr)() = Foo;
 void (*foo_ptr)(); // function taking an any number of parameters
 void (*foo_ptr)(void); // function taking no parameters
 
+// these two ways work the same (parameter names are optional)
+float (*foo_ptr)(float a, float b);
+float (*foo_ptr)(float, float);
 ```
 
 ## Member Definition Outside The Class
