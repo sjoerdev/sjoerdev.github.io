@@ -714,7 +714,50 @@ Making it so the contents of the header only get included once during the compil
 
 ## Preprocessor
 
-coming soon
+The preproccesor runs right before compiling the code to assembly, and basically is a form of compile time programming. 
+It resolves things like ``macros`` and ``include`` directives, aswell as conditional compilation. 
+You can look at the preprocessor as tiny scripting language for parsing C++ files. This 'language' has only 12 very simple keywords, called preprocessor ``directives``, 
+which are basically commands you give the preprocessor that modify your code during compile time.
+
+Both C/C++ and C# have 12 preprocessor directives, but each language has 3 ones that are unique to that language, 
+and of the 9 preprocessor directives that both C/C++ and C# have in common only 6 work exactly the same.
+
+Here is a table showing which directives the languages have in common:
+<table>
+  <thead>
+    <tr><th>#</th><th>Directives</th><th>C / C++</th><th>C#</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td><code>#define</code></td><td>✅ Yes</t><td>✅ Yes</t><td>Defines a macro or symbol</td></tr>
+    <tr><td>2</td><td><code>#undef</code></td><td>✅ Yes</t><td>✅ Yes</t><td>Undefines a macro or symbol</td></tr>
+    <tr><td>3</td><td><code>#if</code></td><td>✅ Yes</t><td>✅ Yes</t><td>Compile time if statement</td></tr>
+    <tr><td>4</td><td><code>#elif</code></td><td>✅ Yes</t><td>✅ Yes</t><td>Compile time if else statement</td></tr>
+    <tr><td>5</td><td><code>#else</code></td><td>✅ Yes</t><td>✅ Yes</t><td>Compile time else statement</td></tr>
+    <tr><td>6</td><td><code>#endif</code></td><td>✅ Yes</t><td>✅ Yes</t><td>Ends a compile time conditional</td></tr>
+    <tr><td>7</td><td><code>#line</code></td><td>✅ Yes</t><td>✅ Yes</t><td>Changes the reported line number</td></tr>
+    <tr><td>8</td><td><code>#error</code></td><td>✅ Yes</t><td>✅ Yes</t><td>Generate a compilation error</td></tr>
+    <tr><td>9</td><td><code>#pragma</code></td><td>✅ Yes</t><td>✅ Yes</t><td>Provides an instruction to the compiler</td></tr>
+    <tr><td>10</td><td><code>#include</code></td><td>✅ Yes</t><td>❌ No</td><td>Copies the contents of a file to that line</td></tr>
+    <tr><td>11</td><td><code>#ifdef</code></td><td>✅ Yes</t><td>❌ No</td><td>Checks if a symbol is defined</td></tr>
+    <tr><td>12</td><td><code>#ifndef</code></td><td>✅ Yes</t><td>❌ No</td><td>Checks if a symbol is not defined</td></tr>
+    <tr><td>13</td><td><code>#warning</code></td><td>❌ No</td><td>✅ Yes</t><td>Generates a compiler warning message</td></tr>
+    <tr><td>14</td><td><code>#region</code></td><td>❌ No</td><td>✅ Yes</t><td>Marks the start of a collapsable region</td></tr>
+    <tr><td>15</td><td><code>#endregion</code></td><td>❌ No</td><td>✅ Yes</t><td>Marks the end of a collapsable region</td></tr>
+  </tbody>
+</table>
+
+Out of the 9 preprocessor directives that C/C++ and C# have in common, there are 4 of them that do something different depending on the language:
+<table>
+  <thead>
+    <tr><th>#</th><th>Directives</th><th>C / C++ Behaviour</th><th>C# Behaviour</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td><code>#define</code></td><td>Defines a macro or symbol</t><td>Defines a symbol</t></tr>
+    <tr><td>2</td><td><code>#undef</code></td><td>Undefines a macro or symbol</t><td>Defines a symbol</t></tr>
+    <tr><td>3</td><td><code>#if</code></td><td>Evaluates an expression</t><td>Checks if a symbol exists</t></tr>
+    <tr><td>4</td><td><code>#elif</code></td><td>Evaluates an expression</t><td>Checks if a symbol exists</t></tr>
+  </tbody>
+</table>
 
 ## Function Pointers
 
