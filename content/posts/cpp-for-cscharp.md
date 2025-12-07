@@ -759,6 +759,46 @@ Out of the 9 preprocessor directives that C/C++ and C# have in common, there are
   </tbody>
 </table>
 
+In C/C++ ``#define`` creates a macro. What is a macro? A macro is basically a text substitution.
+```cpp
+// cpp
+
+#define PI 3.14 // the word PI gets replaced by 3.14
+
+int main()
+{
+    std::cout << PI << std::endl; // prints 3.14
+}
+```
+
+In C# ``#define`` creates a only a symbol and not a macro. It doesnt substitute text.
+```csharp
+// csharp
+
+#define DEBUG // only defines a symbol
+
+static void Main()
+{
+    #if DEBUG
+    Console.WriteLine("Running in debug mode"); // runs if DEBUG is defined
+    #endif
+}
+```
+
+In C/C++ you can even write function like behaviour using macros:
+```cpp
+// cpp
+
+#define SQRT(x) ((x) * (x))
+
+int main()
+{
+    // "SQRT(x)" is replaced by "((x) * (x))"
+    std::cout << SQRT(5) << std::endl;
+}
+
+```
+
 ## Function Pointers
 
 In C# if you want a reference to a function to for example pass as to another function as parameter you will probably have used an ``delegate`` or its ``Action`` abstraction. 
