@@ -728,21 +728,21 @@ Here is a table showing which directives the languages have in common:
     <tr><th>#</th><th>Directives</th><th>C / C++</th><th>C#</th><th>Description</th></tr>
   </thead>
   <tbody>
-    <tr><td>1</td><td><code>#define</code></td><td>✅ Yes</t><td>✅ Yes</t><td>Defines a macro or symbol</td></tr>
-    <tr><td>2</td><td><code>#undef</code></td><td>✅ Yes</t><td>✅ Yes</t><td>Undefines a macro or symbol</td></tr>
-    <tr><td>3</td><td><code>#if</code></td><td>✅ Yes</t><td>✅ Yes</t><td>Compile time if statement</td></tr>
-    <tr><td>4</td><td><code>#elif</code></td><td>✅ Yes</t><td>✅ Yes</t><td>Compile time if else statement</td></tr>
-    <tr><td>5</td><td><code>#else</code></td><td>✅ Yes</t><td>✅ Yes</t><td>Compile time else statement</td></tr>
-    <tr><td>6</td><td><code>#endif</code></td><td>✅ Yes</t><td>✅ Yes</t><td>Ends a compile time conditional</td></tr>
-    <tr><td>7</td><td><code>#line</code></td><td>✅ Yes</t><td>✅ Yes</t><td>Changes the reported line number</td></tr>
-    <tr><td>8</td><td><code>#error</code></td><td>✅ Yes</t><td>✅ Yes</t><td>Generate a compilation error</td></tr>
-    <tr><td>9</td><td><code>#pragma</code></td><td>✅ Yes</t><td>✅ Yes</t><td>Provides an instruction to the compiler</td></tr>
-    <tr><td>10</td><td><code>#include</code></td><td>✅ Yes</t><td>❌ No</td><td>Copies the contents of a file to that line</td></tr>
-    <tr><td>11</td><td><code>#ifdef</code></td><td>✅ Yes</t><td>❌ No</td><td>Checks if a symbol is defined</td></tr>
-    <tr><td>12</td><td><code>#ifndef</code></td><td>✅ Yes</t><td>❌ No</td><td>Checks if a symbol is not defined</td></tr>
-    <tr><td>13</td><td><code>#warning</code></td><td>❌ No</td><td>✅ Yes</t><td>Generates a compiler warning message</td></tr>
-    <tr><td>14</td><td><code>#region</code></td><td>❌ No</td><td>✅ Yes</t><td>Marks the start of a collapsable region</td></tr>
-    <tr><td>15</td><td><code>#endregion</code></td><td>❌ No</td><td>✅ Yes</t><td>Marks the end of a collapsable region</td></tr>
+    <tr><td>1</td><td><code>#define</code></td><td>✅ Yes</td><td>✅ Yes</td><td>Defines a macro or symbol</td></tr>
+    <tr><td>2</td><td><code>#undef</code></td><td>✅ Yes</td><td>✅ Yes</td><td>Undefines a macro or symbol</td></tr>
+    <tr><td>3</td><td><code>#if</code></td><td>✅ Yes</td><td>✅ Yes</td><td>Compile time if statement</td></tr>
+    <tr><td>4</td><td><code>#elif</code></td><td>✅ Yes</td><td>✅ Yes</td><td>Compile time if else statement</td></tr>
+    <tr><td>5</td><td><code>#else</code></td><td>✅ Yes</td><td>✅ Yes</td><td>Compile time else statement</td></tr>
+    <tr><td>6</td><td><code>#endif</code></td><td>✅ Yes</td><td>✅ Yes</td><td>Ends a compile time conditional</td></tr>
+    <tr><td>7</td><td><code>#line</code></td><td>✅ Yes</td><td>✅ Yes</td><td>Changes the reported line number</td></tr>
+    <tr><td>8</td><td><code>#error</code></td><td>✅ Yes</td><td>✅ Yes</td><td>Generate a compilation error</td></tr>
+    <tr><td>9</td><td><code>#pragma</code></td><td>✅ Yes</td><td>✅ Yes</td><td>Provides an instruction to the compiler</td></tr>
+    <tr><td>10</td><td><code>#include</code></td><td>✅ Yes</td><td>❌ No</td><td>Copies the contents of a file to that line</td></tr>
+    <tr><td>11</td><td><code>#ifdef</code></td><td>✅ Yes</td><td>❌ No</td><td>Checks if a symbol is defined</td></tr>
+    <tr><td>12</td><td><code>#ifndef</code></td><td>✅ Yes</td><td>❌ No</td><td>Checks if a symbol is not defined</td></tr>
+    <tr><td>13</td><td><code>#warning</code></td><td>❌ No</td><td>✅ Yes</td><td>Generates a compiler warning message</td></tr>
+    <tr><td>14</td><td><code>#region</code></td><td>❌ No</td><td>✅ Yes</td><td>Marks the start of a collapsable region</td></tr>
+    <tr><td>15</td><td><code>#endregion</code></td><td>❌ No</td><td>✅ Yes</td><td>Marks the end of a collapsable region</td></tr>
   </tbody>
 </table>
 
@@ -752,10 +752,10 @@ Out of the 9 preprocessor directives that C/C++ and C# have in common, there are
     <tr><th>#</th><th>Directives</th><th>C / C++ Behaviour</th><th>C# Behaviour</th></tr>
   </thead>
   <tbody>
-    <tr><td>1</td><td><code>#define</code></td><td>Defines a macro or symbol</t><td>Defines a symbol</t></tr>
-    <tr><td>2</td><td><code>#undef</code></td><td>Undefines a macro or symbol</t><td>Defines a symbol</t></tr>
-    <tr><td>3</td><td><code>#if</code></td><td>Evaluates an expression</t><td>Checks if a symbol exists</t></tr>
-    <tr><td>4</td><td><code>#elif</code></td><td>Evaluates an expression</t><td>Checks if a symbol exists</t></tr>
+    <tr><td>1</td><td><code>#define</code></td><td>Defines a macro or symbol</td><td>Defines a symbol</td></tr>
+    <tr><td>2</td><td><code>#undef</code></td><td>Undefines a macro or symbol</td><td>Undefines a symbol</td></tr>
+    <tr><td>3</td><td><code>#if</code></td><td>Evaluates an expression</td><td>Checks if a symbol exists</td></tr>
+    <tr><td>4</td><td><code>#elif</code></td><td>Evaluates an expression</td><td>Checks if a symbol exists</td></tr>
   </tbody>
 </table>
 
