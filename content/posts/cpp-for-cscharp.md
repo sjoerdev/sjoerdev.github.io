@@ -712,6 +712,37 @@ Because ``#ifndef`` checks if ``LIBRARY_NAME`` was defined somewhere already ind
 and if not then it uses ``#define`` to make sure next time it is defined. 
 Making it so the contents of the header only get included once during the compilation.
 
+## Optional Header Only Libraries
+
+To avoid having to work with the terrible build system ecosystem of C++, developers often put an entire library in only a header file. 
+But some of these libraries actually also have a way to dynamically link against the lib. So what they do is put both a header interface only part in the header for dynamic linking, 
+and optionally a full library implementation in the header hidden behind a conditional compilation define.
+
+Such libraries will often ask you to put a define before the header include:
+```cpp
+// cpp
+
+#define LIBRARY_NAME_IMPLEMENTATION
+#include "library_name.h"
+```
+
+The reason for this is that the content of the header is structured like so:
+```cpp
+// cpp
+
+// forward declarations only (for dynamic linking)
+int some_function(int);
+
+// optional implementation (for using header only)
+#ifdef LIBRARY_NAME_IMPLEMENTATION
+int some_function(int) { /* implementation */ }
+#endif
+```
+
+So that if ``LIBRARY_NAME_IMPLEMENTATION`` is defined, 
+you are telling the preprocessor to use the library implementation 
+embedded in the header instead of linking against a dynamic library holding the implementation.
+
 ## Preprocessor
 
 The preproccesor runs right before compiling the code to assembly, and basically is a form of compile time programming. 
