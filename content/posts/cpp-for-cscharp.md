@@ -449,7 +449,7 @@ Also as you can see for C++ we dont use the ``new`` keyword because in C++ every
 
 Important differences:
 - In C# you write ``int[] name``, while in C++ you write ``int name[]``, it differs where you place the brackets.
-- In C# arrays are always on the heap and made with ``new``, while in C++ arrays are on the stack.
+- In C# arrays are generally on the heap and made with ``new``, in C++ arrays can be both on the stack or heap
 - In C# ``int[][]`` is a jagged array while in C++ ``int[][]`` is a multidimensional array.
 - In C++ a list is called a vector (yes thats really confusing).
 
