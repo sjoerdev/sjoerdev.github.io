@@ -131,8 +131,25 @@ You can include a header in 2 ways: ``#include "file.h"`` or ``#include <file.h>
 
 There are a set of build in header libraries you can use for common operations called the ``Standard Libary`` or ``std`` for short. You can look at the standard library as the conceptual equivelant to the ``System`` namespace in the C# language, it provides libraries for common operations like input and output and file operations as well as containers like strings, lists, dictionaries and others.
 
-This table describes the most commonly used headers in the standard library:
-![standardlibrary](/images/table-headers.png)
+The most commonly used headers in the standard library:
+
+**C++ Standard Library:**
+
+![standardlibrarycpp](/images/cppstd.png)
+
+**Plain C Standard Library:**
+
+![standardlibraryc](/images/cstd.png)
+
+If you are like me and you write C++ is a very plain C kind of way and want access to ``malloc`` and ``free`` 
+and other stuff from the plain C standard library. You could just include ``<stdlib.h>`` and it will work, 
+but since plain c doesnt have namespaces, all the standard library features will pollute the global namespace. 
+This can be prevented by using the C++ wrappers for the plain C std libraries. It works like this, take the name 
+of the header you want: ``<name.h>`` and add a ``c`` in from of the name and remove the ``.h`` at the end, 
+this way ``<name.h>`` becomes ``<cname>``, and just like that all the stuff from the library is accesable 
+under the ``std::`` namespace, just like all C++ standard libraries. Now you can 
+use ``malloc`` like ``std::malloc`` and ``free`` like ``std::free``, this is 
+the recommended way to use the standard library for plain C in modern C++ code.
 
 ## Initialization
 
