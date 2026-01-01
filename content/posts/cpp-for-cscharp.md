@@ -104,7 +104,111 @@ int*ptr = &x;
 
 **Smart:**
 
-There are 3 types of smart pointers: ``std::unique_ptr`` ``std::shared_ptr`` ``std::weak_ptr``, to use them with ``#include <memory>``
+In modern idiomatic C++ there is a safer approach to pointers, called smart pointers. 
+There are 3 types of smart pointers: ``std::unique_ptr`` ``std::shared_ptr`` ``std::weak_ptr``, 
+to use them include the ``#include <memory>`` header in your code. 
+Fundamentally what a smart pointer is, is a pointer that automatically frees the memory of whatever it points to when the pointer itself goes out of scope. 
+
+**Unique Pointer:**
+
+This pointer has ownership over whatever it points to, if it goes out of scope and gets dropped of the stack, so does the memory it points to. 
+
+What makes this one different from the other smart pointers:
+
+- there can only be only one unique pointer per object
+- the pointer and the object have the same lifetime
+
+<br>
+
+```cpp
+// cpp
+
+#include <memory>
+
+void test()
+{
+    // making a unique pointer
+    unique_ptr<Foo> foo_ptr = make_unique<Foo>(new Foo());
+
+    // No need to delete, gets freed at end of scope
+}
+```
+
+**Shared Pointer:**
+
+What makes this one different from the other smart pointers:
+
+- there can be many shared pointers many per object
+- target object lives as long at least one share exists
+
+<br>
+
+```cpp
+// cpp
+
+#include <memory>
+
+void test()
+{
+    // making a shared pointer
+    shared_ptr<Foo> sp_1 = make_shared<Foo>(new Foo());
+
+    // sharing ownership
+    shared_ptr<int> sp_2 = sp_1;
+
+    // get amount of shares
+    int shares = sp_1.use_count() // there are now 2 shares
+
+    // you can manually drop a share like so
+    sp_2.reset();
+
+    int shares = sp_1.use_count() // there is now 1 share
+
+    // at the end of this scope the first pointer also drops
+    // now since there are no more shares the object is freed
+}
+```
+
+**Weak Pointer:**
+
+What makes this one different from the other smart pointers:
+
+- weak pointers dont have any ownership
+- weak pointers can only be used with shared pointers, not unique pointers
+- there can be many weak pointers per object
+- weak pointers dont increase the amount of shares like a shared pointer
+- weak pointers dont own an object so the object's lifetime is not tied to the weak ptr
+- all weak pointers expire (points to nullptr) when the last shared ptr gets dropped
+
+<br>
+
+```cpp
+// cpp
+
+#include <memory>
+
+void test()
+{
+    // making a shared pointer
+    shared_ptr<Foo> sp = make_shared<Foo>(new Foo());
+
+    // sharing ownership but with weak pointer
+    weak_ptr<Foo> wp = sp;
+
+    // get amount of shares
+    int shares = sp.use_count() // still 1, weak ptr didnt add a share
+
+    // destroy the only and last shared pointer with ownership
+    sp.reset();
+
+    // now since there are no more shares the object is freed
+
+    // the weak pointer like the object doesnt exist anymore
+    bool does_object_exist = wp.expired();
+
+    // the weak pointer still exists but now points to nullptr
+}
+```
 
 ## Headers
 
