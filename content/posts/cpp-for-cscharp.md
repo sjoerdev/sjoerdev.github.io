@@ -290,13 +290,15 @@ Type test; // uninitialized
 Type test{}; // initializes with default value
 Type test(x);
 Type test{x};
-Type test{x, y, z}; // works on aggregates (like arrays or structs)
-Type test{ .foo = x, .bar = y }; // works on structs (C++20 only)
+Type test{x, y, z}; // works on structs or arrays
+Type test{ .foo = x, .bar = y }; // works on structs (added in C99 and C++20)
 
 // copy
+Type test = {}; // initializes with default value (added in C11)
+Type test = {0}; // initializes with default value (used before C11)
 Type test = Type(x);
 Type test = Type{x};
-Type test = {x, y, z}; // works on aggregates (like arrays or structs)
+Type test = {x, y, z}; // works on structs or arrays
 Type test = { .foo = x, .bar = y }; // works on structs (C++20 only)
 ```
 
@@ -304,14 +306,18 @@ Type test = { .foo = x, .bar = y }; // works on structs (C++20 only)
 ```cpp
 Type* test = new Type(x);
 Type* test = new Type{x};
-Type& test = *new Type(x); // get as reference instead of pointer
+Type& test = *new Type(x); // get by reference
 ```
 
 **C# initialization:**
 ```csharp
 Type test; // uninitialized
-Type test = new Type(x); // standard way of initializing
-Type test = [x, y, z]; // works on collections like arrays and lists
+Type test = default; // initializes with default value
+Type test = new Type(x); // initializes with constructor
+Type test = new Type{x, y, z}; // works on structs
+Type test = new Type{ foo = x, bar = y }; // works on structs
+Type test = {x, y, z}; // works on arrays
+Type test = [x, y, z]; // works on collections
 ```
 
 **Things to remember about initialization:**
