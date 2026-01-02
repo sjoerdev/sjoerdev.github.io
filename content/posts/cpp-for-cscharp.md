@@ -301,12 +301,12 @@ Type test = { .foo = x, .bar = y }; // for structs and arrays
 Type test = {}; // default value (already in C++11)
 
 // C++98/03 (inherited everything from C89)
-Type test(x);
-Type test = Type(x);
+Type test(x); // uses constructor
+Type test = Type(x); // uses constructor
 
 // C++11
-Type test{x};
-Type test = Type{x};
+Type test{x}; // uses constructor
+Type test = Type{x}; // uses constructor
 Type test{}; // default value
 Type test = Type{}; // default value
 Type test = {}; // default value
@@ -323,7 +323,7 @@ Type test = { .foo = x, .bar = y}; // for structs and arrays (already in C99)
 Type test; // uninitialized
 Type test = default; // default value
 
-Type test = new Type(x);
+Type test = new Type(x); // uses constructor
 Type test = new Type{ foo = x, bar = y }; // for structs
 
 Type test = {x, y, z}; // works on arrays
