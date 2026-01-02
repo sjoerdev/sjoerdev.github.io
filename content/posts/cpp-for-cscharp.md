@@ -313,8 +313,7 @@ Type& test = *new Type(x); // get by reference
 ```csharp
 Type test; // uninitialized
 Type test = default; // initializes with default value
-Type test = new Type(x); // initializes with constructor
-Type test = new Type{x, y, z}; // works on structs
+Type test = new Type(x); // calls constructor
 Type test = new Type{ foo = x, bar = y }; // works on structs
 Type test = {x, y, z}; // works on arrays
 Type test = [x, y, z]; // works on collections
