@@ -999,10 +999,10 @@ void (*bar_ptr)() = NULL;
 void (*baz_ptr)(void) = &Baz;
 
 // creating a pointer that points to a rounding function
-int (*round_ptr)(float x) = &Round;
+int (*round_ptr)(float) = &Round;
 
 // creating a pointer that points to a function that adds floats
-float (*add_ptr)(float a, float b) = &Add;
+float (*add_ptr)(float, float) = &Add;
 ```
 
 Using ``typedef`` on function pointers:
@@ -1032,7 +1032,7 @@ void* fn = dlsym(...);
 ((FuncPtr)fn)();
 
 // creating the AddFuncPtr type
-typedef float (*AddFuncPtr)(float a, float b);
+typedef float (*AddFuncPtr)(float, float);
 
 // getting a function pointer to a dll
 void* fn = dlsym(...);
