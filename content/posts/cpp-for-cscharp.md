@@ -277,44 +277,55 @@ the recommended way to use the standard library for plain C in modern C++ code.
 
 **Stack / Heap:**
 
-C++ allows you to initialize objects on the stack or the heap. But In C# you don't get to choose, classes will be on the heap because they are reference types and structs on the stack because they are value types, and in C# you must always use the ``new`` keyword.
+C++ allows you to initialize objects on the stack or the heap. But In C# you mostly don't get to choose, classes will be on the heap because they are reference types and structs on the stack because they are value types, 
+and in C# you must always use the ``new`` keyword, while in C++ ``new`` means initialization on the heap. So if you want to initialize something on the heap in C++, just pick any of the normals ways you would init on the stack, and use the ``new`` keyword 
+after the equal sign and make the returning type a pointer, so for example take this stack initialization: ``Type test = Type(x);`` and turn it into ``Type* test = new Type(x);`` to make it a heap initialization.
 
 **Copy / Direct:**
 
 Another thing to keep in mind about C++ initialization in particular is that there is a distinction between copy and direct initialization, direct initialization is slightly faster because there is no need for an unnecessary copy operation to be done.
 
-**C++ stack initialization:**
+**C / C++ Initialization:**
 ```cpp
-// direct
+// below all the ways to initialize organized by version it was added:
+
+// C89
 Type test; // uninitialized
-Type test{}; // initializes with default value
+Type test = {0}; // default value
+Type test = {x, y, z}; // for structs and arrays
+
+// C99
+Type test = { .foo = x, .bar = y }; // for structs and arrays
+
+// C23
+Type test = {}; // default value (already in C++11)
+
+// C++98/03 (inherited everything from C89)
 Type test(x);
-Type test{x};
-Type test{x, y, z}; // works on structs or arrays
-Type test{ .foo = x, .bar = y }; // works on structs (added in C99 and C++20)
-
-// copy
-Type test = {}; // initializes with default value (added in C11)
-Type test = {0}; // initializes with default value (used before C11)
 Type test = Type(x);
-Type test = Type{x};
-Type test = {x, y, z}; // works on structs or arrays
-Type test = { .foo = x, .bar = y }; // works on structs (C++20 only)
-```
 
-**C++ heap initialization:**
-```cpp
-Type* test = new Type(x);
-Type* test = new Type{x};
-Type& test = *new Type(x); // get by reference
+// C++11
+Type test{x};
+Type test = Type{x};
+Type test{}; // default value
+Type test = Type{}; // default value
+Type test = {}; // default value
+Type test = Type{x, y, z}; // for structs and arrays
+Type test{x, y, z}; // for structs and arrays
+
+// C++20
+Type test{ .foo = x, .bar = y}; // for structs and arrays
+Type test = { .foo = x, .bar = y}; // for structs and arrays (already in C99)
 ```
 
 **C# initialization:**
 ```csharp
 Type test; // uninitialized
-Type test = default; // initializes with default value
-Type test = new Type(x); // calls constructor
-Type test = new Type{ foo = x, bar = y }; // works on structs
+Type test = default; // default value
+
+Type test = new Type(x);
+Type test = new Type{ foo = x, bar = y }; // for structs
+
 Type test = {x, y, z}; // works on arrays
 Type test = [x, y, z]; // works on collections
 ```
@@ -322,7 +333,6 @@ Type test = [x, y, z]; // works on collections
 **Things to remember about initialization:**
 
 - C++ gives more control over stack vs heap
-- C++ supports multiple syntaxes: parentheses and curly braces
 - C++ gives more control about when copy operations are used
 - C# classes are reference types (heap), structs are value types (stack)
 - C# always requires the new keyword for both structs and classes
