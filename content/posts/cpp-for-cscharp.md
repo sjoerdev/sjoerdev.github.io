@@ -1138,7 +1138,74 @@ void ClassName::MethodName() // definition (implementation)
 }
 ```
 
+## Initializer list
+
+> Not to be confused with "Member Initializer List" which is completely different!
+
+In C++ you sometimes want a constructor with an arbitrary amount of inputs. Lets say we are making our own collection type, kinda like ``std::vector<>`` but fully custom made. 
+We will call it ``IntArray`` and it will hold an arbitrary amount of ints, what we want is to be able to construct it with any number of ints like you can with a normal array or vector, 
+what we want is something like ``IntArray array{ 1, 2, 3, ... };``, we can make a constructor with ``std::initializer_list<int>`` for it to take any amount of arguments.
+
+This is how we would do it:
+```cpp
+// cpp
+
+#include <initializer_list> // for std::initializer_list
+#include <algorithm> // for std::copy
+
+class IntArray
+{
+private:
+    int* array;
+
+public:
+    IntArray(std::initializer_list<int> list)
+    {
+        // make the array the same size as the amount of args
+        array = new int[list.size()];
+        
+        // copy all the elements
+        std::copy(list.begin(), list.end(), array);
+    }
+}
+```
+
+Now we can initialize our custom collection type like an array or vector:
+```cpp
+//cpp
+
+// direct
+IntArray array{1, 2, 3};
+
+// copy
+IntArray array = {1, 2, 3};
+
+// explicit
+std::initializer_list<int> list = {1, 2, 3};
+IntArray array{list};
+```
+
+We can even use ``std::initializer_list<>`` in a regular function:
+```cpp
+//cpp
+
+Foo(std::initializer_list<int> list)
+{
+    for (int i : list) // do something
+}
+```
+
+And this is how you can then use this function:
+```cpp
+//cpp
+
+Foo({1, 2, 3}); // Correct
+Foo(1, 2, 3); // Error
+```
+
 ## Member Initializer List
+
+> Do not confuse this with the similarly named "Initializer List" that is used to initialize aggregates with a list of values. These 2 concepts are very different.
 
 In C++ when creating an object, member variables are initialized before the constructor body runs. If you assign to members inside the constructor body, 
 you are assigning to already constructed members, this means unnecessary default construction followed by assignment. 
