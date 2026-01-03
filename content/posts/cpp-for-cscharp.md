@@ -355,25 +355,56 @@ by copying a different value to itself, often using an overloaded copy operator.
 | **Copy Assignment**             | ``x = value;``                     | copy operator (not initialization)        |
 | **Move Assignment**             | ``x = std::move(value);``          | move operator (not initialization)        |
 
+The constructors and operators used here can be fully custom implemented for your 
+custom type by simply implementing these function signatures in your type:
+```cpp
+T(); // constructor
+T(T&); // copy constructor
+T(T&&); // move constructor
+T& operator=(T&); // copy assignment operator
+T& operator=(T&&); // move assignment operator
+```
 
-The actual constructor or operator can be custom:
+Here is a simple example of how those signatures might be implemented:
 ```cpp
 class Foo
 {
+
+public:
+
     // constructor
-    Foo();
+    Foo()
+    {
+        // implement logic
+    }
 
     // copy constructor
-    Foo(const Foo& other);
+    Foo(const Foo& other)
+    {
+        // implement logic
+    }
 
     // move constructor
-    Foo(Foo&& other);
+    Foo(Foo&& other)
+    {
+        // implement logic
+    }
 
     // copy assignment operator
-    Foo& operator=(const Foo& other);
+    Foo& operator=(const Foo& other)
+    {
+        // implement logic
+
+        return *this;
+    }
 
     // move assignment operator
-    Foo& operator=(Foo&& other);
+    Foo& operator=(Foo&& other)
+    {
+        // implement logic
+
+        return *this;
+    }
 }
 ```
 
