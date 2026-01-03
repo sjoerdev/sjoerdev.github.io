@@ -759,26 +759,26 @@ In C++ you use strings like so:
 // cpp
 
 // creating a string
-string hello = "hello"; // c++ style
+std::string hello = "hello"; // c++ style
 char hello[] = "hello"; // plain c style
 char* hello = "hello"; // plain c style
 
 // combining strings
-string combined = hello + "world";
+std::string combined = hello + "world";
 
 // comparing strings
 bool test = ("apple" == "orange");
 
 // number to string
 int age = 22;
-string message = to_string(age) + " years old";
+std::string message = std::to_string(age) + " years old";
 
 // get length of string
-string test = "test";
+std::string test = "test";
 int length = test.length();
 
 // indexing a string
-string test = "test";
+std::string test = "test";
 char index = test[0];
 ```
 
