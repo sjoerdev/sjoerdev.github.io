@@ -1263,7 +1263,7 @@ public:
 
 int main()
 {
-    CustomString a("Hello");
+    CustomString a = CustomString{"Hello"};
     
     // copy constructor
     CustomString b = a;
