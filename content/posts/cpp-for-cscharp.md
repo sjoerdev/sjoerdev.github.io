@@ -373,7 +373,7 @@ class Foo
 public:
 
     // constructor
-    Foo( ... )
+    Foo( /* arguments */ )
     {
         // implement logic
     }
