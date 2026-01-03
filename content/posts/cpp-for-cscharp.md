@@ -277,13 +277,17 @@ the recommended way to use the standard library for plain C in modern C++ code.
 
 **Stack / Heap:**
 
-C++ allows you to initialize objects on the stack or the heap. But In C# you mostly don't get to choose, classes will be on the heap because they are reference types and structs on the stack because they are value types, 
-and in C# you must always use the ``new`` keyword, while in C++ ``new`` means initialization on the heap. So if you want to initialize something on the heap in C++, just pick any of the normals ways you would init on the stack, and use the ``new`` keyword 
+C++ allows you to initialize objects on the stack or the heap. But In C# you mostly don't get to choose, classes will be on the heap most of the time like most other reference types, 
+and structs on the stack most of the time because they are value types, but structs are in some cases not on the stack but on the heap too, this is something C# decides at runtime based on a number of factors like its scope and more. 
+So generally speaking in C# you have not much control over what gets allocated on the stack and what on the heap.
+
+and in C# you must always use the ``new`` keyword when creating an object it doesnt matter if the object you are creating is a reference or value type or if its on the stack or on the heap, ``new`` always gets used, 
+while in C++ ``new`` means initialization on the heap. So if you want to initialize something on the heap in C++, just pick any of the normal ways you would initialize/create a variable on the stack, and use the ``new`` keyword 
 after the equal sign and make the returning type a pointer, so for example take this stack initialization: ``Type test = Type(x);`` and turn it into ``Type* test = new Type(x);`` to make it a heap initialization.
 
 **Copy / Direct:**
 
-Another thing to keep in mind about C++ initialization in particular is that there is a distinction between copy and direct initialization, direct initialization is slightly faster because there is no need for an unnecessary copy operation to be done.
+Another thing to keep in mind about C++ initialization in particular is that there is a distinction between copy and direct initialization, copy initialization is when the ``=`` operator is used, direct initialization is slightly faster because there is no need for an unnecessary copy operation to be done.
 
 **C / C++ Initialization:**
 ```cpp
