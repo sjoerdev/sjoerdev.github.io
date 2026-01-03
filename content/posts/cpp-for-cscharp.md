@@ -358,7 +358,7 @@ by copying a different value to itself, often using an overloaded copy operator.
 The constructors and operators used here can be fully custom implemented for your 
 custom type by simply implementing these function signatures in your type:
 ```cpp
-T(); // constructor
+T(T); // constructor
 T(T&); // copy constructor
 T(T&&); // move constructor
 T& operator=(T&); // copy assignment operator
@@ -373,7 +373,7 @@ class Foo
 public:
 
     // constructor
-    Foo()
+    Foo( ... )
     {
         // implement logic
     }
