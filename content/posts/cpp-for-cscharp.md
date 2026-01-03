@@ -361,19 +361,19 @@ The actual constructor or operator can be custom:
 class Foo
 {
     // constructor
-    Foo() {}
+    Foo();
 
     // copy constructor
-    Foo(const Foo& other) {}
+    Foo(const Foo& other);
 
     // move constructor
-    Foo(Foo&& other) {}
+    Foo(Foo&& other);
 
     // copy assignment operator
-    Foo& operator=(const Foo& other) {}
+    Foo& operator=(const Foo& other);
 
     // move assignment operator
-    Foo& operator=(Foo&& other) {}
+    Foo& operator=(Foo&& other);
 }
 ```
 
