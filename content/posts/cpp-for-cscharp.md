@@ -364,13 +364,13 @@ class Foo
     Foo() {}
 
     // copy constructor
-    Foo(Foo& other) {}
+    Foo(const Foo& other) {}
 
     // move constructor
     Foo(Foo&& other) {}
 
     // copy assignment operator
-    Foo& operator=(Foo& other) {}
+    Foo& operator=(const Foo& other) {}
 
     // move assignment operator
     Foo& operator=(Foo&& other) {}
