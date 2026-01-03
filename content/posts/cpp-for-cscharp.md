@@ -338,7 +338,8 @@ Type test = [x, y, z]; // works on collections
 
 - C++ gives more control over stack vs heap
 - C++ gives more control about when copy operations are used
-- C# classes are reference types (heap), structs are value types (stack)
+- C++ the semantics of the new keyword are completely different
+- C# decides for you most of the time if stack or heap is used
 - C# always requires the new keyword for both structs and classes
 
 ## Public / Private
