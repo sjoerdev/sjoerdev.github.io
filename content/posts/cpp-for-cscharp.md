@@ -278,8 +278,8 @@ the recommended way to use the standard library for plain C in modern C++ code.
 **Stack / Heap:**
 
 C++ allows you to initialize objects on the stack or the heap. But In C# you mostly don't get to choose, classes will be on the heap most of the time like most other reference types, 
-and structs on the stack most of the time because they are value types, but structs are in some cases not on the stack but on the heap too, this is something C# decides at runtime based on a number of factors like its scope and more. 
-So generally speaking in C# you have not much control over what gets allocated on the stack and what on the heap.
+and structs on the stack most of the time like most other value types, but structs are in some cases not on the stack but on the heap too, this is something C# decides at runtime based on a number of factors like for example its scope. 
+So generally speaking in C# you have not much control over what gets allocated on the stack and what on the heap. But generally you can assume reference types are on the heap, and value types are on the stack.
 
 and in C# you must always use the ``new`` keyword when creating an object it doesnt matter if the object you are creating is a reference or value type or if its on the stack or on the heap, ``new`` always gets used, 
 while in C++ ``new`` means initialization on the heap. So if you want to initialize something on the heap in C++, just pick any of the normal ways you would initialize/create a variable on the stack, and use the ``new`` keyword 
@@ -337,10 +337,12 @@ Type test = [x, y, z]; // works on collections
 **Things to remember about initialization:**
 
 - C++ gives more control over stack vs heap
-- C++ gives more control about when copy operations are used
-- C++ the semantics of the new keyword are completely different
-- C# decides for you most of the time if stack or heap is used
-- C# always requires the new keyword for both structs and classes
+- C++ the new keyword is for heap allocation
+- C++ gives more control about when a copy is performed
+- C++ generally speaking curly brace initialization is best
+- C# always requires the new keyword for any object creation
+- C# most of the time reference types are on the heap but not always
+- C# most of the time value types are on the stack but not always
 
 ## Public / Private
 
