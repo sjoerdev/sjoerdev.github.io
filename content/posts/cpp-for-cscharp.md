@@ -1107,6 +1107,149 @@ void ClassName::MethodName() // definition (implementation)
 }
 ```
 
+## Move Semantics
+
+Since in C++ the default is that all types are value types, this means that everytime you do ``x = y`` it copies over its data, now usually that is just a few bytes, 
+but if it is the case that a type holds hugo amounts of data, then copying over that data every time you do ``x = y`` is a huge waste. 
+Because of this we have move semantics, it makes it possible for us to make it so this huge amount of data is not copied to some other place in memory, 
+but instead just stays where it is and only the ownership of the data is transferred (stolen) to the other variable you wanted to assign the data to.
+
+**L-values and R-values:**
+
+``Lvalue`` = an object with a persistant adress in memory
+- you can take its adress with the ``&`` symbol
+- you can bind a reference to it with the ``&`` symbol
+- usually a named variable
+
+``Rvalue`` = a temporary object or literal without a persistant adress
+- you can not take its adress easily
+- you can bind a reference to it with the ``&&`` symbol
+- usually a tempory result of an expression or literal
+
+Example:
+
+```cpp
+// lvalue
+int x = 10; // x is an lvalue
+int* p = &x; // we can take its address
+int& = x; // reference to an lvalue
+
+// rvalue
+int y = 4; // 4 is an rvalue, but y is not
+int z = 5 + 3; // (5 + 3) is an rvalue
+int w = x + 1; // (x + 1) is an rvalue
+int&& = 4; // reference to an rvalue
+```
+
+<br>
+
+**Why Rvalues are needed in move semantics:**
+
+To distinguish between copy and move, we need to know if an object is temporary (rvalue) or persistent (lvalue).
+
+- ``T&`` “I can only copy this, because it’s a real object someone else owns.”
+- ``T&&`` “I can steal resources safely, because this is temporary and no one else will use it.”
+
+**Example of implementing C++ move semantics:**
+
+```cpp
+// cpp
+
+#include <iostream>
+#include <cstring>
+
+class CustomString
+{
+private:
+
+    char* ptr;
+
+public:
+
+    // default constructor
+    CustomString(char* input = "")
+    {
+        ptr = new char[strlen(input) + 1];
+        strcpy(ptr, input);
+    }
+
+    // destructor
+    ~CustomString()
+    {
+        delete[] ptr;
+    }
+
+    // copy constructor (copy over all data but leave original intact)
+    CustomString(const CustomString& other) // const because we want the other still intact
+    {
+        // duplicate all data in memory
+        ptr = new char[strlen(other.ptr) + 1];
+        strcpy(ptr, other.ptr);
+    }
+
+    // move constructor (transfer ownership without copying any data)
+    CustomString(CustomString&& other)
+    {
+        // move the pointer not the data
+        ptr = other.ptr;
+        
+        // make the other pointer null (take away the data ownership of the other)
+        other.ptr = nullptr;
+    }
+
+    // copy assignment
+    CustomString& operator=(const CustomString& other) // const because we want the other still intact
+    {
+        // prevent copying to itself
+        if (this == &other) return *this; // return itself without changes
+
+        // duplicate all data in memory
+        delete[] ptr;
+        ptr = new char[strlen(other.ptr) + 1];
+        strcpy(ptr, other.ptr);
+
+        // return itself with the new data
+        return *this;
+    }
+
+    // move assignment
+    CustomString& operator=(CustomString&& other)
+    {
+        // prevent copying to itself
+        if (this == &other) return *this; // return itself without changes
+
+        // move the pointer not the data
+        delete[] ptr;
+        ptr = other.ptr;
+
+        // make the other pointer null (take away the data ownership of the other)
+        other.ptr = nullptr;
+        
+        // return itself with the new data
+        return *this;
+    }
+};
+
+int main()
+{
+    CustomString a("Hello");
+    
+    // copy constructor
+    CustomString b = a;
+
+    // move constructor
+    CustomString c = std::move(a); // std::move is just static_cast<T&&>
+    
+    CustomString d;
+    
+    // copy assignment
+    d = b;
+
+    // move assignment
+    d = std::move(c); // std::move is just static_cast<T&&>
+}
+```
+
 ## Plain C Exclusive Features
 
 people often say that all C code is valid C++ code, but that is hardly true, there are many things C can do that C++ can not do.
