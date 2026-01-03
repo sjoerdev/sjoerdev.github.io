@@ -327,8 +327,9 @@ Type test = { .foo = x, .bar = y}; // for structs and arrays (already in C99)
 Type test; // uninitialized
 Type test = default; // default value
 
-Type test = new Type(x); // uses constructor
-Type test = new Type{ foo = x, bar = y }; // for structs
+Type test = new Type(); // uses default constructor
+Type test = new Type() { foo = x, bar = y }; // explicit member init
+Type test = new Type() { x, y, z }; // works on collections
 
 Type test = {x, y, z}; // works on arrays
 Type test = [x, y, z]; // works on collections
