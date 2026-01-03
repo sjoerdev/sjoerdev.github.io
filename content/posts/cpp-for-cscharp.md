@@ -279,17 +279,18 @@ the recommended way to use the standard library for plain C in modern C++ code.
 
 C++ allows you to initialize objects on the stack or the heap. But In C# you mostly don't get to choose, classes will be on the heap most of the time like most other reference types, 
 and structs on the stack most of the time like most other value types, but structs are in some cases not on the stack but on the heap too, this is something C# decides at runtime based on a number of factors like for example its scope. 
-So generally speaking in C# you have not much control over what gets allocated on the stack and what on the heap. But generally you can assume reference types are on the heap, and value types are on the stack.
-
-and in C# you must always use the ``new`` keyword when creating an object it doesnt matter if the object you are creating is a reference or value type or if its on the stack or on the heap, ``new`` always gets used, 
+So generally speaking in C# you have not much control over what gets allocated on the stack and what on the heap. But generally you can assume reference types are on the heap, and value types are on the stack. 
+And in C# you must always use the ``new`` keyword when creating an object it doesnt matter if the object you are creating is a reference or value type or if its on the stack or on the heap, ``new`` always gets used, 
 while in C++ ``new`` means initialization on the heap. So if you want to initialize something on the heap in C++, just pick any of the normal ways you would initialize/create a variable on the stack, and use the ``new`` keyword 
 after the equal sign and make the returning type a pointer, so for example take this stack initialization: ``Type test = Type(x);`` and turn it into ``Type* test = new Type(x);`` to make it a heap initialization.
 
-**Copy / Direct:**
+**Uniform Initialization:**
 
-Another thing to keep in mind about C++ initialization in particular is that there is a distinction between copy and direct initialization, copy initialization is when the ``=`` operator is used, direct initialization is slightly faster because there is no need for an unnecessary copy operation to be done.
+One thing to note is that in C++11 the syntax for initializing was overhauled to make it more consistent and flexible. 
+This new syntax uses ``{}`` curly braces. The new syntax goes by different names but they generally all mean the same thing. 
+You will often hear it being called ``Uniform Initialization`` or ``List Initialization`` or ``Brace Initialization``, but they all refer to the same thing.
 
-**C / C++ Initialization:**
+**C++ Initialization Syntax History:**
 ```cpp
 // below all the ways to initialize organized by version it was added:
 
@@ -335,12 +336,56 @@ Type test = {x, y, z}; // works on arrays
 Type test = [x, y, z]; // works on collections
 ```
 
+<br>
+
+**Copy Initialization / Copy Assignment:**
+
+Copy initialization is very different from copy assignment, even though the syntax for both is nearly identical. 
+The syntax for initialization is ``Type x = value;`` and for copy assignment is ``x = value``, the syntax is similar but the semantics are different. 
+What copy initialization does is call a constructor with the value to the right as its argument, while copy assignment takes a pre-existing object and modifies it, 
+by copying a different value to itself, often using an overloaded copy operator. In short a copy assignment doesnt call a constructor but the copy operator instead.
+
+| Term:                           | Syntax:                            | Calls:                                    |
+| ------------------------------- | -----------------------------------|------------------------------------------ |
+| **Direct Initialization**       | ``Type x(value);``                 | constructor                               |
+| **Direct Brace Initialization** | ``Type x{value};``                 | constructor or initializer list           |
+| **Copy Brace Initialization**   | ``Type x = {value};``              | constructor or initializer list           |
+| **Copy Initialization**         | ``Type x = value;``                | copy constructor                          |
+| **Move Initialization**         | ``Type x = std::move(value);``     | move constructor                          |
+| **Copy Assignment**             | ``x = value;``                     | copy operator (not initialization)        |
+| **Move Assignment**             | ``x = std::move(value);``          | move operator (not initialization)        |
+
+
+The actual constructor or operator can be custom:
+```cpp
+class Foo
+{
+    // constructor
+    Foo() {}
+
+    // copy constructor
+    Foo(Foo& other) {}
+
+    // move constructor
+    Foo(Foo&& other) {}
+
+    // copy assignment operator
+    Foo& operator=(Foo& other) {}
+
+    // move assignment operator
+    Foo& operator=(Foo&& other) {}
+}
+```
+
+<br>
+
 **Things to remember about initialization:**
 
 - C++ gives more control over stack vs heap
 - C++ the new keyword is for heap allocation
 - C++ gives more control about when a copy is performed
-- C++ generally speaking curly brace initialization is best
+- C++ generally speaking the modern curly brace syntax is the best
+- C++ copy initialization is very different from copy assignment
 - C# always requires the new keyword for any object creation
 - C# most of the time reference types are on the heap but not always
 - C# most of the time value types are on the stack but not always
