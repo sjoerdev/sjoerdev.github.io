@@ -897,6 +897,29 @@ So that if ``LIBRARY_NAME_IMPLEMENTATION`` is defined,
 you are telling the preprocessor to use the library implementation 
 embedded in the header instead of linking against a dynamic library holding the implementation.
 
+But there is an issue with this way of doing things. If you have several source files in which you want to include this header and you define ``LIBRARY_NAME_IMPLEMENTATION`` above 
+each of them, you would get an error because you are not allowed to define the same symbol multiple times. There is a solution to this, which is having a seperate ``libs_impl.cpp`` file where every header library gets defined once like this:
+```cpp
+// cpp
+
+// libs_impl.cpp
+
+// first library
+#define LIBRARY_A_IMPLEMENTATION
+#include "library_a.h"
+
+// second library
+#define LIBRARY_B_IMPLEMENTATION
+#include "library_b.h"
+
+// third library
+#define LIBRARY_C_IMPLEMENTATION
+#include "library_c.h"
+```
+
+Then in all the other source files in which you want access to the library you only add ``#include "library_name.h"`` to the top, and no implementation define above it. 
+That way many files can use the library because there will be only a single implementation define for the library in the entire codebase.
+
 ## Preprocessor
 
 The preproccesor runs right before compiling the code to assembly, and basically is a form of compile time programming. 
