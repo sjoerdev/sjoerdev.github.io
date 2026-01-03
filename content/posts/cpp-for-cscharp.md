@@ -1138,6 +1138,67 @@ void ClassName::MethodName() // definition (implementation)
 }
 ```
 
+## Member Initializer List
+
+In C++ when creating an object, member variables are initialized before the constructor body runs. If you assign to members inside the constructor body, 
+you are assigning to already constructed members, this means unnecessary default construction followed by assignment. 
+Member initializer lists allow members to be constructed directly with their intended values and are the recommended and 
+sometimes required way to initialize members in C++, for example it it required when initializing const member or references.
+
+In C# you would do something like this:
+```csharp
+// csharp
+
+class Person
+{
+    private int a;
+    private int b;
+
+    public Person(int x, int y)
+    {
+        a = x;
+        b = y;
+    }
+}
+```
+
+You can do the same thing in C++ but it is not the recommended way:
+```cpp
+// cpp
+
+class Person
+{
+private:
+    int a;
+    int b;
+
+public:
+    Person(int x, int y)
+    {
+        a = x;
+        b = y;
+    }
+}
+```
+
+In C++ this (member initialization list) is the recommended way:
+```cpp
+// cpp
+
+class Person
+{
+private:
+    int a;
+    int b;
+
+public:
+    Person(int x, int y) : a{x}, b{y} // <- happens here
+    {
+        // this constructor body runs after
+    }
+}
+```
+
 ## Move Semantics
 
 Since in C++ the default is that all types are value types, this means that everytime you do ``x = y`` it copies over its data, now usually that is just a few bytes, 
