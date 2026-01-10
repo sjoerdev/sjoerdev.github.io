@@ -693,6 +693,8 @@ Important differences:
 - In C# you write ``int[] name``, while in C++ you write ``int name[]``, it differs where you place the brackets.
 - In C# arrays are generally on the heap and made with ``new``, in C++ arrays can be both on the stack or heap
 - In C# ``int[][]`` is a jagged array while in C++ ``int[][]`` is a multidimensional array.
+- In C++ an array can not be copied by value ``int foo[] = bar;``, must use ``memcopy`` instead.
+- In C++ an array can not be returned from a function by value, only by pointer.
 - In C++ a list is called a vector (yes thats really confusing).
 
 In C# you use arrays like so:
@@ -1560,3 +1562,31 @@ Vec3 v = (Vec3){1.0f, 2.0f, 3.0f};
 // compound literal for an array
 int* arr = (int[]){1, 2, 3, 4, 5};
 ```
+
+**Variable Length Arrays**
+
+A variable length array is an array whose size is not known at compile time but gets determined at runtime.
+
+```c
+// plain c
+
+// in both plain c and cpp you can have an array like this
+int arr[16]; // <- size is known at compile time
+
+// but in plain c you can also have an array like this (not possible in cpp)
+int n = 16; // <- runtime variable
+int arr[n]; // < size is determined at runtime
+
+// you can even use it for runtime sized multi dimensional arrays
+int matrix[rows][cols];
+```
+
+**The limitations of a variable length array:**
+- they can only be on the stack, not the heap
+- they can only exist in local scope, not global
+- they can not be returned from a function (like any array)
+- they can not be members of any struct
+- they can not be ``static`` or ``extern`` variables
+- they can not have an initializer at declaration like ``int arr[n] = {1,2,3,4,5};``
+- they can not be used with ``typedef`` to create a wrapper type
+
