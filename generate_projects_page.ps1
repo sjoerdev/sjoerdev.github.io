@@ -1,5 +1,19 @@
 # script to auto generate project pages
 
+<#
+
+    TODO: auto convert github video embed links to html embed video links
+
+    <!-- github video format -->
+    [](https://github.com/user-attachments/assets/9e318653-5ec1-4dc7-9071-c8a26ff5f471)
+
+    <!-- html video format -->
+    <video width="100%" controls>
+        <source src="https://github.com/user-attachments/assets/9e318653-5ec1-4dc7-9071-c8a26ff5f471">
+    </video>
+
+#>
+
 # project github links
 $projectUrls = @(
     "https://github.com/sjoerdev/voxel-engine",
