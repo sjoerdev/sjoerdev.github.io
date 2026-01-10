@@ -47,6 +47,19 @@ function KebabToTitle($text)
     return $words -join ' '
 }
 
+# helper function to convert github video links to HTML video embeds
+function Convert-GitHubVideos($content) {
+    # regex to match github video links: [](https://github.com/...)
+    $pattern = "\[\]\((https://github\.com/user-attachments/assets/[a-f0-9\-]+)\)"
+
+    # replace each match with HTML video embed
+    return [regex]::Replace($content, $pattern, {
+        param($match)
+        $url = $match.Groups[1].Value
+        return "<video width=`"100%`" controls>`n    <source src=`"$url`">`n</video>"
+    })
+}
+
 foreach ($url in $projectUrls)
 {
     $weight = $projectUrls.IndexOf($url) + 1
@@ -98,6 +111,7 @@ weight: $weight
 "@
 
     # combine into final markdown page
+    $readmeContent = Convert-GitHubVideos $readmeContent
     $finalContent = $frontMatter + "`n" + $readmeContent
     $outputFile = Join-Path $outputDir "$repo.md"
     $finalContent | Out-File -FilePath $outputFile -Encoding UTF8
