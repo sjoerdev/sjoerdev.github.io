@@ -17,7 +17,23 @@ ShowBreadCrumbs: true
 In C++ most types have the same or a similar name as in C#, but not always. 
 This is a table that hold a comparison of all fundamental types you should know about:
 
-![types](/images/table-types.png)
+| Type:                      | C#              | C++ (classic)             | C++ (modern)     |
+|----------------------------|-----------------|---------------------------|------------------|
+| 32 bit floating            | ``float``       | ``float``                 | -                |
+| 64 bit floating            | ``double``      | ``double``                | -                |
+| 128 bit floating           | ``decimal``     | -                         | -                |
+| 8 bit integer signed       | ``sbyte``       | ``char``                  | ``int8_t``       |
+| 8 bit integer unsigned     | ``byte``        | ``unsigned char``         | ``uint8_t``      |
+| 16 bit integer signed      | ``short``       | ``short``                 | ``int16_t``      |
+| 16 bit integer unsigned    | ``ushort``      | ``unsigned short``        | ``uint16_t``     |
+| 32 bit integer signed      | ``int``         | ``int``                   | ``int32_t``      |
+| 32 bit integer unsigned    | ``uint``        | ``unsigned int``          | ``uint32_t``     |
+| 64 bit integer signed      | ``long``        | ``long long``             | ``int64_t``      |
+| 64 bit integer unsigned    | ``ulong``       | ``unsigned long long``    | ``uint64_t``     |
+| boolean                    | ``bool``        | ``bool``                  | -                |
+| character                  | ``char``        | ``char``                  | ``char16_t``     |
+| string                     | ``string``      | ``string``                | -                |
+| null                       | ``null``        | ``nullptr``               | -                |
 
 ## References
 
@@ -132,8 +148,6 @@ void test()
 }
 ```
 
-<br>
-
 **Shared Pointer:**
 
 What makes this one different from the other smart pointers:
@@ -166,8 +180,6 @@ void test()
     // now since there are no more shares the object is freed
 }
 ```
-
-<br>
 
 **Weak Pointer:**
 
@@ -226,8 +238,6 @@ void test()
 }
 ```
 
-<br>
-
 ## Headers
 
 ![headers](/images/headers.png)
@@ -257,11 +267,26 @@ The most commonly used headers in the standard library:
 
 **C++ Standard Library:**
 
-![standardlibrarycpp](/images/cppstd.png)
+| Header           | Description                 | Contains                                                  |
+|------------------|-----------------------------|-----------------------------------------------------------|
+| ``<iostream>``   | Console input/output        | ``std::cin`` / ``std::cout``                              |
+| ``<fstream>``    | File input/output           | ``std::fstream`` / ``std::ifstream`` / ``std::ofstream``  |
+| ``<string>``     | String container            | ``std::string`` / ``std::to_string``                      |
+| ``<vector>``     | Dynamic array container     | ``std::vector``                                           |
+| ``<memory>``     | Smart pointers              | ``std::unique_ptr`` / ``std::shared_ptr``                 |
+| ``<utility>``    | Utility components          | ``std::move`` / ``std::swap`` / ``std::pair``             |
 
 **Plain C Standard Library:**
 
-![standardlibraryc](/images/cstd.png)
+| Header           | Description                 | Contains                                                  |
+|------------------|-----------------------------|-----------------------------------------------------------|
+| ``<stdlib.h>``   | General system utilities    | ``malloc`` / ``free`` / ``exit``                          |
+| ``<stdio.h>``    | General input/output        | ``printf`` / ``scanf`` / ``fopen`` / ``fclose``           |
+| ``<stdint.h>``   | Fixed width integer types   | ``int64_t`` / ``uint64_t``                                |
+| ``<string.h>``   | String and memory utils     | ``strcpy`` / ``strlen`` / ``memcpy``                      |
+| ``<stdbool.h>``  | Access to the bool type     | ``bool`` / ``true`` / ``false``                           |
+| ``<stddef.h>``   | Several common definitions  | ``size_t`` / ``offsetof``                                 |
+| ``<math.h>``     | Math utility functions      | ``sin`` / ``cos`` / ``sqrt`` / ``pow``                    |
 
 If you are like me and you write C++ is a very plain C kind of way and want access to ``malloc`` and ``free`` 
 and other stuff from the plain C standard library. You could just include ``<stdlib.h>`` and it will work, 
@@ -336,8 +361,6 @@ Type test = {x, y, z}; // works on arrays
 Type test = [x, y, z]; // works on collections
 ```
 
-<br>
-
 **Copy Initialization / Copy Assignment:**
 
 Copy initialization is very different from copy assignment, even though the syntax for both is nearly identical. 
@@ -407,8 +430,6 @@ public:
     }
 }
 ```
-
-<br>
 
 **Things to remember about initialization:**
 
@@ -1375,8 +1396,6 @@ int z = 5 + 3; // (5 + 3) is an rvalue
 int w = x + 1; // (x + 1) is an rvalue
 int&& = 4; // reference to an rvalue
 ```
-
-<br>
 
 **Why Rvalues are needed in move semantics:**
 
