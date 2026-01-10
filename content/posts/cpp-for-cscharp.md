@@ -1587,6 +1587,6 @@ int matrix[rows][cols];
 - they can not be returned from a function (like any array)
 - they can not be members of any struct
 - they can not be ``static`` or ``extern`` variables
-- they can not have an initializer at declaration like ``int arr[n] = {1,2,3,4,5};``
+- they can not have an initializer at declaration like ``int arr[n] = {1,2,3};``
 - they can not be used with ``typedef`` to create a wrapper type
 
