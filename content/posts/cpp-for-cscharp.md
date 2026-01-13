@@ -774,6 +774,121 @@ int value = vector[0];
 vector.clear();
 ```
 
+## Array Pointer Decay
+
+Arrays decay, that means that they implicitly convert to a pointer when used as a value in most expressions or assignments, 
+so that array type ``int[]`` is implicitly converted to a pointer type ``int*``, pointing to the first element of the array. 
+This makes arrays non assignable (can't be copied by value), and for this reason arrays are basically the only type in plain c 
+that can not be considered to be a value type. The reason the language works like this is to prevent big arrays that take a lot 
+of memory from getting copied around for no reason. Arrays can still be copied if needed by using ``memcopy`` if needed.
+
+```c
+// plain c
+
+int array[5] = {1, 2, 3, 4, 5};
+
+// both of these lines work the same
+int* ptr = array; // array decays to &array[0]
+int* ptr = &array[0];
+```
+
+**Passing to or from functions:**
+
+Because arrays can not be assigned due to decay, they can not be passed or returned from a function by value, only by pointer, 
+because passing a variable as a function argument is basically just a copy assignment that copies the value to the argument.
+
+```c
+// plain c
+
+// you cant pass an array to a function by value
+void foo(int array[]) { ... }
+
+// you can however pass an array to a function by pointer
+void foo(int* array_ptr) { ... }
+
+// you cant return an array from a function by value
+int[] foo()
+{
+    int array[5];
+    return array; // ERROR: cant return array
+}
+
+// you can however return an array from a function by pointer
+int* foo()
+{
+    // allocate array on the heap
+    int* array = malloc(5 * sizeof(int));
+
+    // return pointer to array
+    return array;
+}
+```
+
+**Pointer Aritmatic:**
+
+Because arrays decay to pointers, c and cpp allows you to use an array pointer as if it was an array, 
+you can index or increment an array pointer like its an array itself, this is called pointer aritmatic.
+
+```c
+// plain c
+
+// examples of array pointer aritmatic
+
+int array[5] = {1, 2, 3, 4, 5};
+int* ptr = arr; // array decays to pointer
+
+// access elements via pointer arithmetic
+int first = ptr[0]; // ptr[0] == *(ptr + 0)
+int second = ptr[1]; // ptr[1] == *(ptr + 1)
+
+// incrementing the pointer
+ptr++; // ptr now points to the second element
+int second = ptr[0];
+```
+
+**How to copy by value anyway?**
+
+```c
+// plain c
+
+#include <string.h> // <- memcopy comes from here
+
+// declare arrays
+int array[5] = {1, 2, 3, 4, 5};
+int copy[5];
+
+// copy data by value to make a true copy
+memcpy(copy, array, sizeof(src));
+```
+
+**True value type arrays in C++:**
+
+Because C++ inherited the design of C, it added a true value type array for those who need it. 
+The type is ``std::array<>`` and comes from the ``<array>`` header. This type is a true value type, 
+it will not decay to a pointer, it can be passed by value, passed or returned from a function, 
+and can be copied because it is assignable.
+
+```cpp
+// cpp
+
+#include <array>
+
+std::array<int, 3> first = {1, 2, 3};
+std::array<int, 3> second;
+
+second = first; // full copy is performed
+```
+
+**Conclusion:**
+
+- Arrays are non-assignable (can't be copied by value).
+- Arrays are basically the only type in c that is not a value type.
+- Arrays cannot be returned from or passed to functions by value, only by pointer.
+- The language works this way to avoid copying large amounts of memory unnecessarily.
+- If you need to copy an array you can use ``memcpy`` from the ``<string.h>`` header.
+- You can index an array by pointer using pointer aritmatic.
+- In C++ there is ``std::array<>`` which will not decay.
+
 ## Generics / Templates
 
 In C# you create generics like so:
