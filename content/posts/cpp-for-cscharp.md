@@ -1488,14 +1488,14 @@ But this is not a hard rule, there are exceptions.
 
 **L-value:**
 - is persistent
-- has an address in memory
+- has a persistent address in memory
 - often has a name and an identity
 - is often to the left of the ``=`` operator
 - you can bind a reference to it with the ``&`` symbol
 
 **R-value:**
-- exists temporarily
-- has no address in memory
+- is temporary
+- has no persistent address in memory
 - doesnt have a name and an identity
 - is often to the right of the ``=`` operator
 - you can bind a reference to it with the ``&&`` symbol
