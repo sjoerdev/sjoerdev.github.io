@@ -1480,28 +1480,40 @@ public:
 }
 ```
 
-## Move Semantics
+## L-values And R-values
 
-Since in C++ the default is that all types are value types, this means that everytime you do ``x = y`` it copies over its data, now usually that is just a few bytes, 
-but if it is the case that a type holds hugo amounts of data, then copying over that data every time you do ``x = y`` is a huge waste. 
-Because of this we have move semantics, it makes it possible for us to make it so this huge amount of data is not copied to some other place in memory, 
-but instead just stays where it is and only the ownership of the data is transferred (stolen) to the other variable you wanted to assign the data to.
+For the more advanced C or C++ topics we need to know what the difference is between an ``lvalue`` and and ``rvalue``. In simple terms, 
+and l-value is what is to the left of the ``=`` operator, and an r-value is what is to the right of the ``=`` operator. 
+But this is not a hard rule, there are exceptions.
 
-**L-values and R-values:**
-
-``Lvalue`` = an object with a persistant adress in memory
-- you can take its adress with the ``&`` symbol
+**L-value:**
+- is persistent
+- has an adress in memory
+- often has a name and an identiry
+- is often to the left of the ``=`` operator
 - you can bind a reference to it with the ``&`` symbol
-- usually a named variable
 
-``Rvalue`` = a temporary object or literal without a persistant adress
-- you can not take its adress easily
+**R-value:**
+- exists temporarily
+- has no adress in memory
+- doesnt have a name and an identiry
+- is often to the right of the ``=`` operator
 - you can bind a reference to it with the ``&&`` symbol
-- usually a tempory result of an expression or literal
 
-Example:
+**Examples of L-values:**
+- variables
+
+**Examples of R-values:**
+- literalls (like ``4`` or ``"test"``)
+- compound literals (like ``(T){ ... }``)
+- functions
+- expressions
+
+**Code Example:**
 
 ```cpp
+// cpp
+
 // lvalue
 int x = 10; // x is an lvalue
 int* p = &x; // we can take its address
@@ -1512,7 +1524,27 @@ int y = 4; // 4 is an rvalue, but y is not
 int z = 5 + 3; // (5 + 3) is an rvalue
 int w = x + 1; // (x + 1) is an rvalue
 int&& = 4; // reference to an rvalue
+
+// takes l-values only
+void takes_lvalue(T& lvalue);
+takes_lvalue(4); // fails
+takes_lvalue(x); // works
+
+// takes r-values only
+void takes_rvalue(T&& rvalue);
+takes_rvalue(x); // works
+takes_rvalue(4); // fails
+
+// takes l-values or r-values
+void takes_lvalue(const T& value); // i know its weird
 ```
+
+## Move Semantics
+
+Since in C++ the default is that all types are value types, this means that everytime you do ``x = y`` it copies over its data, now usually that is just a few bytes, 
+but if it is the case that a type holds huge amounts of data, then copying over that data every time you do ``x = y`` is a huge waste. 
+Because of this we have move semantics, it makes it possible for us to make it so this huge amount of data is not copied to some other place in memory, 
+but instead just stays where it is and only the ownership of the data is transferred (stolen) to the other variable you wanted to assign the data to.
 
 **Why Rvalues are needed in move semantics:**
 
