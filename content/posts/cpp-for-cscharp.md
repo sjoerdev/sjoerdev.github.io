@@ -1488,26 +1488,37 @@ But this is not a hard rule, there are exceptions.
 
 **L-value:**
 - is persistent
-- has an adress in memory
-- often has a name and an identiry
+- has an address in memory
+- often has a name and an identity
 - is often to the left of the ``=`` operator
 - you can bind a reference to it with the ``&`` symbol
 
 **R-value:**
 - exists temporarily
-- has no adress in memory
-- doesnt have a name and an identiry
+- has no address in memory
+- doesnt have a name and an identity
 - is often to the right of the ``=`` operator
 - you can bind a reference to it with the ``&&`` symbol
 
 **Examples of L-values:**
 - variables
+- functions
 
 **Examples of R-values:**
-- literalls (like ``4`` or ``"test"``)
-- compound literals (like ``(T){ ... }``)
-- functions
-- expressions
+- number literals (like ``4``)
+- expressions (like ``x + 4``)
+
+**Literals:**
+
+you might assume that all literals are ``rvalues`` because they are used temporarily most of the time, 
+and because they almost always are to the right of the ``=`` operator but actually is depends on the literall:
+
+| Literal               | Example       | Type       | Notes                                         |
+|-----------------------|---------------|------------------|-----------------------------------------------|
+| Number literal        | ``42``        | Rvalue           | temporary rvalue with no static adress        |
+| Character literal     | ``'a'``       | Rvalue           | temporary rvalue with no static adress        |
+| String literal        | ``"hello"``   | Lvalue           | often used temporarily but has static adress  |
+| Compound literal      | ``(int){42}`` | Lvalue           | behaves like temporary but has static adress  |
 
 **Code Example:**
 
@@ -1517,13 +1528,13 @@ But this is not a hard rule, there are exceptions.
 // lvalue
 int x = 10; // x is an lvalue
 int* p = &x; // we can take its address
-int& = x; // reference to an lvalue
+int& ref = x; // reference to an lvalue
 
 // rvalue
 int y = 4; // 4 is an rvalue, but y is not
 int z = 5 + 3; // (5 + 3) is an rvalue
 int w = x + 1; // (x + 1) is an rvalue
-int&& = 4; // reference to an rvalue
+int&& ref = 4; // reference to an rvalue
 
 // takes l-values only
 void takes_lvalue(T& lvalue);
@@ -1532,11 +1543,17 @@ takes_lvalue(x); // works
 
 // takes r-values only
 void takes_rvalue(T&& rvalue);
-takes_rvalue(x); // works
-takes_rvalue(4); // fails
+takes_rvalue(x); // fails
+takes_rvalue(4); // works
 
 // takes l-values or r-values
-void takes_lvalue(const T& value); // i know its weird
+// cpp has a weird rule where (const T&) can take either value
+void takes_anyvalue(const T& value);
+
+// takes l-values or r-values
+// in templates T&& is a forwarding reference (universal reference)
+template<typename T>
+void takes_anyvalue(T&& value);
 ```
 
 ## Move Semantics
