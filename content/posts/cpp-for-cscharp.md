@@ -2,11 +2,11 @@
 title: "C++ guide for C# devs"
 date: "2025-01-31"
 description: |
-    In this guide i will be comparing only the major differences between the languages, all the similarities will be left out.
+    In this guide I will be comparing only the major differences between the languages, all the similarities will be left out.
     This guide started as a personal reference card for myself to hold on to when writing C++ at work.
-    As a C# developer you don't need to learn C++ from the ground up, you just need to know the major differrences.
+    As a C# developer you don't need to learn C++ from the ground up, you just need to know the major differences.
 
-summary: "In this guide i will be comparing only the major differences between C# and C++"
+summary: "In this guide I will be comparing only the major differences between C# and C++"
 ShowToc: true
 TocOpen: true
 ShowBreadCrumbs: true
@@ -15,7 +15,7 @@ ShowBreadCrumbs: true
 ## Types
 
 In C++ most types have the same or a similar name as in C#, but not always. 
-This is a table that hold a comparison of all fundamental types you should know about:
+This is a table that holds a comparison of all fundamental types you should know about:
 
 | Type:                      | C#              | C++ (classic)             | C++ (modern)     |
 |----------------------------|-----------------|---------------------------|------------------|
@@ -96,7 +96,7 @@ But a better alternative is using ``auto variable = new Type();`` and release it
 
 **Leaks:**
 
-In C++ heap memory does not automatically free when the application terminates. and in both C++ and C# OpenGL data like buffers and textures in vram also dont automatically free when the application terminates.
+In C++ heap memory does not automatically free when the application terminates. and in both C++ and C# OpenGL data like buffers and textures in vram also don't automatically free when the application terminates.
 Generally speaking the os will reclaim unfreed memory when the application terminates, but relying on this is bad practice.
 
 ## Pointers
@@ -110,7 +110,7 @@ int* ptr = &x;
 int y = *ptr;
 ```
 
-it doesnt matter where in a pointer you use a space as it will all work:
+It doesn't matter where in a pointer you use a space as it will all work:
 
 ```cpp
 int* ptr = &x;
@@ -127,7 +127,7 @@ Fundamentally what a smart pointer is, is a pointer that automatically frees the
 
 **Unique Pointer:**
 
-This pointer has ownership over whatever it points to, if it goes out of scope and gets dropped of the stack, so does the memory it points to. 
+This pointer has ownership over whatever it points to, if it goes out of scope and gets dropped off the stack, so does the memory it points to. 
 
 What makes this one different from the other smart pointers:
 
@@ -185,13 +185,13 @@ void test()
 
 What makes this one different from the other smart pointers:
 
-- weak pointers dont have any ownership
+- weak pointers don't have any ownership
 - weak pointers can only be used with shared pointers, not unique pointers
 - there can be many weak pointers per object
-- weak pointers dont increase the amount of shares like a shared pointer
-- weak pointers dont own an object so the object's lifetime is not tied to the weak ptr
+- weak pointers don't increase the amount of shares like a shared pointer
+- weak pointers don't own an object so the object's lifetime is not tied to the weak ptr
 - all weak pointers expire when the last shared ptr gets dropped
-- weak pointers dont point to anything directly, so you cant simply deref them
+- weak pointers don't point to anything directly, so you can't simply deref them
 - to use a weak pointer you must convert it to a temporary shared pointer
 
 ```cpp
@@ -208,10 +208,10 @@ void test()
     std::weak_ptr<Foo> wp = sp;
 
     // get amount of shares
-    int shares = sp.use_count(); // still 1, weak ptr didnt add a share
+    int shares = sp.use_count(); // still 1, weak ptr didn't add a share
 
-    // directly dereferencing a weak pointer wont work
-    // *wp and wp-> cause a compile time error
+    // directly dereferencing a weak pointer won't work
+    // *wp and wp-> cause a compile-time error
     // to use a weak pointer you must convert it to a temp shared pointer
     // lock creates a shared pointer if the object still exists otherwise a nullptr
     auto temp_sp = wp.lock();
@@ -231,10 +231,10 @@ void test()
 
     // now since there are no more shares the object is freed
 
-    // the weak pointer like the object doesnt exist anymore
+    // the weak pointer like the object doesn't exist anymore
     bool does_object_exist = wp.expired();
 
-    // the weak pointer still exists but cant be locked anymore
+    // the weak pointer still exists but can't be locked anymore
 }
 ```
 
@@ -244,9 +244,9 @@ void test()
 
 **What are they?:**
 
-In C# you can acces functions that are in a different ``.cs`` file by just making them both use the same namespace. In C++, its a little bit more complex.
+In C# you can access functions that are in a different ``.cs`` file by just making them both use the same namespace. In C++, its a little bit more complex.
 Header files can be seen as an outline of all the functions contained in a ``.cpp`` file.
-All code goes in ``.cpp`` files, and then every file has a header ``.hpp`` file with the same exact name which contains all the declerations (names) of your functions.
+All code goes in ``.cpp`` files, and then every file has a header ``.hpp`` file with the same exact name which contains all the declarations (names) of your functions.
 Using headers help the compiler understand how source files are connected, which is one of the reasons C++ code compiles so very fast compared to C# code.
 
 **How are they used?:**
@@ -261,7 +261,7 @@ You can include a header in 2 ways: ``#include "file.h"`` or ``#include <file.h>
 
 ## Standard Library
 
-There are a set of build in header libraries you can use for common operations called the ``Standard Libary`` or ``std`` for short. You can look at the standard library as the conceptual equivelant to the ``System`` namespace in the C# language, it provides libraries for common operations like input and output and file operations as well as containers like strings, lists, dictionaries and others.
+There are a set of build in header libraries you can use for common operations called the ``Standard Libary`` or ``std`` for short. You can look at the standard library as the conceptual equivalant to the ``System`` namespace in the C# language, it provides libraries for common operations like input and output and file operations as well as containers like strings, lists, dictionaries and others.
 
 The most commonly used headers in the standard library:
 
@@ -290,9 +290,9 @@ The most commonly used headers in the standard library:
 
 If you are like me and you write C++ is a very plain C kind of way and want access to ``malloc`` and ``free`` 
 and other stuff from the plain C standard library. You could just include ``<stdlib.h>`` and it will work, 
-but since plain c doesnt have namespaces, all the standard library features will pollute the global namespace. 
+but since plain c doesn't have namespaces, all the standard library features will pollute the global namespace. 
 This can be prevented by using the C++ wrappers for the plain C std libraries. It works like this, take the name 
-of the header you want: ``<name.h>`` and add a ``c`` in from of the name and remove the ``.h`` at the end, 
+of the header you want: ``<name.h>`` and add a ``c`` in front of the name and remove the ``.h`` at the end, 
 this way ``<name.h>`` becomes ``<cname>``, and just like that all the stuff from the library is accesable 
 under the ``std::`` namespace, just like all C++ standard libraries. Now you can 
 use ``malloc`` like ``std::malloc`` and ``free`` like ``std::free``, this is 
@@ -305,7 +305,7 @@ the recommended way to use the standard library for plain C in modern C++ code.
 C++ allows you to initialize objects on the stack or the heap. But In C# you mostly don't get to choose, classes will be on the heap most of the time like most other reference types, 
 and structs on the stack most of the time like most other value types, but structs are in some cases not on the stack but on the heap too, this is something C# decides at runtime based on a number of factors like for example its scope. 
 So generally speaking in C# you have not much control over what gets allocated on the stack and what on the heap. But generally you can assume reference types are on the heap, and value types are on the stack. 
-And in C# you must always use the ``new`` keyword when creating an object it doesnt matter if the object you are creating is a reference or value type or if its on the stack or on the heap, ``new`` always gets used, 
+And in C# you must always use the ``new`` keyword when creating an object it doesn't matter if the object you are creating is a reference or value type or if its on the stack or on the heap, ``new`` always gets used, 
 while in C++ ``new`` means initialization on the heap. So if you want to initialize something on the heap in C++, just pick any of the normal ways you would initialize/create a variable on the stack, and use the ``new`` keyword 
 after the equal sign and make the returning type a pointer, so for example take this stack initialization: ``Type test = Type(x);`` and turn it into ``Type* test = new Type(x);`` to make it a heap initialization.
 
@@ -366,7 +366,7 @@ Type test = [x, y, z]; // works on collections
 Copy initialization is very different from copy assignment, even though the syntax for both is nearly identical. 
 The syntax for initialization is ``Type x = value;`` and for copy assignment is ``x = value``, the syntax is similar but the semantics are different. 
 What copy initialization does is call a constructor with the value to the right as its argument, while copy assignment takes a pre-existing object and modifies it, 
-by copying a different value to itself, often using an overloaded copy operator. In short a copy assignment doesnt call a constructor but the copy operator instead.
+by copying a different value to itself, often using an overloaded copy operator. In short a copy assignment doesn't call a constructor but the copy operator instead.
 
 | Term:                           | Syntax:                            | Calls:                                    |
 | ------------------------------- | -----------------------------------|------------------------------------------ |
@@ -474,7 +474,7 @@ class Person
 
 In C/C++ you define structs syntactically slightly different than in C#
 
-In C# you define a scruct like this:
+In C# you define a struct like this:
 
 ```csharp
 struct Point
@@ -595,21 +595,21 @@ auto add = [](int a, int b) -> int
 
 When using C++ lambda expressions also have the ability to capture variables from their surrounding scope.
 Capturing determines how variables from the surrounding scope are made available to inside the lambda.
-You determine how do capture variabled based on what you place inside the ``[ ]`` capture brackets.
+You determine how do capture variables based on what you place inside the ``[ ]`` capture brackets.
 ```cpp
 // cpp
 
 int first = 10;
 int second = 20;
 
-// capture all surrounding variabled by value
+// capture all surrounding variables by value
 auto lambda = [=](int a)
 {
     a = first + second;
-    first = a; // doesnt change the original
+    first = a; // doesn't change the original
 };
 
-// capture all surrounding variabled by reference
+// capture all surrounding variables by reference
 auto lambda = [&](int a)
 {
     a = first + second;
@@ -620,7 +620,7 @@ auto lambda = [&](int a)
 auto lambda = [first, &second](int a)
 {
     a = first + second;
-    first = a; // doesnt change the original
+    first = a; // doesn't change the original
 };
 
 // captures 'int first' by reference and 'int second' by value
@@ -673,7 +673,7 @@ public static Type operator +(Type a, Type b)
 }
 ```
 
-In C# you always need to make an operator overload ``public`` and ``static``, in C++ you dont.
+In C# you always need to make an operator overload ``public`` and ``static``, in C++ you don't.
 Also as you can see for C# we use the ``new`` keyword because that makes the object exist on the heap and it returns a type by reference, thats default for C#.
 
 In C++ operator overloading works like this:
@@ -685,7 +685,7 @@ Type operator +(Type& b)
 }
 ```
 
-Also as you can see for C++ we dont use the ``new`` keyword because in C++ everything is a value type by default which are on the stack, the ``new`` keyword makes objects on the heap.
+Also as you can see for C++ we don't use the ``new`` keyword because in C++ everything is a value type by default which are on the stack, the ``new`` keyword makes objects on the heap.
 
 ## Arrays / Lists
 
@@ -693,9 +693,9 @@ Important differences:
 - In C# you write ``int[] name``, while in C++ you write ``int name[]``, it differs where you place the brackets.
 - In C# arrays are generally on the heap and made with ``new``, in C++ arrays can be both on the stack or heap
 - In C# ``int[][]`` is a jagged array while in C++ ``int[][]`` is a multidimensional array.
-- In C++ an array can not be copied by value ``int foo[] = bar;``, must use ``memcopy`` instead.
+- In C++ an array can not be copied by value ``int foo[] = bar;``, must use ``memcpy`` instead.
 - In C++ an array can not be returned from a function by value, only by pointer.
-- In C++ a list is called a vector (yes thats really confusing).
+- In C++ a list is called a vector (yes that's really confusing).
 
 In C# you use arrays like so:
 
@@ -780,7 +780,7 @@ Arrays decay, that means that they implicitly convert to a pointer when used as 
 so that array type ``int[]`` is implicitly converted to a pointer type ``int*``, pointing to the first element of the array. 
 This makes arrays non assignable (can't be copied by value), and for this reason arrays are basically the only type in plain c 
 that can not be considered to be a value type. The reason the language works like this is to prevent big arrays that take a lot 
-of memory from getting copied around for no reason. Arrays can still be copied if needed by using ``memcopy`` if needed.
+of memory from getting copied around for no reason. Arrays can still be copied if needed by using ``memcpy`` if needed.
 
 ```c
 // plain c
@@ -800,17 +800,17 @@ because passing a variable as a function argument is basically just a copy assig
 ```c
 // plain c
 
-// you cant pass an array to a function by value
+// you can't pass an array to a function by value
 void foo(int array[]) { ... }
 
 // you can however pass an array to a function by pointer
 void foo(int* array_ptr) { ... }
 
-// you cant return an array from a function by value
+// you can't return an array from a function by value
 int[] foo()
 {
     int array[5];
-    return array; // ERROR: cant return array
+    return array; // ERROR: can't return array
 }
 
 // you can however return an array from a function by pointer
@@ -824,15 +824,15 @@ int* foo()
 }
 ```
 
-**Pointer Aritmatic:**
+**Pointer Arithmetic:**
 
 Because arrays decay to pointers, c and cpp allows you to use an array pointer as if it was an array, 
-you can index or increment an array pointer like its an array itself, this is called pointer aritmatic.
+you can index or increment an array pointer like its an array itself, this is called pointer arithmetic.
 
 ```c
 // plain c
 
-// examples of array pointer aritmatic
+// examples of array pointer arithmetic
 
 int array[5] = {1, 2, 3, 4, 5};
 int* ptr = arr; // array decays to pointer
@@ -851,14 +851,14 @@ int second = ptr[0];
 ```c
 // plain c
 
-#include <string.h> // <- memcopy comes from here
+#include <string.h> // <- memcpy comes from here
 
 // declare arrays
 int array[5] = {1, 2, 3, 4, 5};
 int copy[5];
 
 // copy data by value to make a true copy
-memcpy(copy, array, sizeof(src));
+memcpy(copy, array, sizeof(array)); // sizeof(copy) also works
 ```
 
 **True value type arrays in C++:**
@@ -886,7 +886,7 @@ second = first; // full copy is performed
 - Arrays cannot be returned from or passed to functions by value, only by pointer.
 - The language works this way to avoid copying large amounts of memory unnecessarily.
 - If you need to copy an array you can use ``memcpy`` from the ``<string.h>`` header.
-- You can index an array by pointer using pointer aritmatic.
+- You can index an array by pointer using pointer arithmetic.
 - In C++ there is ``std::array<>`` which will not decay.
 
 ## Generics / Templates
@@ -981,7 +981,8 @@ char* hello = "hello"; // plain c style
 std::string combined = hello + "world";
 
 // comparing strings
-bool test = ("apple" == "orange");
+bool test = std::string("apple") == "orange";
+// ^ can't do ("apple" == "orange"), that compares addresses
 
 // number to string
 int age = 22;
@@ -1120,7 +1121,7 @@ you are telling the preprocessor to use the library implementation
 embedded in the header instead of linking against a dynamic library holding the implementation.
 
 But there is an issue with this way of doing things. If you have several source files in which you want to include this header and you define ``LIBRARY_NAME_IMPLEMENTATION`` above 
-each of them, you would get an error because you are not allowed to define the same symbol multiple times. There is a solution to this, which is having a seperate ``libs_impl.cpp`` file where every header library gets defined once like this:
+each of them, you would get an error because you are not allowed to define the same symbol multiple times. There is a solution to this, which is having a separate ``libs_impl.cpp`` file where every header library gets defined once like this:
 ```cpp
 // cpp
 
@@ -1144,12 +1145,12 @@ That way many files can use the library because there will be only a single impl
 
 ## Preprocessor
 
-The preproccesor runs right before compiling the code to assembly, and basically is a form of compile time programming. 
-It resolves things like ``macros`` and ``include`` directives, aswell as conditional compilation. 
+The preprocessor runs right before compiling the code to assembly, and basically is a form of compile time programming. 
+It resolves things like ``macros`` and ``include`` directives, as well as conditional compilation. 
 You can look at the preprocessor as tiny scripting language for parsing C++ files. This 'language' has only 12 very simple keywords, called preprocessor ``directives``, 
 which are basically commands you give the preprocessor that modify your code during compile time.
 
-Both C/C++ and C# have 12 preprocessor directives, but each language has 3 ones that are unique to that language, 
+Both C/C++ and C# have 15 preprocessor directives, but each language has 3 ones that are unique to that language, 
 and of the 9 preprocessor directives that both C/C++ and C# have in common only 6 work exactly the same.
 
 Here is a table showing which directives the languages have in common:
@@ -1171,8 +1172,8 @@ Here is a table showing which directives the languages have in common:
     <tr><td>11</td><td><code>#ifdef</code></td><td>✅ Yes</td><td>❌ No</td><td>Checks if a symbol is defined</td></tr>
     <tr><td>12</td><td><code>#ifndef</code></td><td>✅ Yes</td><td>❌ No</td><td>Checks if a symbol is not defined</td></tr>
     <tr><td>13</td><td><code>#warning</code></td><td>❌ No</td><td>✅ Yes</td><td>Generates a compiler warning message</td></tr>
-    <tr><td>14</td><td><code>#region</code></td><td>❌ No</td><td>✅ Yes</td><td>Marks the start of a collapsable region</td></tr>
-    <tr><td>15</td><td><code>#endregion</code></td><td>❌ No</td><td>✅ Yes</td><td>Marks the end of a collapsable region</td></tr>
+    <tr><td>14</td><td><code>#region</code></td><td>❌ No</td><td>✅ Yes</td><td>Marks the start of a collapsible region</td></tr>
+    <tr><td>15</td><td><code>#endregion</code></td><td>❌ No</td><td>✅ Yes</td><td>Marks the end of a collapsible region</td></tr>
   </tbody>
 </table>
 
@@ -1201,7 +1202,7 @@ int main()
 }
 ```
 
-In C# ``#define`` creates a only a symbol and not a macro. It doesnt substitute text.
+In C# ``#define`` creates a only a symbol and not a macro. It doesn't substitute text.
 ```csharp
 // csharp
 
@@ -1424,7 +1425,7 @@ Foo(1, 2, 3); // Error
 In C++ when creating an object, member variables are initialized before the constructor body runs. If you assign to members inside the constructor body, 
 you are assigning to already constructed members, this means unnecessary default construction followed by assignment. 
 Member initializer lists allow members to be constructed directly with their intended values and are the recommended and 
-sometimes required way to initialize members in C++, for example it it required when initializing const member or references.
+sometimes required way to initialize members in C++, for example it is required when initializing const member or references.
 
 In C# you would do something like this:
 ```csharp
@@ -1482,7 +1483,7 @@ public:
 
 ## L-values And R-values
 
-For the more advanced C or C++ topics we need to know what the difference is between an ``lvalue`` and and ``rvalue``. In simple terms, 
+For the more advanced C or C++ topics we need to know what the difference is between an ``lvalue`` and ``rvalue``. In simple terms, 
 and l-value is what is to the left of the ``=`` operator, and an r-value is what is to the right of the ``=`` operator. 
 But this is not a hard rule, there are exceptions.
 
@@ -1496,7 +1497,7 @@ But this is not a hard rule, there are exceptions.
 **R-value:**
 - is temporary
 - has no persistent address in memory
-- doesnt have a name and an identity
+- doesn't have a name and an identity
 - is often to the right of the ``=`` operator
 - you can bind a reference to it with the ``&&`` symbol
 
@@ -1511,14 +1512,14 @@ But this is not a hard rule, there are exceptions.
 **Literals:**
 
 you might assume that all literals are ``rvalues`` because they are used temporarily most of the time, 
-and because they almost always are to the right of the ``=`` operator but actually is depends on the literall:
+and because they almost always are to the right of the ``=`` operator but actually is depends on the literal:
 
 | Literal               | Example       | Type       | Notes                                         |
 |-----------------------|---------------|------------------|-----------------------------------------------|
-| Number literal        | ``42``        | Rvalue           | temporary rvalue with no static adress        |
-| Character literal     | ``'a'``       | Rvalue           | temporary rvalue with no static adress        |
-| String literal        | ``"hello"``   | Lvalue           | often used temporarily but has static adress  |
-| Compound literal      | ``(int){42}`` | Lvalue           | behaves like temporary but has static adress  |
+| Number literal        | ``42``        | Rvalue           | temporary rvalue with no static address        |
+| Character literal     | ``'a'``       | Rvalue           | temporary rvalue with no static address        |
+| String literal        | ``"hello"``   | Lvalue           | often used temporarily but has static address  |
+| Compound literal      | ``(int){42}`` | Lvalue           | behaves like temporary but has static address  |
 
 **Code Example:**
 
@@ -1558,7 +1559,7 @@ void takes_anyvalue(T&& value);
 
 ## Move Semantics
 
-Since in C++ the default is that all types are value types, this means that everytime you do ``x = y`` it copies over its data, now usually that is just a few bytes, 
+Since in C++ the default is that all types are value types, this means that every time you do ``x = y`` it copies over its data, now usually that is just a few bytes, 
 but if it is the case that a type holds huge amounts of data, then copying over that data every time you do ``x = y`` is a huge waste. 
 Because of this we have move semantics, it makes it possible for us to make it so this huge amount of data is not copied to some other place in memory, 
 but instead just stays where it is and only the ownership of the data is transferred (stolen) to the other variable you wanted to assign the data to.
