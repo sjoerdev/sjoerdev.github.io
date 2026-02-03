@@ -980,8 +980,9 @@ char* hello = "hello"; // plain c style
 // combining strings
 std::string combined = hello + "world";
 
-// comparing strings
-bool test = ("apple" == "orange");
+// comparing strings (you cant directly compare raw strings bc they are just pointers)
+bool test = std::string("apple") == std::string("orange"); // c++ style
+bool test = strcmp("apple", "orange") == 0; // plain c style
 
 // number to string
 int age = 22;
