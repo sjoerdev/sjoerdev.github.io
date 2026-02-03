@@ -246,7 +246,7 @@ void test()
 
 In C# you can acces functions that are in a different ``.cs`` file by just making them both use the same namespace. In C++, its a little bit more complex.
 Header files can be seen as an outline of all the functions contained in a ``.cpp`` file.
-All code goes in ``.cpp`` files, and then every file has a header ``.hpp`` file with the same exact name which contains all the declerations (names) of your functions.
+All code goes in ``.cpp`` files, and then every file has a header ``.hpp`` file with the same exact name which contains all the declarations (names) of your functions.
 Using headers help the compiler understand how source files are connected, which is one of the reasons C++ code compiles so very fast compared to C# code.
 
 **How are they used?:**
