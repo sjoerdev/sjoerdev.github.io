@@ -1483,7 +1483,7 @@ public:
 
 ## L-values And R-values
 
-For the more advanced C or C++ topics we need to know what the difference is between an ``lvalue`` and and ``rvalue``. In simple terms, 
+For the more advanced C or C++ topics we need to know what the difference is between an ``lvalue`` and ``rvalue``. In simple terms, 
 and l-value is what is to the left of the ``=`` operator, and an r-value is what is to the right of the ``=`` operator. 
 But this is not a hard rule, there are exceptions.
 
