@@ -858,7 +858,7 @@ int array[5] = {1, 2, 3, 4, 5};
 int copy[5];
 
 // copy data by value to make a true copy
-memcpy(copy, array, sizeof(src));
+memcpy(copy, array, sizeof(array));
 ```
 
 **True value type arrays in C++:**
