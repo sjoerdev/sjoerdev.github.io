@@ -693,7 +693,7 @@ Important differences:
 - In C# you write ``int[] name``, while in C++ you write ``int name[]``, it differs where you place the brackets.
 - In C# arrays are generally on the heap and made with ``new``, in C++ arrays can be both on the stack or heap
 - In C# ``int[][]`` is a jagged array while in C++ ``int[][]`` is a multidimensional array.
-- In C++ an array can not be copied by value ``int foo[] = bar;``, must use ``memcopy`` instead.
+- In C++ an array can not be copied by value ``int foo[] = bar;``, must use ``memcpy`` instead.
 - In C++ an array can not be returned from a function by value, only by pointer.
 - In C++ a list is called a vector (yes thats really confusing).
 
@@ -780,7 +780,7 @@ Arrays decay, that means that they implicitly convert to a pointer when used as 
 so that array type ``int[]`` is implicitly converted to a pointer type ``int*``, pointing to the first element of the array. 
 This makes arrays non assignable (can't be copied by value), and for this reason arrays are basically the only type in plain c 
 that can not be considered to be a value type. The reason the language works like this is to prevent big arrays that take a lot 
-of memory from getting copied around for no reason. Arrays can still be copied if needed by using ``memcopy`` if needed.
+of memory from getting copied around for no reason. Arrays can still be copied if needed by using ``memcpy`` if needed.
 
 ```c
 // plain c
@@ -851,7 +851,7 @@ int second = ptr[0];
 ```c
 // plain c
 
-#include <string.h> // <- memcopy comes from here
+#include <string.h> // <- memcpy comes from here
 
 // declare arrays
 int array[5] = {1, 2, 3, 4, 5};
