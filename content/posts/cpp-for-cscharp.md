@@ -513,7 +513,7 @@ In plain C you can write a struct declaration in one of the following ways:
     <tr><th>Form</th><th>Has Tag</th><th>Has Typedef</th><th>Info</th></tr>
   </thead>
   <tbody>
-    <tr><td><code>typedef struct Point { ... } Point</code></td><td>Yes</td><td>Yes</td><td>Modern way</td></tr>
+    <tr><td><code>typedef struct Point { ... } Point;</code></td><td>Yes</td><td>Yes</td><td>Modern way</td></tr>
     <tr><td><code>struct Point { ... };</code></td><td>Yes</td><td>No</td><td>Classic way</td></tr>
     <tr><td><code>typedef struct { ... } Point;</code></td><td>No</td><td>Yes</td><td>Uncommon</td></tr>
     <tr><td><code>struct { ... } Point;</code></td><td>No</td><td>No</td><td>Uncommon</td></tr>
