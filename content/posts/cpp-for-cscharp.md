@@ -662,6 +662,42 @@ auto add = [](int a, int b) -> int // notice the "-> int"
 };
 ```
 
+**Casting Forms**
+
+- **implicit conversions**: the compiler converts types for you when safe
+- **c-style / function-style casts**: ``(type)value`` or ``type(value)``, compact but dangerous
+- **named c++ casts**: ``static_cast``, ``bit_cast``, ``dynamic_cast``, ``reinterpret_cast``, use these to be explicit about what you mean
+
+**Examples**
+
+```cpp
+#include <bit>
+#include <cstdint>
+
+// implicit conversion
+int a = 10;
+long b = a; // safe implicit conversion from int to long
+
+// c-style / function-style cast
+int x = 65;
+char c1 = (char)x; // c-style cast
+char c2 = char(x); // function-style cast
+
+// static cast
+double d = 3.14;
+float f = static_cast<float>(d); // explicit narrowing conversion
+
+// bit cast
+float f = 3.14f;
+std::uint32_t bits = std::bit_cast<std::uint32_t>(ff); // reinterpret the float bit pattern as an integer
+
+// dynamic cast
+// works with polymorphic types (not shown here)
+
+// reinterpret cast
+// works with pointers and integers, reinterpreting the bit pattern without conversion
+```
+
 ## Operator Overloading
 
 In C# operator overloading works like this:
