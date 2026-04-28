@@ -664,40 +664,41 @@ auto add = [](int a, int b) -> int // notice the "-> int"
 
 ## Casting
 
-**Casting Forms**
+**Forms**
 
-- **implicit conversions**: the compiler converts types for you when safe
-- **c-style / function-style casts**: ``(type)value`` or ``type(value)``, compact but dangerous
-- **named c++ casts**: ``static_cast``, ``bit_cast``, ``dynamic_cast``, ``reinterpret_cast``, use these to be explicit about what you mean
+- **implicit**: the compiler converts types for you when safe
+- **c-style**: ``(type)value``, ``type(value)``
+- **explicit**: ``static_cast``, ``bit_cast``, ``reinterpret_cast``, ``dynamic_cast``
 
 **Examples**
 
 ```cpp
 #include <bit>
-#include <cstdint>
 
-// implicit conversion
+// implicit cast
 int a = 10;
-long b = a; // safe implicit conversion from int to long
+long b = a; // safe implicit widening conversion from int to long
 
-// c-style / function-style cast
+// c-style cast (automatically chooses an explicit cast)
 int x = 65;
-char c1 = (char)x; // c-style cast
-char c2 = char(x); // function-style cast
+char c1 = (char)x;
+char c2 = char(x);
 
 // static cast
 double d = 3.14;
-float f = static_cast<float>(d); // explicit narrowing conversion
+float f = static_cast<float>(d); // explicit narrowing conversion (may lose precision)
 
 // bit cast
 float f = 3.14f;
-std::uint32_t bits = std::bit_cast<std::uint32_t>(f); // reinterpret the bits
+int bits = std::bit_cast<int>(f); // copy over the bits to a type the same size
+
+// reinterpret cast (changes the pointer type)
+float f = 3.14f;
+int* i = reinterpret_cast<int*>(&f);  // reinterprets the same bits in memory as another type
 
 // dynamic cast
-// works with polymorphic types (not shown here)
-
-// reinterpret cast
-// works with pointers and integers, reinterpreting the bit pattern without conversion
+BaseType* base = new DerivedType();
+DerivedType* ptr = dynamic_cast<DerivedType*>(base); // downcast a polymorphic type
 ```
 
 ## Operator Overloading
