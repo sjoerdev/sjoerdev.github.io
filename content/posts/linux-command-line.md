@@ -340,11 +340,95 @@ ls file[!0-9].txt # list files where the character after "file" is NOT a digit 
 
 ## Piping
 
-comming soon...
+Piping is a powerful feature in the Linux command line that allows you to connect the output of one command directly to the input of another command. This is done using the pipe symbol `|`. The pipe takes the standard output (stdout) of the command on the left and feeds it as standard input (stdin) to the command on the right.
+
+This enables you to build complex operations by chaining simple commands together, creating a data processing pipeline.
+
+**Common Piping Examples**
+
+```bash
+ls -la | grep "\.txt$" # list files and filter for .txt files
+cat file.txt | sort # display file contents and sort the lines
+ps aux | grep firefox # show running processes and filter for firefox
+df -h | awk '{print $1, $5}' # show disk usage and extract device and usage percentage
+```
+
+**Advanced Piping**
+
+You can chain multiple pipes together to create more complex pipelines:
+
+```bash
+cat large_file.txt | grep "error" | sort | uniq -c | sort -nr # find errors, count occurrences, sort by frequency
+```
+
+Piping is essential for efficient command-line work, allowing you to process data without intermediate files.
+
+## Redirection
+
+Redirection changes the default source or destination of a command's input/output streams. While it often uses files, it can also redirect to devices (like `/dev/null` to discard output) or other file descriptors. Unlike piping, which connects commands directly, redirection controls where input comes from and where output goes.
+
+**Standard Streams**
+
+- **stdin (0)**: Standard input, usually from the keyboard
+- **stdout (1)**: Standard output, usually to the terminal
+- **stderr (2)**: Standard error, usually to the terminal for error messages
+
+**Redirection Operators**
+
+- `>` : Redirect stdout to a file (overwrite)
+- `>>` : Append stdout to a file
+- `<` : Redirect stdin from a file
+- `2>` : Redirect stderr to a file
+- `2>>` : Append stderr to a file
+- `&>` : Redirect both stdout and stderr to a file
+- `>&2` : Redirect stdout to stderr
+
+**Common Redirection Examples**
+
+```bash
+echo "Hello World" > output.txt # write output to file (overwrite)
+echo "Hello World" >> output.txt # append output to file
+cat < input.txt # read input from file
+ls /nonexistent 2> error.log # redirect errors to file
+ls /nonexistent >> output.txt 2>&1 # append both output and errors to file
+command > /dev/null 2>&1 # discard all output
+command &> all_output.log # redirect both stdout and stderr to file
+```
+
+**Advanced Redirection**
+
+You can use file descriptors for more complex redirections:
+
+```bash
+command 3> debug.log 4> info.log # redirect to specific file descriptors
+command 2>&1 | tee output.log # redirect stderr to stdout, then pipe to tee
+```
+
+Redirection is crucial for controlling command output, logging errors, and automating scripts without user interaction.
 
 ## Chaining
 
-comming soon...
+Command chaining allows you to run multiple commands in sequence, with control over whether subsequent commands execute based on the success or failure of previous commands. This is done using special operators.
+
+**Chaining Operators**
+
+- `;` -> run the next command regardless of the exit status of the previous command
+- `&&` -> run the next command only if the previous command succeeded (exit status 0)
+- `||` -> run the next command only if the previous command failed (exit status non-zero)
+
+**Examples**
+
+```bash
+mkdir new_folder ; cd new_folder # create directory and change to it (always)
+
+mkdir new_folder && cd new_folder # create directory and change to it only if mkdir succeeded
+
+rm non_existent_file || echo "File not found" # try to remove file, echo message if it failed
+
+command1 && command2 || command3 # run command2 if command1 succeeds, otherwise run command3
+```
+
+Chaining is useful for scripting and automating tasks where you need conditional execution based on command results.
 
 ## Loops
 
