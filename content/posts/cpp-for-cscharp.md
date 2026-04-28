@@ -691,7 +691,7 @@ float f = static_cast<float>(d); // explicit narrowing conversion
 
 // bit cast
 float f = 3.14f;
-std::uint32_t bits = std::bit_cast<std::uint32_t>(ff); // reinterpret the float bit pattern as an integer
+std::uint32_t bits = std::bit_cast<std::uint32_t>(f); // reinterpret the bits
 
 // dynamic cast
 // works with polymorphic types (not shown here)
