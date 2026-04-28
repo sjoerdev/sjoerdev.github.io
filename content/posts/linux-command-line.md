@@ -372,71 +372,85 @@ sort (cat file.txt)
 
 ## Redirection
 
-Redirection changes the default source or destination of a command's input/output streams. While it often uses files, it can also redirect to devices (like `/dev/null` to discard output) or other file descriptors. Unlike piping, which connects commands directly, redirection controls where input comes from and where output goes.
-
-**Standard Streams**
-
-- **stdin (0)**: Standard input, usually from the keyboard
-- **stdout (1)**: Standard output, usually to the terminal
-- **stderr (2)**: Standard error, usually to the terminal for error messages
+Redirection changes the default source or destination of a command's input/output streams. While it often uses files, it can also redirect to devices (like `/dev/null` to discard output) or other file descriptors. Unlike piping, which connects commands directly, redirection controls where input comes from and where output goes.Redirection is crucial for controlling command output, logging errors, and automating scripts without user interaction. Redirection is crucial for controlling command output, logging errors, and automating scripts without user interaction.
 
 **Redirection Operators**
 
-- `>` : Redirect stdout to a file (overwrite)
-- `>>` : Append stdout to a file
-- `<` : Redirect stdin from a file
-- `2>` : Redirect stderr to a file
-- `2>>` : Append stderr to a file
-- `&>` : Redirect both stdout and stderr to a file
-- `>&2` : Redirect stdout to stderr
+<table>
+  <tr>
+    <td><code>></code></td>
+    <td>redirect stdout to a file</td>
+  </tr>
+  <tr>
+    <td><code>>></code></td>
+    <td>append stdout to a file</td>
+  </tr>
+  <tr>
+    <td><code><</code></td>
+    <td>redirect stdin from a file</td>
+  </tr>
+  <tr>
+    <td><code>2></code></td>
+    <td>redirect stderr to a file</td>
+  </tr>
+  <tr>
+    <td><code>2>></code></td>
+    <td>append stderr to a file</td>
+  </tr>
+  <tr>
+    <td><code>&></code></td>
+    <td>redirect both stdout and stderr to a file</td>
+  </tr>
+  <tr>
+    <td><code>>&2</code></td>
+    <td>redirect stdout to stderr</td>
+  </tr>
+</table>
 
-**Common Redirection Examples**
+**Number Codes for Streams**
 
-```bash
-echo "Hello World" > output.txt # write output to file (overwrite)
-echo "Hello World" >> output.txt # append output to file
-cat < input.txt # read input from file
-ls /nonexistent 2> error.log # redirect errors to file
-ls /nonexistent >> output.txt 2>&1 # append both output and errors to file
-command > /dev/null 2>&1 # discard all output
-command &> all_output.log # redirect both stdout and stderr to file
-```
-
-**Advanced Redirection**
-
-You can use file descriptors for more complex redirections:
-
-```bash
-command 3> debug.log 4> info.log # redirect to specific file descriptors
-command 2>&1 | tee output.log # redirect stderr to stdout, then pipe to tee
-```
-
-Redirection is crucial for controlling command output, logging errors, and automating scripts without user interaction.
-
-## Chaining
-
-Command chaining allows you to run multiple commands in sequence, with control over whether subsequent commands execute based on the success or failure of previous commands. This is done using special operators.
-
-**Chaining Operators**
-
-- `;` -> run the next command regardless of the exit status of the previous command
-- `&&` -> run the next command only if the previous command succeeded (exit status 0)
-- `||` -> run the next command only if the previous command failed (exit status non-zero)
+- **0 (stdin)**: standard input, usually from the keyboard
+- **1 (stdout)**: standard output, usually to the terminal
+- **2 (stderr)**: standard error, usually to the terminal for errors
 
 **Examples**
 
 ```bash
-mkdir new_folder ; cd new_folder # create directory and change to it (always)
-
-mkdir new_folder && cd new_folder # create directory and change to it only if mkdir succeeded
-
-rm non_existent_file || echo "File not found" # try to remove file, echo message if it failed
-
-command1 && command2 || command3 # run command2 if command1 succeeds, otherwise run command3
+echo "hello" > output.txt # overwrite file
+echo "hello" >> output.txt # append to file
+cat < input.txt # read from file via stdin
+command 2> error.log # redirect stderr
+command > /dev/null # discard stdout
+command &> all_output.log # redirect stdout + stderr
 ```
 
-Chaining is useful for scripting and automating tasks where you need conditional execution based on command results.
 
-## Loops
+## Chaining
 
-comming soon...
+Command chaining allows you to run multiple commands in sequence, with control over whether subsequent commands execute based on the success or failure of previous commands. This is done using special operators. Chaining is useful for scripting and automating tasks where you need conditional execution based on command results.
+
+**Chaining Operators**
+
+<table>
+  <tr>
+    <td><code>;</code></td>
+    <td>run the next command regardless of the exit status of the previous command</td>
+  </tr>
+  <tr>
+    <td><code>&&</code></td>
+    <td>run the next command only if the previous command succeeded (exit status 0)</td>
+  </tr>
+  <tr>
+    <td><code>||</code></td>
+    <td>run the next command only if the previous command failed (exit status non-zero)</td>
+  </tr>
+</table>
+
+**Examples**
+
+```bash
+mkdir folder; cd folder # create directory and change to it (always)
+mkdir folder && cd folder # create directory and change to it (only if mkdir succeeded)
+rm file.txt || echo "file not found" # try to remove file, echo message if it failed
+first && second || third # run second if first succeeds, otherwise run third
+```
