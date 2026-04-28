@@ -662,6 +662,8 @@ auto add = [](int a, int b) -> int // notice the "-> int"
 };
 ```
 
+## Casting
+
 **Casting Forms**
 
 - **implicit conversions**: the compiler converts types for you when safe
