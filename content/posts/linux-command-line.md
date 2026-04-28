@@ -340,28 +340,35 @@ ls file[!0-9].txt # list files where the character after "file" is NOT a digit 
 
 ## Piping
 
-Piping is a powerful feature in the Linux command line that allows you to connect the output of one command directly to the input of another command. This is done using the pipe symbol `|`. The pipe takes the standard output (stdout) of the command on the left and feeds it as standard input (stdin) to the command on the right.
+Piping is a powerful feature in the Linux command line that allows you to connect the output of one command directly to the input of another command. This is done using the pipe ``|`` symbol. The pipe takes the standard output ``stdout`` of the command on the left and feeds it as standard input ``stdin`` to the command on the right.
 
-This enables you to build complex operations by chaining simple commands together, creating a data processing pipeline.
-
-**Common Piping Examples**
+**Basic Examples**
 
 ```bash
-ls -la | grep "\.txt$" # list files and filter for .txt files
 cat file.txt | sort # display file contents and sort the lines
 ps aux | grep firefox # show running processes and filter for firefox
-df -h | awk '{print $1, $5}' # show disk usage and extract device and usage percentage
 ```
 
-**Advanced Piping**
-
-You can chain multiple pipes together to create more complex pipelines:
+**Advanced Examples**
 
 ```bash
-cat large_file.txt | grep "error" | sort | uniq -c | sort -nr # find errors, count occurrences, sort by frequency
+# find errors, count occurrences, sort by frequency
+cat log.txt | grep "error" | sort | uniq -c | sort -nr
 ```
 
-Piping is essential for efficient command-line work, allowing you to process data without intermediate files.
+**Shell Differences**
+
+In powershell the parentheses ``()`` evaluate the expression inside them first and pass the result as input to the outer command. Since powershell commands return objects (like arrays of lines), this works naturally and feels similar to function chaining in other languages. In bash parentheses do not pass values between commands, instead they create a ``subshell`` (a separate execution environment), so this syntax doesn’t work for chaining.
+
+```bash
+# in powershell these both work
+cat file.txt | sort
+sort (cat file.txt)
+
+# in bash these do not both work
+cat file.txt | sort
+sort (cat file.txt)
+```
 
 ## Redirection
 
