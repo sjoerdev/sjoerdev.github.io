@@ -709,11 +709,9 @@ With operator overloading we can make operators work for user defined classes, w
 +, -, *, /, =, +=, -=, *=, /=
 ```
 
-### In C# operator overloading works like this:
+**In C# operator overloading works like this:**
 
 In C# you always need to make an operator overload ``public`` and ``static``. And in C# there is no separate “member vs non-member” distinction like in C++, so the object on the left side of the operator becomes the the first argument, and the object on the right side becomes the second argument so in C# ``a + b`` is interpreted as ``T.operator+(a, b)`` in code.
-
-In C# operator overloading example:
 
 ```csharp
 // csharp
@@ -723,7 +721,7 @@ public static T operator+(T a, T b)
 }
 ```
 
-### In C++ operator overloading works like this:
+**In C++ operator overloading works like this:**
 
 In a **member** operator overload, the object on the left side of the operator becomes the current object ``this``, and the object on the right side is passed as a parameter. So for example ``a + b`` is roughly interpreted as ``a.operator+(b)`` in code.
 
