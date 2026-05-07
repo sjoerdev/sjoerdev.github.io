@@ -719,7 +719,7 @@ In C# operator overloading example:
 // csharp
 public static T operator+(T a, T b)
 {
-    return a.value + b.value;
+    return new T(a.value + b.value);
 }
 ```
 
@@ -735,7 +735,7 @@ In C++ operator overloading as a member example:
 // cpp
 T operator+(T b)
 {
-    return this->value + b.value;
+    return T(this->value + b.value);
 }
 ```
 
@@ -745,7 +745,7 @@ In C++ operator overloading as a non member example:
 // cpp
 T operator+(T a, T b)
 {
-    return a.value + b.value;
+    return T(a.value + b.value);
 }
 ```
 
