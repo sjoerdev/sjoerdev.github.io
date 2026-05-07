@@ -703,28 +703,51 @@ DerivedType* ptr = dynamic_cast<DerivedType*>(base); // downcast a polymorphic t
 
 ## Operator Overloading
 
-In C# operator overloading works like this:
+With operator overloading we can make operators work for user defined classes, which is usefull for custom defined algabraic types. You may have seen overators such as the following symbols:
+
+```cpp
++, -, *, /, =, +=, -=, *=, /=
+```
+
+### In C# operator overloading works like this:
+
+In C# you always need to make an operator overload ``public`` and ``static``. And in C# there is no separate “member vs non-member” distinction like in C++, so the object on the left side of the operator becomes the the first argument, and the object on the right side becomes the second argument so in C# ``a + b`` is interpreted as ``T.operator+(a, b)`` in code.
+
+In C# operator overloading example:
+
 ```csharp
 // csharp
-public static Type operator +(Type a, Type b)
+public static T operator+(T a, T b)
 {
-    return new Type(a.value + b.value);
+    return a.value + b.value;
 }
 ```
 
-In C# you always need to make an operator overload ``public`` and ``static``, in C++ you dont.
-Also as you can see for C# we use the ``new`` keyword because that makes the object exist on the heap and it returns a type by reference, thats default for C#.
+### In C++ operator overloading works like this:
 
-In C++ operator overloading works like this:
+In a **member** operator overload, the object on the left side of the operator becomes the current object ``this``, and the object on the right side is passed as a parameter. So for example ``a + b`` is roughly interpreted as ``a.operator+(b)`` in code.
+
+In a **non-member** operator overload, the object on the left side of the operator becomes the the first argument, and the object on the right side becomes the second argument. So for example ``a + b`` is roughly interpreted as ``operator+(a, b)`` in code.
+
+In C++ operator overloading as a member example:
+
 ```cpp
 // cpp
-Type operator +(Type& b)
+T operator+(T b)
 {
-    return Type(this->value + b.value);
+    return this->value + b.value;
 }
 ```
 
-Also as you can see for C++ we dont use the ``new`` keyword because in C++ everything is a value type by default which are on the stack, the ``new`` keyword makes objects on the heap.
+In C++ operator overloading as a non member example:
+
+```cpp
+// cpp
+T operator+(T a, T b)
+{
+    return a.value + b.value;
+}
+```
 
 ## Arrays / Lists
 
