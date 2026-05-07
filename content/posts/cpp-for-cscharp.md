@@ -760,7 +760,7 @@ In C++ you use arrays like so:
 
 // simple array
 int array[8]; // create
-int value = array[0] // index
+int value = array[0]; // index
 
 // multidimensional array
 int array[8][8]; // create
@@ -863,7 +863,7 @@ int* foo()
 }
 ```
 
-**Pointer Aritmatic:**
+**Pointer Arithmetic:**
 
 Because arrays decay to pointers, c and cpp allows you to use an array pointer as if it was an array, 
 you can index or increment an array pointer like its an array itself, this is called pointer aritmatic.
@@ -874,7 +874,7 @@ you can index or increment an array pointer like its an array itself, this is ca
 // examples of array pointer aritmatic
 
 int array[5] = {1, 2, 3, 4, 5};
-int* ptr = arr; // array decays to pointer
+int* ptr = array; // array decays to pointer
 
 // access elements via pointer arithmetic
 int first = ptr[0]; // ptr[0] == *(ptr + 0)
