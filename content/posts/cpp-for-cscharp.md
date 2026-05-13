@@ -335,15 +335,21 @@ Type test(x); // direct initialization
 Type test = Type(x); // copy initialization
 
 // C++11
-Type test{x}; // direct list initialization
-Type test = Type{x}; // copy list initialization
 
-Type test{}; // value initialization (default value)
-Type test = Type{}; // value initialization (default value)
-Type test = {}; // value initialization (default value)
+// list initialization (prioritizes std::initializer_list constructor)
 
-Type test{x, y, z}; // direct list initialization
-Type test = Type{x, y, z}; // copy list initialization
+// direct list initialization
+Type test{x};
+Type test{x, y, z};
+
+// copy list initialization
+Type test = Type{x};
+Type test = Type{x, y, z};
+
+// value initialization (is zero initialization or default constructor)
+Type test{};
+Type test = Type{};
+Type test = {};
 
 // C++20
 Type test{ .foo = x, .bar = y}; // designated initializer
