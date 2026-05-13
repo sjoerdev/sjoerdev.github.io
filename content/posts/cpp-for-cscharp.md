@@ -346,7 +346,7 @@ Type test{x, y, z}; // direct list initialization
 Type test = Type{x, y, z}; // copy list initialization
 
 // C++20
-Type test{ .foo = x, .bar = y}; // aggregate designated initializer
+Type test{ .foo = x, .bar = y}; // designated initializer
 Type test = { .foo = x, .bar = y }; // designated initializer (already in C99)
 ```
 
