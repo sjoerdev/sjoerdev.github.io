@@ -321,37 +321,39 @@ You will often hear it being called ``Uniform Initialization`` or ``List Initial
 
 // C89
 Type test; // uninitialized
-Type test = {0}; // default value
-Type test = {x, y, z}; // for structs and arrays
+Type test = {0}; // aggregate initialization (zero initialization)
+Type test = {x, y, z}; // aggregate initialization
 
 // C99
-Type test = { .foo = x, .bar = y }; // for structs and arrays
+Type test = { .foo = x, .bar = y }; // designated initializer
 
 // C23
-Type test = {}; // default value (already in C++11)
+Type test = {}; // zero initialization
 
 // C++98/03 (inherited everything from C89)
-Type test(x); // uses constructor
-Type test = Type(x); // uses constructor
+Type test(x); // direct initialization
+Type test = Type(x); // copy initialization
 
 // C++11
-Type test{x}; // uses constructor
-Type test = Type{x}; // uses constructor
-Type test{}; // default value
-Type test = Type{}; // default value
-Type test = {}; // default value
-Type test = Type{x, y, z}; // for structs and arrays
-Type test{x, y, z}; // for structs and arrays
+Type test{x}; // direct list initialization
+Type test = Type{x}; // copy list initialization
+
+Type test{}; // value initialization (default value)
+Type test = Type{}; // value initialization (default value)
+Type test = {}; // value initialization (default value)
+
+Type test{x, y, z}; // direct list initialization
+Type test = Type{x, y, z}; // copy list initialization
 
 // C++20
-Type test{ .foo = x, .bar = y}; // for structs and arrays
-Type test = { .foo = x, .bar = y}; // for structs and arrays (already in C99)
+Type test{ .foo = x, .bar = y}; // aggregate designated initializer
+Type test = { .foo = x, .bar = y }; // designated initializer (already in C99)
 ```
 
 **C# initialization:**
 ```csharp
 Type test; // uninitialized
-Type test = default; // default value
+Type test = default; // uses default value
 
 Type test = new Type(); // uses default constructor
 Type test = new Type() { foo = x, bar = y }; // explicit member init
@@ -371,8 +373,8 @@ by copying a different value to itself, often using an overloaded copy operator.
 | Term:                           | Syntax:                            | Calls:                                    |
 | ------------------------------- | -----------------------------------|------------------------------------------ |
 | **Direct Initialization**       | ``Type x(value);``                 | constructor                               |
-| **Direct Brace Initialization** | ``Type x{value};``                 | constructor or initializer list           |
-| **Copy Brace Initialization**   | ``Type x = {value};``              | constructor or initializer list           |
+| **Direct List Initialization**  | ``Type x{value};``                 | constructor or initializer-list           |
+| **Copy List Initialization**    | ``Type x = {value};``              | constructor or initializer-list           |
 | **Copy Initialization**         | ``Type x = value;``                | copy constructor                          |
 | **Move Initialization**         | ``Type x = std::move(value);``     | move constructor                          |
 | **Copy Assignment**             | ``x = value;``                     | copy operator (not initialization)        |
