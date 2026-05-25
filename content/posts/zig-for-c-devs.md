@@ -689,6 +689,26 @@ switch (v) {
 
 Tagged unions (which union you're using is tracked at runtime) are also supported.
 
+## Dot based type inference
+
+In zig a type can be inferred, but inference is explicitely denoted by a dot. The leading . is a shorthand literal/variant marker used when the target type can be inferred from context:
+
+```zig
+// zig
+
+// arrays
+const array1: [4]i32 = .[1, 2, 3, 4];
+const array2: [4]i32 = [4]i32{1, 2, 3, 4};
+
+// structs
+const p1: Point = .{ .x = 10, .y = 20 };
+const p2: Point = Point{ .x = 10, .y = 20 };
+
+// enum values
+const color1: Color = .Red;
+const color2: Color = Color.Red;
+```
+
 ## Enums
 
 Zig has enums similar to C but with more features:
