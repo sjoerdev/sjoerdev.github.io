@@ -709,6 +709,25 @@ const color1: Color = .Red;
 const color2: Color = Color.Red;
 ```
 
+## Object like behaviour
+
+In zig you can get something like an object with members by using this:
+
+```zig
+// zig
+
+const Foo = struct {
+    test: i32,
+
+    fn Bar(self: @This(), x: i32) i32 {
+        return self.test * x;
+    }
+};
+
+const foo = Foo{ .test = 3 };
+const result = foo.Bar(10); // 30
+```
+
 ## Enums
 
 Zig has enums similar to C but with more features:
