@@ -377,6 +377,12 @@ var result = my_module.my_function();
 
 All Zig files are modules, and you can import any ``.zig`` file directly. There are no header/implementation separation like C.
 
+Zig does not have an official package manager like Cargo or NuGet. Dependencies are normally included as source in your repository, and `build.zig` is used to wire them into the build. That means Zig code dependencies are usually compiled together as source, so Zig projects are effectively static at the Zig-source level.
+
+Many projects use vendoring or git submodules to manage external libraries, because keeping dependency source in the tree is the most common way to share Zig code. But git submodules are a workflow choice, not a Zig language feature.
+
+Multiple files can safely `@import("same_module.zig")`; the compiler treats it as the same shared module and does not duplicate the code.
+
 ## Strings and Arrays
 
 **String Literals:**
