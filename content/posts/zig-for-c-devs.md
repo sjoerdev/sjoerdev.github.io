@@ -719,13 +719,23 @@ In zig you can get something like an object with members by using this:
 const Foo = struct {
     test: i32,
 
-    fn Bar(self: @This(), x: i32) i32 {
+    pub fn bar(self: @This(), x: i32) i32 {
         return self.test * x;
     }
 };
 
 const foo = Foo{ .test = 3 };
-const result = foo.Bar(10); // 30
+const result = foo.bar(10); // 30
+```
+
+One subtlety, if you want the method to modify the struct, use a pointer receiver, Otherwise ``self: @This()`` passes by value (copy semantics):
+
+```zig
+// zig
+
+pub fn increment(self: *@This()) void {
+    self.test += 1;
+}
 ```
 
 ## Enums
