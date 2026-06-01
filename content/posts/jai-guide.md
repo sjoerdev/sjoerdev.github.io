@@ -10,27 +10,89 @@ ShowBreadCrumbs: true
 
 ## Types
 
-This is a table that hold a comparison of all fundamental types you should know about:
+This is a table that hold a comparison of all fundamental types you should know about compared to what they are in other languages:
 
-| Type:                      | Jai             |
-|----------------------------|-----------------|
-| 32 bit floating            | `float32`       |
-| 64 bit floating            | `float64`       |
-| 128 bit floating           | `f128`          |
-| 8 bit integer signed       | `s8`            |
-| 8 bit integer unsigned     | `u8`            |
-| 16 bit integer signed      | `s16`           |
-| 16 bit integer unsigned    | `u16`           |
-| 32 bit integer signed      | `s32`           |
-| 32 bit integer unsigned    | `u32`           |
-| 64 bit integer signed      | `s64`           |
-| 64 bit integer unsigned    | `u64`           |
-| boolean                    | `bool`          |
-| character                  | `todo`          |
-| string                     | `string`        |
-| null                       | `todo`          |
+
+| Type:                      | Jai             | C#              | C++ (classic)             | C++ (modern)     |
+|----------------------------|-----------------|-----------------|---------------------------|------------------|
+| 32 bit floating            | `float32`       | ``float``       | ``float``                 | -                |
+| 64 bit floating            | `float64`       | ``double``      | ``double``                | -                |
+| 128 bit floating           | `f128`          | ``decimal``     | -                         | -                |
+| 8 bit integer signed       | `s8`            | ``sbyte``       | ``char``                  | ``int8_t``       |
+| 8 bit integer unsigned     | `u8`            | ``byte``        | ``unsigned char``         | ``uint8_t``      |
+| 16 bit integer signed      | `s16`           | ``short``       | ``short``                 | ``int16_t``      |
+| 16 bit integer unsigned    | `u16`           | ``ushort``      | ``unsigned short``        | ``uint16_t``     |
+| 32 bit integer signed      | `s32`           | ``int``         | ``int``                   | ``int32_t``      |
+| 32 bit integer unsigned    | `u32`           | ``uint``        | ``unsigned int``          | ``uint32_t``     |
+| 64 bit integer signed      | `s64`           | ``long``        | ``long long``             | ``int64_t``      |
+| 64 bit integer unsigned    | `u64`           | ``ulong``       | ``unsigned long long``    | ``uint64_t``     |
+| boolean                    | `bool`          | ``bool``        | ``bool``                  | -                |
+| character                  | `todo`          | ``char``        | ``char``                  | ``char16_t``     |
+| string                     | `string`        | ``string``      | ``string``                | -                |
+| null                       | `todo`          | ``null``        | ``nullptr``               | -                |
 
 Jai strings are array views over `u8` and are not null-terminated.
+
+## Loops
+
+**Simple for loops:**
+
+The simple format for for loops is `for set action`, where the `set` is something that supports iteration and `action` is a statement or a block.
+
+```jai
+for 1..10 {
+    print("Number %\n", it); // it is the iteration
+}
+
+for i: 1..10 {
+    print("Number %\n", i); // you can name the iteration
+}
+
+for foods {
+    print(" %. %\n", it_index, it); // if looping over a collection you can use it_index to get its index
+}
+
+for i: 0..10 {
+    for j: 0..10 {
+        print("%, %", i, j); // you can also have a nested loop
+    }
+}
+
+for < i: 0..10 {
+    print("%", i); // to do a for loop in reverse, add a < in front of the for loop
+}
+
+array := int.[1, 2, 3, 4, 5];
+for * ele: array { // To iterate an array by pointer, add a * in front of the for loop.
+    ele.* = 0; // Because you are taking a pointer to the array, you can modify the array elements.
+}
+
+
+for 1..10 print("Number %\n", it); // single like loops are also allowed
+```
+
+**The remove statement:**
+
+The remove statement is used to remove an element from a dynamic array [..] without needing to rewrite the entire for loop into a while loop. 
+The remove statement assumes an unordered remove, the remove swaps the current element that is being iterated on with the last element, 
+and then removes the last element. The remove statement happens in constant time O(1).
+
+```jai
+arr: [..]int;
+
+for i: 0..10 {
+    array_add(*arr, i); // adding element
+}
+
+for a: arr {
+    if a == 2 {
+        remove a; // removing element
+    }
+}
+```
+
+## Ternairy Operator
+
 
 ## References
 
@@ -94,20 +156,30 @@ p: *int = arr.data; // data is the adress of the array
 p += 1; // advance by size_of(int)
 ```
 
-dereference chaining in C is like this:
+pointers to pointers and dereference chaining in c is like this:
 
 ```c
 // c
-*p = 2; // single
-(*(*(*p))) = 2; // chain
+
+int a = 3;
+int* b = &a;
+int** c = &b
+int*** d = &c
+
+int e = int e = (*(*(*d))); // dereference in a chain
 ```
 
-dereference chaining in jai is like this:
+pointers to pointers and dereference chaining in jai is like this:
 
 ```jai
 // jai
-p.* = 2; // single
-p.*.*.* = 2; // chain
+
+a: int = 3;
+b: *int = *a;
+c: **int = *b;
+d: ***int = *c;
+
+e: int = d.*.*.*; // dereference in a chain
 ```
 
 ## Headers
@@ -121,7 +193,7 @@ Import a module:
 #import "Basic";
 ```
 
-Load exported members of a file:
+Load all exported functions/structs/globals of a file, and make the available here:
 ```jai
 #load "my_file.jai";
 ```
