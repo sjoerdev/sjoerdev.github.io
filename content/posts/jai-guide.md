@@ -73,9 +73,9 @@ for 1..10 print("Number %\n", it); // single like loops are also allowed
 
 **The remove statement:**
 
-The remove statement is used to remove an element from a dynamic array [..] without needing to rewrite the entire for loop into a while loop. 
-The remove statement assumes an unordered remove, the remove swaps the current element that is being iterated on with the last element, 
-and then removes the last element. The remove statement happens in constant time O(1).
+The remove statement is used to remove an element from a `[..]` dynamic array, 
+the remove swaps the current element that is being iterated on with the last element, 
+and then removes the last element.
 
 ```jai
 arr: [..]int;
@@ -93,6 +93,7 @@ for a: arr {
 
 ## Ternary Operator
 
+todo
 
 ## References
 
@@ -101,14 +102,14 @@ Jai does not have C++ references. It has value semantics by default and uses poi
 A regular parameter doesnt mutate the original:
 ```jai
 foo :: (x: int) {
-    x = 2; // only local copy changes
+    x = 2; // only changes local copy of x value
 }
 ```
 
 A pointer parameter mutates the caller:
 ```jai
 foo :: (x: *int) {
-    x.* = 2; // non local changes
+    x.* = 2; // changes the original x value
 }
 ```
 
@@ -166,7 +167,7 @@ int* b = &a;
 int** c = &b
 int*** d = &c
 
-int e = int e = (*(*(*d))); // dereference in a chain
+int e = (*(*(*d))); // dereference in a chain
 ```
 
 pointers to pointers and dereference chaining in jai is like this:
@@ -203,6 +204,9 @@ Named imports create a namespace:
 Math :: #import "Math";
 value := Math.sqrt(2.0);
 ```
+
+Jai does not use `public`/`private` member access labels.
+Visibility is controlled by module scope and directives such as `#scope_file` and `#scope_export`.
 
 ## Standard Library
 
@@ -249,11 +253,6 @@ arr: [4]int = int.[ 1, 2, 3, 4 ]; // T.[]
 arr: [4]int = .[ 1, 2, 3, 4 ]; // .[]
 ```
 
-## Public / Private
-
-Jai does not use `public`/`private` member access labels.
-Visibility is controlled by module scope and directives such as `#scope_file` and `#scope_export`.
-
 ## Structs
 
 Jai structs are defined directly. There is no `typedef` requirement. The name `Point` is the type.
@@ -278,7 +277,7 @@ b: u16 = cast(u16)a;
 ```
 
 For truncation or unchecked casts, use the `trunc` or `no_check` flags. 
-Jai uses comma-separated “attributes” like this: `operation,modifier1,modifier2(type)value`:
+Jai uses comma separated attributes like this: `operation,modifier1,modifier2(type)value`:
 ```jai
 b = cast,trunc(u16)a;
 b = cast,no_check(u16)a;
@@ -344,7 +343,11 @@ array: [4]float = float.[10.0, 20.0, 1.4, 10.0];
 regular arrays:
 ```jai
 // simple array
-array: [8]int; // create
+array: [4]int; // create empty
+
+array: [4]int = int.[1, 2, 3, 4]; // initialize with explicit type using array litteral
+array: [4]int = .[1, 2, 3, 4]; // initialize with inferred type using array litteral
+
 value: int = array[0]; // index
 ```
 
