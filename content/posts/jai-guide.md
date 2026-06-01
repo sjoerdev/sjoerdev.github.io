@@ -405,9 +405,9 @@ Instead, an array has a `.data` field for its backing pointer.
 
 In jai generics is called polymorphism.
 
-Jai’s generics are compile-time polymorphism using `$T` and `Type` parameters.
+Jai’s generics are compile-time polymorphism using the `x: $T` and `T: Type` parameters.
 
-Generic function:
+Generic function taking variable of any type:
 ```jai
 foo :: (x: $T) {
     print("%\n", x);
@@ -417,22 +417,32 @@ foo(1);
 foo("hello");
 ```
 
+Generic function taking a type itself as parameter:
+```jai
+foo :: (T: Type) {
+    print("size of type = %", size_of(T));
+}
+
+foo(int);
+foo(string);
+```
+
 Generic function with multiple types:
 ```jai
-foo :: (a: $A, b: $B, c: $C) {
-    // use a or b or c here
+foo :: (a: $A, b: $B) {
+    // do something
 }
 ```
 
-Polymorphic structs:
+Generic structs:
 ```jai
 Box :: struct(T: Type) {
     value: T;
 };
 
-b: Box(int);
-b.value = 5;
-print("type = %", a.T); // you can quiry the type of a stuct like this (prints out "type = int")
+box: Box(int);
+box.value = 5;
+print("type = %", box.T); // you can quiry the type of a stuct like this (prints out "type = int")
 ```
 
 Jai also supports type constraints such as `$T/SomeStruct` and `$T/interface SomeStruct`, which are similar to traits or interfaces.
