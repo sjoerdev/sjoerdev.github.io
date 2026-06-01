@@ -235,6 +235,9 @@ point: Point = Point.{ 1, 2 }; // T.{}
 
 // inferred type
 point: Point = .{ 1, 2 }; // .{}
+
+// inferred type (since beta 0.2.022)
+point: Point = { 1, 2 }; // {}
 ```
 
 Arrays:
