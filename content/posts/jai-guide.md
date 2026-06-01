@@ -469,7 +469,12 @@ todo `/`, `interface`, `$T/SomeStruct`, `$T/interface SomeStruct`
 
 ## Strings
 
-Jai strings are array views (slices) over `u8` and are not null-terminated. You can create string literals using double quotes:
+Jai strings are just array views (slices) over `u8`.
+string literals in jai are actually null terminated in memory for c compatibility, 
+even though this is not needed in jai since strings know their own length, 
+but the null terminator is not included in the count of the string, 
+so in jai it may seem like strings are actually not null terminated. 
+this only counts for string literals, not runtime generated strings.
 
 ```jai
 message: string = "Hello, World!";
@@ -481,8 +486,6 @@ data: *u8 = message.data; // get pointer to first byte
 // you can slice strings
 substring: string = message[0..5]; // "Hello"
 ```
-
-Jai strings are are array views (slices) over `u8`, arrays are also not null terminated.
 
 ## Compile Time Directives (Preprocessor)
 
