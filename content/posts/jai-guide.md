@@ -27,9 +27,9 @@ This is a table that hold a comparison of all fundamental types you should know 
 | 64 bit integer signed      | `s64`           | ``long``        | ``long long``             | ``int64_t``      |
 | 64 bit integer unsigned    | `u64`           | ``ulong``       | ``unsigned long long``    | ``uint64_t``     |
 | boolean                    | `bool`          | ``bool``        | ``bool``                  | -                |
-| character                  | `todo`          | ``char``        | ``char``                  | ``char16_t``     |
+| character                  | `u8`            | ``char``        | ``char``                  | ``char16_t``     |
 | string                     | `string`        | ``string``      | ``string``                | -                |
-| null                       | `todo`          | ``null``        | ``nullptr``               | -                |
+| null                       | `null`          | ``null``        | ``nullptr``               | -                |
 
 Jai strings are array views over `u8` and are not null-terminated.
 
@@ -91,7 +91,7 @@ for a: arr {
 }
 ```
 
-## Ternairy Operator
+## Ternary Operator
 
 
 ## References
@@ -445,7 +445,18 @@ You can constrain polymorphic types with `/` and `interface` syntax.
 
 ## Strings
 
-todo
+Jai strings are array views (slices) over `u8` and are not null-terminated. You can create string literals using double quotes:
+
+```jai
+message: string = "Hello, World!";
+length: int = message.count; // get string length
+
+// strings are just array views over u8
+data: *u8 = message.data; // get pointer to first byte
+
+// you can slice strings
+substring: string = message[0..5]; // "Hello"
+```
 
 Jai strings are are array views (slices) over `u8`, arrays are also not null terminated.
 
