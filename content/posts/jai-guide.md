@@ -93,7 +93,15 @@ for a: arr {
 
 ## Ternary Operator
 
-todo
+jai uses `ifx` as its ternary operator, the syntax is `ifx condition then value else value`, but `then` is optional:
+
+```jai
+a := 0;
+b := 100;
+
+c := ifx a > b 10 else 1000; // without explicit then
+d := ifx a > b then 10 else 1000; // with explicit then
+```
 
 ## References
 
