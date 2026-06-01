@@ -342,7 +342,7 @@ unlike in c, arrays store their length in jai, you can get it by the `array.coun
 
 you can get the memory adress of the first element in an array using the `array.data` member.
 
-Both Static Arrays and Dynamic Arrays are autocasted to Array Views if the array view is a parameter. Because strings are array views with u8, both share the same definition.
+both static arrays and dynamic arrays are automatically casted to array views (slices) if the array view is a parameter.
 
 regular arrays:
 ```jai
