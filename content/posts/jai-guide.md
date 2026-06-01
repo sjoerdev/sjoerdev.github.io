@@ -12,27 +12,35 @@ ShowBreadCrumbs: true
 
 This is a table that hold a comparison of all fundamental types you should know about compared to what they are in other languages:
 
-| Type:                      | Jai             | C#              | C++ (classic)             | C++ (modern)     |
-|----------------------------|-----------------|-----------------|---------------------------|------------------|
-| 32 bit floating            | `float32`       | ``float``       | ``float``                 | -                |
-| 64 bit floating            | `float64`       | ``double``      | ``double``                | -                |
-| 128 bit floating           | `f128`          | ``decimal``     | -                         | -                |
-| 8 bit integer signed       | `s8`            | ``sbyte``       | ``char``                  | ``int8_t``       |
-| 8 bit integer unsigned     | `u8`            | ``byte``        | ``unsigned char``         | ``uint8_t``      |
-| 16 bit integer signed      | `s16`           | ``short``       | ``short``                 | ``int16_t``      |
-| 16 bit integer unsigned    | `u16`           | ``ushort``      | ``unsigned short``        | ``uint16_t``     |
-| 32 bit integer signed      | `s32`           | ``int``         | ``int``                   | ``int32_t``      |
-| 32 bit integer unsigned    | `u32`           | ``uint``        | ``unsigned int``          | ``uint32_t``     |
-| 64 bit integer signed      | `s64`           | ``long``        | ``long long``             | ``int64_t``      |
-| 64 bit integer unsigned    | `u64`           | ``ulong``       | ``unsigned long long``    | ``uint64_t``     |
-| boolean                    | `bool`          | ``bool``        | ``bool``                  | -                |
-| character                  | `u8`            | ``char``        | ``char``                  | ``char16_t``     |
-| string                     | `string`        | ``string``      | ``string``                | -                |
-| null                       | `null`          | ``null``        | ``nullptr``               | -                |
+| Type:                      | Jai               | C#              | C++ (classic)             | C++ (modern)     |
+|----------------------------|-------------------|-----------------|---------------------------|------------------|
+| 32 bit floating            | `float32`/`float` | ``float``       | ``float``                 | -                |
+| 64 bit floating            | `float64`         | ``double``      | ``double``                | -                |
+| 128 bit floating           | `f128`            | ``decimal``     | -                         | -                |
+| 8 bit integer signed       | `s8`              | ``sbyte``       | ``char``                  | ``int8_t``       |
+| 8 bit integer unsigned     | `u8`              | ``byte``        | ``unsigned char``         | ``uint8_t``      |
+| 16 bit integer signed      | `s16`             | ``short``       | ``short``                 | ``int16_t``      |
+| 16 bit integer unsigned    | `u16`             | ``ushort``      | ``unsigned short``        | ``uint16_t``     |
+| 32 bit integer signed      | `s32`             | ``int``         | ``int``                   | ``int32_t``      |
+| 32 bit integer unsigned    | `u32`             | ``uint``        | ``unsigned int``          | ``uint32_t``     |
+| 64 bit integer signed      | `s64`/`int`       | ``long``        | ``long long``             | ``int64_t``      |
+| 64 bit integer unsigned    | `u64`             | ``ulong``       | ``unsigned long long``    | ``uint64_t``     |
+| boolean                    | `bool`            | ``bool``        | ``bool``                  | -                |
+| character                  | `u8`              | ``char``        | ``char``                  | ``char16_t``     |
+| string                     | `string`          | ``string``      | ``string``                | -                |
+| null                       | `null`            | ``null``        | ``nullptr``               | -                |
 
-Jai strings are array views over `u8` and are not null-terminated.
+In jai types are first class, meaning types are values. 
+This means functions are values and can be assigned like any other value.
+All types like `int` and `float` are of type `Type`.
 
-Additionally, there are `int` which defaults to `s64` and `float` which defaults to `float32`
+```jai
+a: Type = int; // a is int
+b: a = 1; // b is now an int
+```
+
+If a `Type` is constant (in other words, known at compile time), you can declare other variables of that `Type`.
+In general, the kinds of things you would do with 'generics' in other languages, we just do with constant Type variables. 
 
 ## Loops
 
@@ -254,6 +262,12 @@ point: Point = .{ 1, 2 }; // .{}
 
 // inferred type (since beta 0.2.022)
 point: Point = { 1, 2 }; // {}
+
+// designated initializer
+point: Point = .{ x = 1, y = 2 }; // notice how the fields dont need a dot like in c and cpp
+
+// default initialized
+point: Point = .{};
 ```
 
 Arrays:
@@ -263,6 +277,9 @@ arr: [4]int = int.[ 1, 2, 3, 4 ]; // T.[]
 
 // inferred type
 arr: [4]int = .[ 1, 2, 3, 4 ]; // .[]
+
+// default initialized
+arr: [4]int = .[];
 ```
 
 ## Structs
@@ -448,7 +465,9 @@ struct {
 
 In jai generics is called polymorphism.
 
-Jai’s generics are compile-time polymorphism using the `x: $T` and `T: Type` parameters.
+Jai’s generics system is compile time polymorphism using the `x: $T` and `$T: Type` parameters.
+
+The `$` before a value means we must know the value at compile time (needs to be a constant) for it to work.
 
 Generic function taking variable of any type:
 ```jai
@@ -462,7 +481,7 @@ foo("hello");
 
 Generic function taking a type itself as parameter:
 ```jai
-foo :: (T: Type) {
+foo :: ($T: Type) {
     print("size of type = %", size_of(T));
 }
 
@@ -479,7 +498,7 @@ foo :: (a: $A, b: $B) {
 
 Generic structs:
 ```jai
-Box :: struct(T: Type) {
+Box :: struct($T: Type) {
     value: T;
 };
 
