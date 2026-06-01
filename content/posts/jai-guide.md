@@ -42,15 +42,19 @@ The simple format for for loops is `for set action`, where the `set` is somethin
 
 ```jai
 for 1..10 {
-    print("Number %\n", it); // it is the iteration
+    print("%", it); // it is the iteration
 }
 
 for i: 1..10 {
-    print("Number %\n", i); // you can name the iteration
+    print("%", i); // you can name the iteration
 }
 
 for foods {
-    print(" %. %\n", it_index, it); // if looping over a collection you can use it_index to get its index
+    print("%, %", it_index, it); // if looping over a collection you can use it_index to get its index
+}
+
+for element, index: foods {
+    print("%, %", index, element); // you can also name both the iteration and the index
 }
 
 for i: 0..10 {
@@ -285,7 +289,7 @@ b: u16 = cast(u16)a;
 ```
 
 For truncation or unchecked casts, use the `trunc` or `no_check` flags. 
-Jai uses comma separated attributes like this: `operation,modifier1,modifier2(type)value`:
+Jai uses comma separated modifiers like this: `operation,modifier,modifier(type)value`:
 ```jai
 b = cast,trunc(u16)a;
 b = cast,no_check(u16)a;
