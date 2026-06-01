@@ -80,7 +80,15 @@ for * ele: array { // To iterate an array by pointer, add a * in front of the fo
     ele.* = 0; // Because you are taking a pointer to the array, you can modify the array elements.
 }
 
-for 1..10 print("Number %\n", it); // single like loops are also allowed
+for array {
+    print("%", it); // simple jai style array loop
+}
+
+for 0..array.count-1 {
+    print("%", array[it]); // c like verbose array loop
+}
+
+for 1..10 print("%", it); // single like loops are also allowed
 ```
 
 **The remove statement:**
