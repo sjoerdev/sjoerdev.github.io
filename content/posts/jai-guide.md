@@ -344,14 +344,6 @@ you can get the memory adress of the first element in an array using the `array.
 
 Both Static Arrays and Dynamic Arrays are autocasted to Array Views if the array view is a parameter. Because strings are array views with u8, both share the same definition.
 
-Arrays in jai are simply a tiny struct that holds the size and location of where the array actually is in memory. so copying an array directly makes an array that points to the same data.
-
-You can initialize arrays using the following syntax:
-
-```jai
-array: [4]float = float.[10.0, 20.0, 1.4, 10.0];
-```
-
 regular arrays:
 ```jai
 // simple array
@@ -401,6 +393,30 @@ array: [2][2]int = int.[int.[1, 0], int.[0, 3]]; // initializing a 2D array
 array: [2][2]int = .[.[1, 0], .[0, 3]]; // initializing a 2D array with inferred type
 
 value: int = array[0][0]; // indexing a 2D array
+```
+
+Static arrays actually hold all of their own data, meaning that copying a static array does a full copy.
+Dynamic arrays and array views (slices) are basically just pointers, 
+therefore copying them doesnt copy the actual data, therefore they act like reference types.
+This is what each type of array basically is in practice:
+
+```jai
+// regular array
+one largu unit holding all of the actual data
+
+// dynamic array
+struct {
+    count: s64; // number of elements
+    data: *void; // location of the first element
+    allocated: s64; // total bytes used
+    allocator: Allocator; // the allocator in use
+}
+
+// array view (slice)
+struct {
+    count: s64; // number of elements
+    data: *u8; // location of the first element
+}
 ```
 
 ## Polymorphism (Generics)
