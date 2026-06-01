@@ -269,12 +269,37 @@ arr: [4]int = .[ 1, 2, 3, 4 ]; // .[]
 
 Jai structs are defined directly. There is no `typedef` requirement. The name `Point` is the type.
 
+In jai, structs store their memory in the same order as their fields.
+
 Example:
 ```jai
 Point :: struct {
     x: int;
     y: int;
 };
+```
+
+in jai, you can make the fields of a struct available in local scope with the `using` keyword:
+
+```jai
+point: Point;
+using point; // now all point's members are local names for us.
+x = 10; // this modifies the x of point
+```
+
+in jai You can copy structs around in memory, manually, if you want, like to an array and back:
+
+```jai
+Point :: struct {
+    x: int;
+    y: int;
+};
+
+point: Point;
+arr: [size_of(Point)]u8;
+
+memcpy(arr.data, *point, size_of(Point)); // copies all bytes in the struct to a byte array
+memcpy(*point, arr.data, size_of(Point)); // copies all bytes back into the struct
 ```
 
 ## Casting
