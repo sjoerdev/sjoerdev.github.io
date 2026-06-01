@@ -76,16 +76,16 @@ for < i: 0..10 {
 }
 
 array := int.[1, 2, 3, 4, 5];
-for * ele: array { // To iterate an array by pointer, add a * in front of the for loop.
-    ele.* = 0; // Because you are taking a pointer to the array, you can modify the array elements.
+for * element: array { // To iterate an array by pointer, add a * in front of the for loop.
+    element.* = 0; // Because you are taking a pointer to the array, you can modify the array elements.
 }
 
 for array {
     print("%", it); // simple jai style array loop
 }
 
-for 0..array.count-1 {
-    print("%", array[it]); // c like verbose array loop
+for i: 0..array.count-1 {
+    print("%", array[i]); // c like verbose array loop
 }
 
 for 1..10 print("%", it); // single like loops are also allowed
