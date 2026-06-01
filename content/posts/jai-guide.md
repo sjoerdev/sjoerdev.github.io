@@ -266,20 +266,6 @@ Point :: struct {
 };
 ```
 
-## Lambda Expressions
-
-Jai does not have lambda syntax like C++ or C#, instead functions are already first class types in jai;
-
-Example using a function pointer like a lambda:
-```jai
-add :: (a: int, b: int) -> int {
-    return a + b;
-}
-
-action: (int,int)->int = add; // (int,int)->int is the function pointer type
-result := action(1, 2);
-```
-
 ## Casting
 
 The jai syntax is similar to c in this regard, in c it would be `(T)value` while in jai its `cast(T)value`, it only adds the cast word.
@@ -298,7 +284,7 @@ b = cast,trunc(u16)a;
 b = cast,no_check(u16)a;
 ```
 
-Use `xx` when you want the compiler to infer the target type to cast to:
+Use `xx` when you want the compiler to infer the type to cast to:
 ```jai
 b = xx a;
 ```
@@ -384,8 +370,11 @@ array_reset(*array);
 
 slices (array views):
 ```jai
-arr: []int = int.[1,2,3,4,5]; //  represents a view into the data that is contained in an array or a subsection of an array
+slice: []int = int.[1,2,3,4,5]; //  represents a view into the data that is contained in an array or a subsection of an array
 
+ptr: int* = slice.data; // pointer to the first element of the slice
+
+size: int = slice.count; // the size of the slice
 ```
 
 multi dimensional arrays:
@@ -398,11 +387,6 @@ array: [2][2]int = .[.[1, 0], .[0, 3]]; // initializing a 2D array with inferred
 
 value: int = array[0][0]; // indexing a 2D array
 ```
-
-## Array Pointer Decay
-
-Jai static arrays do not decay to pointers the way C/C++ arrays do.
-Instead, an array has a `.data` field for its backing pointer.
 
 ## Polymorphism (Generics)
 
@@ -448,13 +432,9 @@ box.value = 5;
 print("type = %", box.T); // you can quiry the type of a stuct like this (prints out "type = int")
 ```
 
-Jai also supports type constraints such as `$T/SomeStruct` and `$T/interface SomeStruct`, which are similar to traits or interfaces.
+## Interfaces / Traits / Constraints
 
-## Interfaces / Traits
-
-todo
-
-You can constrain polymorphic types with `/` and `interface` syntax.
+todo `/`, `interface`, `$T/SomeStruct`, `$T/interface SomeStruct`
 
 ## Strings
 
@@ -485,26 +465,14 @@ Example:
 ```jai
 add :: (a: int, b: int) -> int { return a + b; }
 
-function_type: (int,int)->int;
-function: function_type = add;
+function_type: (int,int)->int; // declaring a function type
+function: function_type = add; // declaring a function of our funciton type
 
-function: (int,int)->int = add; // also works
+function: (int,int)->int = add; // (int,int)->int is the function pointer type
 
 result := function(1, 2);
 ```
 
 ## External Libraries / Interop
 
-For external libraries, Jai can map foreign functions and dynamic libraries using `#library` and `#foreign` declarations.
-
-Example:
-```jai
-lz4 :: #library "liblz4";
-LZ4_compressBound :: (inputSize: s32) -> s32 #foreign lz4;
-```
-
-## Summary
-
-- Jai has no C++ references; use pointers and `.*` dereference.
-- Jai does not use header files; it uses `#import` and `#load`.
-- Polymorphism is compile-time and uses `$T` and `Type`.
+todo
