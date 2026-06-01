@@ -172,8 +172,8 @@ pointers to pointers and dereference chaining in c is like this:
 
 int a = 3;
 int* b = &a;
-int** c = &b
-int*** d = &c
+int** c = &b;
+int*** d = &c;
 
 int e = (*(*(*d))); // dereference in a chain
 ```
