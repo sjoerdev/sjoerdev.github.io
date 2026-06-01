@@ -12,7 +12,6 @@ ShowBreadCrumbs: true
 
 This is a table that hold a comparison of all fundamental types you should know about compared to what they are in other languages:
 
-
 | Type:                      | Jai             | C#              | C++ (classic)             | C++ (modern)     |
 |----------------------------|-----------------|-----------------|---------------------------|------------------|
 | 32 bit floating            | `float32`       | ``float``       | ``float``                 | -                |
@@ -32,6 +31,8 @@ This is a table that hold a comparison of all fundamental types you should know 
 | null                       | `null`          | ``null``        | ``nullptr``               | -                |
 
 Jai strings are array views over `u8` and are not null-terminated.
+
+Additionally, there are `int` which defaults to `s64` and `float` which defaults to `float32`
 
 ## Loops
 
@@ -66,7 +67,6 @@ array := int.[1, 2, 3, 4, 5];
 for * ele: array { // To iterate an array by pointer, add a * in front of the for loop.
     ele.* = 0; // Because you are taking a pointer to the array, you can modify the array elements.
 }
-
 
 for 1..10 print("Number %\n", it); // single like loops are also allowed
 ```
