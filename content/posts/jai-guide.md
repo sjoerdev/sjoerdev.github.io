@@ -182,7 +182,7 @@ d: ***int = *c;
 e: int = d.*.*.*; // dereference in a chain
 ```
 
-## Headers
+## Modules And Imports
 
 Jai has no header files. Code organization is handled by `#import` and `#load` instead.
 There is no need for `#include` or header guards in Jai, because multiple `#load` calls dont cause duplicate symbols inclusion.
@@ -279,23 +279,23 @@ result := action(1, 2);
 
 ## Casting
 
-The jai syntax is similar to c in this regard, in c it would be `(T)value` while in jai its `cast(T) value`, it only adds the cast word and an extra space.
+The jai syntax is similar to c in this regard, in c it would be `(T)value` while in jai its `cast(T)value`, it only adds the cast word.
 Jai is strict about casts. Implicit widening is allowed, but narrowing requires an explicit cast.
 
 Example:
 ```jai
 a: u32 = 50000;
-b: u16 = cast(u16) a;
+b: u16 = cast(u16)a;
 ```
 
 For truncation or unchecked casts, use the `trunc` or `no_check` flags. 
-Also Jai uses comma-separated “attributes” like this: `operation,modifier1,modifier2(type) value`:
+Jai uses comma-separated “attributes” like this: `operation,modifier1,modifier2(type)value`:
 ```jai
-b = cast,trunc(u16) a;
-b = cast,no_check(u16) a;
+b = cast,trunc(u16)a;
+b = cast,no_check(u16)a;
 ```
 
-Use `xx` when you want the compiler to infer the target type:
+Use `xx` when you want the compiler to infer the target type to cast to:
 ```jai
 b = xx a;
 ```
@@ -304,7 +304,7 @@ b = xx a;
 
 Jai supports operator overloading for many operators: `+`, `-`, `*`, `/`, `%`, `==`, `!=`, `<<`, `>>`, `[]`, and more.
 
-Jai syntax follows this rule: `operator + :: implementation`, where `+` can be any other operator. Unlike C, Jai needs spaces around the operator symbol.
+Jai syntax follows this rule: `operator + :: implementation`, where `+` can be any other operator.
 
 Example:
 ```jai
@@ -336,178 +336,78 @@ operator * :: (a: Vector3, b: float) -> Vector3 #symmetric {
 
 ## Arrays / Lists
 
-Static arrays:
+in jai a normal array is typed like ``[size]T``, and a slice like ``[]T``, and a dynamic array like ``[..]T``.
+
+unlike in c, arrays store their length in jai, you can get it by the `array.count` member.
+
+you can get the memory adress of the first element in an array using the `array.data` member.
+
+Both Static Arrays and Dynamic Arrays are autocasted to Array Views if the array view is a parameter. Because strings are array views with u8, both share the same definition.
+
+Arrays in jai are simply a tiny struct that holds the size and location of where the array actually is in memory. so copying an array directly makes an array that points to the same data.
+
+You can initialize arrays using the following syntax:
+
 ```jai
-arr : [4]int;
-arr[0] = 1;
+array: [4]float = float.[10.0, 20.0, 1.4, 10.0];
 ```
 
-Dynamic arrays:
+regular arrays:
 ```jai
-arr : [..]int;
-array_add(*arr, 1);
+// simple array
+array: [8]int; // create
+value: int = array[0]; // index
 ```
 
-Static arrays expose `.count`:
+dynamic arrays:
 ```jai
-print("count = %\n", arr.count);
+// create dynamic array
+array: [..]int;
+
+// get length of dynamic array
+length: int = array.count;
+
+// add to the dynamic array
+array_add(*array, 4);
+
+// remove third element from the dynamic array
+
+// index the dynamic array
+value: int = array[0];
+
+// clear the dynamic array
+array_reset(*array);
 ```
 
-Multi-dimensional arrays are nested:
+slices (array views):
 ```jai
-matrix : [4][4]float;
+arr: []int = int.[1,2,3,4,5]; //  represents a view into the data that is contained in an array or a subsection of an array
+
 ```
 
-Dynamic arrays are similar to `std::vector` but use Jai’s allocator and context system.
+multi dimensional arrays:
+```jai
+array: [2][2]int; // creating a 2D static array
+array: [2][2][2]int; // creating a 3D static array
+
+array: [2][2]int = int.[int.[1, 0], int.[0, 3]]; // initializing a 2D array
+array: [2][2]int = .[.[1, 0], .[0, 3]]; // initializing a 2D array with inferred type
+
+value: int = array[0][0]; // indexing a 2D array
+```
 
 ## Array Pointer Decay
 
 Jai static arrays do not decay to pointers the way C/C++ arrays do.
 Instead, an array has a `.data` field for its backing pointer.
 
-Example:
-```jai
-arr : [5]int;
-ptr : *int = arr.data;
-```
+## Polymorphism (Generics)
 
-If you need a view, use a separate array view or dynamic array type.
-
-## Generics / Templates
-
-Jai uses compile-time polymorphism with `$T` and `Type`.
-
-Generic function:
-```jai
-foo :: (x: $T) {
-    print("%\n", x);
-}
-```
-
-Polymorphic struct:
-```jai
-Box :: struct(T: Type) {
-    value: T;
-};
-
-b : Box(int);
-b.value = 5;
-```
-
-You can constrain polymorphic types with `/` and `interface` syntax.
-
-## Strings
-
-Jai strings are views over `u8`.
-
-Examples:
-```jai
-s := "hello";
-print("%\n", s);
-```
-
-Common helpers include `join`, `split`, `equal`, `compare`, `contains`, `begins_with`, and `ends_with`.
-
-`to_c_string` allocates a C-style string on the heap, and `c_style_strlen` computes its length.
-
-## Immutables And Statics
-
-Jai constants are created with `::`.
-
-Example:
-```jai
-PI :: 3.141592;
-```
-
-There is no `readonly` or `constexpr` keyword in the same way as C++.
-
-File-local scope is expressed with `#scope_file`, while exported symbols use `#scope_export`.
-
-## Header Guards
-
-Not applicable in Jai: there are no header files, so there is no need for header guards.
-
-## Optional Header Only Libraries
-
-Not applicable in Jai either.
-Jai libraries are modules and source files, not header-only libraries.
-
-## Preprocessor
-
-Jai has compile-time directives rather than a traditional C preprocessor.
-
-Common directives:
-- `#import`
-- `#load`
-- `#if`, `#else`, `#elif`, `#endif`
-- `#exists`
-- `#run`
-- `#type`
-- `#add_context`
-
-Example:
-```jai
-#if DEBUG {
-    print("debug build\n");
-}
-```
-
-`#exists` lets you ask whether a symbol is available at compile time.
-
-## Function Pointers
-
-Function pointers are declared much like function types.
-
-Example:
-```jai
-type_fn : (int, int) -> int;
-add :: (a: int, b: int) -> int { return a + b; }
-fn : type_fn = add;
-result := fn(1, 2);
-```
-
-## Member Definition Outside The Class
-
-Jai does not have separate class declarations and definitions.
-There is no equivalent to `ClassName::MethodName()` because Jai does not use C++-style classes.
-
-## Member Initializer List
-
-Jai has no constructor member initializer list.
-Structs are initialized directly, and fields are assigned via aggregate initialization or explicit assignment.
-
-## L-values And R-values
-
-Jai mostly treats named variables as addressable values and expressions as temporaries.
-
-A variable like `x` is addressable, while `x + 1` is a temporary expression.
-
-## Move Semantics
-
-Jai does not have C++ move constructors or rvalue references.
-Ownership is explicit: either copy values, or use pointers and allocators.
-
-Example:
-```jai
-value := big_data;
-copy := value; // copies the value if needed
-```
-
-For large buffers, prefer pointers or custom allocator-based containers.
-
-## Notes
-
-This guide matches the structure of the C++ reference guide, while explaining Jai’s equivalent concepts and the places where Jai intentionally diverges.
-Multi-dimensional arrays work too:
-```jai
-matrix : [4][4]float;
-```
-
-## Polymorphism
+In jai generics is called polymorphism.
 
 Jai’s generics are compile-time polymorphism using `$T` and `Type` parameters.
 
-A simple polymorphic function:
+Generic function:
 ```jai
 foo :: (x: $T) {
     print("%\n", x);
@@ -517,21 +417,59 @@ foo(1);
 foo("hello");
 ```
 
-A polymorphic struct:
+Generic function with multiple types:
+```jai
+foo :: (a: $A, b: $B, c: $C) {
+    // use a or b or c here
+}
+```
+
+Polymorphic structs:
 ```jai
 Box :: struct(T: Type) {
     value: T;
 };
 
-b : Box(int);
+b: Box(int);
 b.value = 5;
+print("type = %", a.T); // you can quiry the type of a stuct like this (prints out "type = int")
 ```
 
-Jai also supports type constraints such as `$T/SomeStruct` and `$T/interface SomeStruct`, which are similar to traits or interface-based matching.
+Jai also supports type constraints such as `$T/SomeStruct` and `$T/interface SomeStruct`, which are similar to traits or interfaces.
 
-## Modules and External Libraries
+## Interfaces / Traits
 
-Jai uses modules instead of headers. You can import bundled modules with `#import` and local code with `#load`.
+todo
+
+You can constrain polymorphic types with `/` and `interface` syntax.
+
+## Strings
+
+todo
+
+Jai strings are are array views (slices) over `u8`, arrays are also not null terminated.
+
+## Compile Time Directives (Preprocessor)
+
+todo
+
+## Function Pointers / Function Types
+
+Function pointers are declared much like function types.
+
+Example:
+```jai
+add :: (a: int, b: int) -> int { return a + b; }
+
+function_type: (int,int)->int;
+function: function_type = add;
+
+function: (int,int)->int = add; // also works
+
+result := function(1, 2);
+```
+
+## External Libraries / Interop
 
 For external libraries, Jai can map foreign functions and dynamic libraries using `#library` and `#foreign` declarations.
 
@@ -541,13 +479,8 @@ lz4 :: #library "liblz4";
 LZ4_compressBound :: (inputSize: s32) -> s32 #foreign lz4;
 ```
 
-Callback types use `#type` and `#c_call` for ABI compatibility.
-
 ## Summary
 
-- Jai has explicit fixed-width types, plus `int` = `s64` and `float` = `float32`.
 - Jai has no C++ references; use pointers and `.*` dereference.
-- Heap allocation is explicit and usually performed by library helpers.
 - Jai does not use header files; it uses `#import` and `#load`.
 - Polymorphism is compile-time and uses `$T` and `Type`.
-- Jai’s initialization and constant syntax is different from C# / C++ but keeps the same concept of stack vs heap and value semantics.
