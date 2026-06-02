@@ -492,6 +492,8 @@ Jai’s generics system is compile time polymorphism using the `x: $T` and `$T: 
 
 The `$` before a value means we must know the value at compile time (needs to be a constant) for it to work.
 
+And `$$` before a value means it can be optionally constant but also a runtime value.
+
 Generic function taking variable of any type:
 ```jai
 foo :: (x: $T) {
