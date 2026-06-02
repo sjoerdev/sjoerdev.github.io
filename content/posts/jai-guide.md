@@ -125,7 +125,24 @@ d := ifx a > b then 10 else 1000; // with explicit then
 
 ## References
 
-Jai does not have C++ references. It has value semantics by default and uses pointers when you need an address.
+Jai has a unique take on how to deal with reference vs value semantics.
+
+Arguments to procedures fall into two basic categories:
+
+- `small` (basic types that are <= 8 bytes)
+
+The `small` arguments are always passed by value into a procedure. They fit into simple machine
+registers on a 64-bit machine, so it would be less efficient to pass them by reference than
+by value. So they are always passed by value. These arguments behave the same as they do in C.
+
+- `big` (any type > 8 bytes, and any struct regardless of size)
+
+The `big` arguments are passed maybe by reference. But in terms of language semantics, it looks like
+you have a copy of the struct by value. It behaves like a `const&` parameter would
+behave in C++, so you can't modify it even though it was passed by reference.
+
+In practive things pretty much always work as if they are copied and if you want to modify what you pass you use a pointer.
+You can pretend like everything is passed by value like it is in the C language.
 
 A regular parameter doesnt mutate the original:
 ```jai
