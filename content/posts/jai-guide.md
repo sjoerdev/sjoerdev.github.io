@@ -516,7 +516,70 @@ print("type = %", box.T); // you can quiry the type of a stuct like this (prints
 
 ## Interfaces / Traits / Constraints
 
-todo `/`, `interface`, `$T/SomeStruct`, `$T/interface SomeStruct`
+todo
+
+uses things like `/`, `interface`, `$T/SomeStruct`, `$T/interface SomeStruct`
+
+When working with polymorphic procedures and structs, there's a lightweight syntax for restricting the type of the argument. It looks like: `f :: (x: $T/SomeType) { ... }`
+
+`$T/Object` indicates that the `$T` must be a parameterized struct of the type `Object`
+
+```jai
+HashTable :: struct (K: Type, V: Type, N: int) {
+    keys: [N]K;
+    values: [N]V;
+}
+
+function :: (table: $T/HashTable, key: T.K, value: T.V) {
+  // do stuff
+}
+
+// implicit polymorphism version
+function :: (table: Table, key: table.K, value: table.V) {
+  // do stuff
+}
+```
+
+`$T/interface` Object indicates that the `$T` must have the fields that `Object` has. `$T/interface` accepts only types that contain members declared in the target struct.
+
+```jai
+Vec3 :: struct {
+    x, y, z: float;
+}
+
+OtherVec3 :: struct {
+    x, y, z: float;
+}
+
+dot_product :: (a: $T/interface Vec3, b: T) -> float {
+    return a.x * b.x + a.y * b.y + a.z * b.z;
+}
+
+main :: () {
+    another: OtherVec3;
+    product := dot_product(another, another);
+}
+```
+
+```jai
+NamedType :: struct {
+    name: string;
+}
+
+foo :: (x: $T/interface NamedType) {
+    // do something
+}
+
+// Any struct with the same member names and types as 'NamedType' can be passed
+// as an argument to 'foo'. This includes just a NamedType, but then it's
+// pointless to use 'interface'. It's more for cases like this:
+
+SomeThing :: struct {
+    name: string;
+    tag: string;
+    type: Type;
+}
+```
 
 ## Strings
 
