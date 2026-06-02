@@ -338,8 +338,7 @@ a: u32 = 50000;
 b: u16 = cast(u16)a;
 ```
 
-For truncation or unchecked casts, use the `trunc` or `no_check` flags. 
-Jai uses comma separated modifiers like this: `operation,modifier,modifier(type)value`:
+For truncation or unchecked casts, use the `trunc` or `no_check` flags:
 ```jai
 b = cast,trunc(u16)a;
 b = cast,no_check(u16)a;
@@ -562,3 +561,39 @@ result := function(1, 2);
 ## External Libraries / Interop
 
 todo
+
+## Comma Modifiers
+
+In jai there is an interresting mostly undocumented syntax feature that used commas to pass modifiers to compiler directives and compiler keywords.
+
+Since this isnt well documented right now, i have given the name comma modifier myself, i dont know how else to call it.
+
+Jai currently doesnt have a complete list of all compiler directives and compiler buildin keywords, so many will be missing here.
+
+Jai is changing constantly at the time of writing this (june 2026), and many of these directives will probably be depricated or changed.
+
+these are some compiler directives that have comma modifiers:
+
+| Directive         | Modifiers                                                     |
+|-------------------|---------------------------------------------------------------|
+| #code             | `,null` / `,typed` / `,infer`                                 |
+| #import           | `,string` / `,file` / `,dir`                                  |
+| #library          | `,system` / `,no_static_library` / `,no_dll` / `,link_always` |
+| #run              | `,stallable` / `,host`                                        |
+| #string           | `,cr`                                                         |
+| #system_library   | `,no_dll` / `,link_always`                                    |
+| #type             | `,distinct` / `,isa`                                          |
+
+
+these are some build in compiler keywords that have comma modifiers:
+
+| Keyword           | Modifiers                                                     |
+|-------------------|---------------------------------------------------------------|
+| cast              | `,trunc` / `,force` / `,no_check`                             |
+| push_context      | `,defer_pop`                                                  |
+| using             | `,except()` / `,only()` / `,map(mapper)` / `,no_parameters`   |
+
+## Metaprogramming
+
+todo
+
