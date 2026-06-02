@@ -129,13 +129,12 @@ Jai has a unique take on how to deal with reference vs value semantics.
 
 Arguments to procedures fall into two basic categories:
 
-- `small` (basic types that are <= 8 bytes)
+- `small` -> basic types that are less than or equal to 8 bytes.
+- `big` -> any type larger than 8 bytes, and any struct regardless of size.
 
 The `small` arguments are always passed by value into a procedure. They fit into simple machine
 registers on a 64-bit machine, so it would be less efficient to pass them by reference than
 by value. So they are always passed by value. These arguments behave the same as they do in C.
-
-- `big` (any type > 8 bytes, and any struct regardless of size)
 
 The `big` arguments are passed maybe by reference. But in terms of language semantics, it looks like
 you have a copy of the struct by value. It behaves like a `const&` parameter would
