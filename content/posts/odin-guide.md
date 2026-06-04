@@ -132,6 +132,57 @@ foo = x when condition else y // compile time ternary
 
 ## Pointers
 
+pointers have the same semantics as in c, but not the same syntax. using `^type` as pointer types, `ptr^` as dereference syntax, and `&value` as the adress of operator.
+
+```c
+// c
+int x = 1;
+int* p = &x;
+*p = 2;
+```
+
+```odin
+// odin
+x := 1;
+p: ^int = &x;
+p^ = 2;
+```
+
+There is no such thing as pointer aritmatic like in c, 
+because unlike in c arrays are not just pointers, 
+for pointer arritmatic like behaviour there are "multi pointers" of the `[^]T` type, 
+which are pointers that map to multiple items, and can be indexed like an array. 
+multi pointers are easiest to use with the `raw_data()` buildin call.
+
+simple usage example of a multi pointer:
+
+```odin
+ptr: [^]int
+arr := [3]int{10, 20, 30}
+ptr = raw_data(arr[:]) // get multi pointer to the array
+fmt.println(ptr, ptr[1], arr) // 0x7FFCBE9FE688 20 [10, 20, 30]
+```
+
+basic rules for indexing and slicing for multi pointers:
+
+```odin
+x: [^]T
+
+x[i] -> T // indexing a multi ptr
+x[:] -> [^]T // slicing with full range
+x[i:] -> [^]T // slicing with specific start
+x[:n] -> []T // slicing with specific end
+x[i:n] -> []T // slicing with specific start and end
+```
+
+what multi pointers support:
+- indexing
+- slicing (if both high and low operands are given)
+- implicit conversions between `^T` and `[^]T`
+
+What multi pointers do not support:
+- dereferencing
+
 ## Modules And Imports
 
 ## Standard Library
