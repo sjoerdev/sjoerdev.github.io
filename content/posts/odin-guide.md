@@ -118,6 +118,14 @@ for i := 0; i < 10; i += 1 do foo()
 
 ## Ternary Operator
 
+In Odin there are 3 types of ternary operator syntaxes:
+
+```odin
+foo = condition ? x : y // runtime ternary
+foo = x if condition else y // runtime ternary
+foo = x when condition else y // compile time ternary
+```
+
 ## References
 
 ## Memory
