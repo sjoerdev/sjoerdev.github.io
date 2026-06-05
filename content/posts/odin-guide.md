@@ -313,7 +313,7 @@ A slice is just a view into an existing array, a slice is basically a pointer an
 
 Dynamic arrays are similar to slices, but their lengths may change during runtime. Dynamic arrays are resizeable and they are allocated when needed using the current context allocator.
 
-Slices and dynamic arrays are simple small structures with a pointer to an underlying array, therefore copying or passing a slice or dynamic array will not copy the underlying data. Because of this they work kinda like reference types.
+Slices and dynamic arrays are simple small structures with a pointer to an underlying array, therefore copying or passing a slice or dynamic array will not copy the underlying data. Because of this they work kinda like reference types. Fixed capacity dynamic arrays do however copy the data
 
 The zero value of a slice is nil. A nil slice has a length of 0 and does not point to any underlying memory. Slices can be compared against nil and nothing else.
 
