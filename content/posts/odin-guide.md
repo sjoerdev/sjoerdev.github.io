@@ -260,6 +260,27 @@ Packages can be namespaced by using the `import foo "core:fmt"` syntax.
 
 ## Casting
 
+In odin there is no implicit widening type conversion like in c, all types must be manually cast, luckily odin has a nice and simple syntax for type conversions and casting:
+
+The expression `T(value)` converts `value` to the `T` type:
+```odin
+i: i64 = 123
+f: f64 = f64(i)
+```
+
+The `cast()` operator can also be used to do the same thing:
+```odin
+i: i64 = 123
+f: f64 = cast(f64)i
+```
+
+The `transmute()` operator is a bit cast conversion between two types of the same size, 
+the `transmute(T)value` expression is the same as the `(^T)(&value)^` expression:
+```odin
+i: i64 = 123
+f: f64 = transmute(f64)i
+```
+
 ## Array Programming (Operator Overloading)
 
 ## Arrays / Slices
