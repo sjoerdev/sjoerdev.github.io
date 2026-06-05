@@ -220,7 +220,7 @@ ptr = raw_data(arr[:]) // get multi pointer to a slice of the array
 fmt.println(ptr, ptr[1], arr) // 0x7FFCBE9FE688 20 [10, 20, 30]
 ```
 
-basic rules for indexing and slicing for multi pointers:
+basic rules about what returns when indexing or slicing multi pointers:
 
 ```odin
 mptr: [^]T
@@ -279,6 +279,28 @@ the `transmute(T)value` expression is the same as the `(^T)(&value)^` expression
 ```odin
 i: i64 = 123
 f: f64 = transmute(f64)i
+```
+
+## Function Overloading
+
+Unlike in many other languages, operator overloading in Odin is explicit, 
+the reason being that procedures can be nested within procedures and, as a result, 
+determining which procedure should be used in the case of implicit overloading is complex, 
+therefore explicit overloading makes more sense.
+
+Here is an example of how to do function overloading:
+
+```odin
+bool_to_string :: proc(b: bool) -> string {
+	// convert bool to string
+}
+
+int_to_string :: proc(i: int) -> string {
+	// convert int to string
+}
+
+// convert bool or int to string
+to_string :: proc{bool_to_string, int_to_string}
 ```
 
 ## Array Programming (Operator Overloading)
