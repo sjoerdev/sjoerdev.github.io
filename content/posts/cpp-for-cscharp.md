@@ -37,7 +37,13 @@ This is a table that hold a comparison of all fundamental types you should know 
 
 ## References
 
-In C++ classes are value types by default, not reference types like in C#.
+In C++ classes are value types by default, not reference types like in C#, in C# this is how its decided if a value if passed by value (copied) or passed by reference:
+
+|      Call      | Struct / Basic Type |       Class        |
+| -------------- | ------------------- | ------------------ |
+| `Foo(bar)`     | value (copied)      | reference          |
+| `Foo(ref bar)` | reference           | reference          |
+| `Foo(in bar)`  | readonly reference  | readonly reference |
 
 Passing a class instance by reference to a function in C# is:
 ```csharp
@@ -302,10 +308,8 @@ the recommended way to use the standard library for plain C in modern C++ code.
 
 **Stack / Heap:**
 
-C++ allows you to initialize objects on the stack or the heap. But In C# you mostly don't get to choose, classes will be on the heap most of the time like most other reference types, 
-and structs on the stack most of the time like most other value types, but structs are in some cases not on the stack but on the heap too, this is something C# decides at runtime based on a number of factors like for example its scope. 
-So generally speaking in C# you have not much control over what gets allocated on the stack and what on the heap. But generally you can assume reference types are on the heap, and value types are on the stack. 
-And in C# you must always use the ``new`` keyword when creating an object it doesnt matter if the object you are creating is a reference or value type or if its on the stack or on the heap, ``new`` always gets used, 
+C++ allows you to to choose when to initialize objects on the stack or the heap, unlike in C# where certain rules determine if something gets to live on the heap or not. 
+In C# you must always use the ``new`` keyword when creating an object it doesnt matter if the object you are creating is a reference or value type or if its on the stack or on the heap, ``new`` always gets used, 
 while in C++ ``new`` means initialization on the heap. So if you want to initialize something on the heap in C++, just pick any of the normal ways you would initialize/create a variable on the stack, and use the ``new`` keyword 
 after the equal sign and make the returning type a pointer, so for example take this stack initialization: ``Type test = Type(x);`` and turn it into ``Type* test = new Type(x);`` to make it a heap initialization.
 
