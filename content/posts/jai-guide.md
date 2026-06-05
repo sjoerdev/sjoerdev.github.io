@@ -76,7 +76,7 @@ for < i : 0..10 {
 }
 
 array := int.[1, 2, 3, 4, 5];
-for *element : array { // To iterate an array by pointer, add a * in front of the for loop.
+for *element : array { // To iterate an array by pointer, add a * in front of the element.
     element.* = 0; // Because you are taking a pointer to the array, you can modify the array elements.
 }
 
