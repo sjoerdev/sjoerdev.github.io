@@ -147,8 +147,14 @@ foo :: proc() -> (a: int) {
 
 **Simple for loops:**
 
-Doing loops in Odin is very simple and c like, with some nice syntax choices, like merging for and while loops, 
-and having a `for value in collection` syntax for things like arrays.
+Doing loops in Odin is very simple and c like, with some nice syntax choices, like merging for and while loops into one concept.
+
+Types of loop syntaxes in odin language:
+- range based loop: `for index in range` for ranges.
+- collection loop: `for value in collection` for collections like arrays.
+- traditional loop: `for init; condition; increment` for everything else.
+
+Various different loop examples:
 
 ```odin
 // basic loop
