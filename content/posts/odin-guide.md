@@ -364,14 +364,10 @@ dyn_array := make([dynamic]int, 0, 4) // initialize with make
 value: int = dyn_array[0] // index
 
 // dynamic literals are not allowed because they hide allocations
-dyn_array: [dynamic]int = [dynamic]int{1, 2, 3, 4} // error
 dyn_array := [dynamic]int{1, 2, 3, 4} // error
-dyn_array: [dynamic]int = {1, 2, 3, 4} // error
 
 // fixed capacity dynamic literals are however allowed
-capped_dyn_array: [dynamic;4]int = [dynamic;4]int{1, 2, 3, 4}
-capped_dyn_array := [dynamic;4]int{1, 2, 3, 4}
-capped_dyn_array: [dynamic;4]int = {1, 2, 3, 4}
+dyn_array := [dynamic;4]int{1, 2, 3, 4}
 
 // get length of dynamic array
 length: int = len(array)
