@@ -52,6 +52,16 @@ x :: int // this works, x is a *type*
 x := int // error, you'll need to do typeid_of(int)
 ```
 
+variables can be declared in one of the following ways, the declaration syntax is similar to jai and golang in use
+
+```odin
+x: int // declaration
+x: int = 4 // explicit type
+x := 4 // inferred type
+x :: 4 // inferred type constant
+x :int: 4 // explicit type constant
+```
+
 ## Loops
 
 **Simple for loops:**
@@ -334,7 +344,7 @@ array: [4]int = [4]int{1, 2, 3, 4} // initialize with literal
 value: int = array[0] // index
 
 // other ways of initializing
-array: [4]int = [4]int{1, 2, 3, 4} // basic array literall
+array: [4]int = [4]int{1, 2, 3, 4} // explicit literal type
 array: [4]int = {1, 2, 3, 4} // inferred literal type
 array := [4]int{1, 2, 3, 4} // inferred type
 array := [?]int{1, 2, 3, 4} // inferred size
