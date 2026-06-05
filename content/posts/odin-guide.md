@@ -45,6 +45,13 @@ a :: int; // a is int
 b: a = 1; // b is now an int
 ```
 
+In Odin `typeid` is a bit of an overloaded term, because there is a difference between a compile time typeid and a runtime typeid.
+if it's at compile time, typeid is a type, if it's at runtime, typeid is an integer representing a type
+```odin
+x :: int // this works, x is a *type*
+x := int // error, you'll need to do typeid_of(int)
+```
+
 ## Loops
 
 **Simple for loops:**
