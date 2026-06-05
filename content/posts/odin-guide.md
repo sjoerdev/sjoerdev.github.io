@@ -317,6 +317,15 @@ Slices and dynamic arrays are simple small structures with a pointer to an under
 
 The zero value of a slice is nil. A nil slice has a length of 0 and does not point to any underlying memory. Slices can be compared against nil and nothing else.
 
+types of arrays:
+|               Type:               |     Syntax     |
+| --------------------------------- | -------------- |
+| static array                      | `[N]T`         |
+| static array (inferred type)      | `[?]T`         |
+| slice                             | `[]T`          |
+| dynamic array                     | `[dynamic]T`   |
+| dynamic array (explicit capacity) | `[dynamic;N]T` |
+
 static arrays:
 ```odin
 // basic usage
@@ -354,7 +363,7 @@ dyn_array: [dynamic; 16]int // declare with max capacity
 dyn_array := make([dynamic]int, 0, 4) // initialize with make
 value: int = dyn_array[0] // index
 
-// the following ways of initializing a dynamic array are not allowed (dynamic literals where removed)
+// dynamic literals are not allowed because they hide allocations
 dyn_array: [dynamic]int = [dynamic]int{1, 2, 3, 4} // error
 dyn_array := [dynamic]int{1, 2, 3, 4} // error
 dyn_array: [dynamic]int = {1, 2, 3, 4} // error
@@ -378,10 +387,40 @@ clear(&array)
 multi dimensional arrays:
 ```odin
 // creating a 2D static array
+multi := [3][3]int
+
 // creating a 3D static array
+multi := [3][3][3]int
+
 // initializing a 2D array
-// initializing a 2D array with inferred type
+multi := [3][3]int{
+    {1, 2, 3},
+    {4, 5, 6},
+    {4, 5, 6},
+}
+
+// initializing a 2D array with explicit type
+multi := [3][3]int{
+    [3]int{1, 2, 3},
+    [3]int{4, 5, 6},
+    [3]int{4, 5, 6},
+}
+
 // indexing a 2D array
+value := multi[0][0]
+```
+
+enum arrays:
+```odin
+SomeEnum :: enum {
+    First,
+    Second,
+}
+
+enum_array := [SomeEnum]int{
+    .First = 1,
+    .Second = 2,
+}
 ```
 
 ## Array Programming (Operator Overloading)
