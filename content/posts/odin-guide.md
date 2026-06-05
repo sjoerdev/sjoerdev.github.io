@@ -72,7 +72,7 @@ A procedure literal in Odin is defined with the proc keyword, following this `pr
 ```odin
 // basic procedure example
 multiply :: proc(x: int, y: int) -> int {
-	return x * y
+    return x * y
 }
 ```
 
@@ -113,8 +113,8 @@ usage of varying number of arguments:
 
 ```odin
 sum :: proc(nums: ..int) -> int {
-	for n in nums do result += n
-	return result
+    for n in nums do result += n
+    return result
 }
 
 sum() // 0
@@ -127,19 +127,19 @@ usage of named outputs:
 ```odin
 // without named output
 foo :: proc() -> int {
-	a := 10
-	return a
+    a := 10
+    return a
 }
 
 // with named output
 foo :: proc() -> (a: int) {
-	a = 10
+    a = 10
 }
 
 // with named output and naked return statement
 foo :: proc() -> (a: int) {
-	a = 10
-	return // a return without arguments returns the named return value
+    a = 10
+    return // a return without arguments returns the named return value
 }
 ```
 
@@ -159,66 +159,66 @@ Various different loop examples:
 ```odin
 // basic loop
 for i := 0; i < 10; i += 1 {
-	fmt.println(i)
+    fmt.println(i)
 }
 
 // while loop equivelant
 for i < 10 {
-	fmt.println(i)
+    fmt.println(i)
 }
 
 // range loop
 for i in 0..<10 {
-	fmt.println(i)
+    fmt.println(i)
 }
 
 // array loop (array/slice/dynamic/string/map)
 for value in some_array {
-	fmt.println(value)
+    fmt.println(value)
 }
 
 // named index array loop
 for value, index in some_array {
-	fmt.println(index, value)
+    fmt.println(index, value)
 }
 
 // named key and value map loop
 for key, value in some_map {
-	fmt.println(key, value)
+    fmt.println(key, value)
 }
 
 // infinite loop
 for {
-	fmt.println(i)
+    fmt.println(i)
 }
 
 // nested loop
 for i := 0; i < 10; i += 1 {
-	for j := 0; j < 10; j += 1 {
+    for j := 0; j < 10; j += 1 {
         fmt.println(i, j)
     }
 }
 
 // nested array loop
 for outer in outer_array {
-	for inner in inner_array {
+    for inner in inner_array {
         fmt.println(inner, outer)
     }
 }
 
 // reverse loop
 #reverse for x in array {
-	fmt.println(x)
+    fmt.println(x)
 }
 
 // array loop by reference
 for &value in some_array {
-	value = something // element can be modified
+    value = something // element can be modified
 }
 
 // map loop by referende (key can not be referenced)
 for key, &value in some_map {
-	value += 1
+    value += 1
 }
 
 // single line loops with scope block
@@ -389,11 +389,11 @@ Here is an example of how to do function overloading:
 
 ```odin
 bool_to_string :: proc(b: bool) -> string {
-	// convert bool to string
+    // convert bool to string
 }
 
 int_to_string :: proc(i: int) -> string {
-	// convert int to string
+    // convert int to string
 }
 
 // convert bool or int to string
@@ -544,7 +544,7 @@ Build in fields like `xyzw` and `rgba` are available on any array with a length 
 ```odin
 Vector3 :: [3]f32
 foo :: proc(a: Vector3) -> f32 {
-	return a.x + a.y + a.z // notice xyz is buildin
+    return a.x + a.y + a.z // notice xyz is buildin
 }
 ```
 
