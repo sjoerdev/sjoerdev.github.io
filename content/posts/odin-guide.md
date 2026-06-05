@@ -41,7 +41,7 @@ This means functions are values and can be assigned like any other value.
 All types like `int` and `float` are of type `typeid`.
 
 ```odin
-a: typeid = int; // a is int
+a :: = int; // a is int
 b: a = 1; // b is now an int
 ```
 
