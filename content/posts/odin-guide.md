@@ -60,6 +60,87 @@ x: int = 4 // explicit type
 x := 4 // inferred type
 x :: 4 // inferred type constant
 x :int: 4 // explicit type constant
+x, y, z: int // multi variable declaration
+```
+
+## Procedures (Functions)
+
+In odin a function is called a procedure. Procedures are first class types, they can be assigned to variables like any other type.
+
+A procedure literal in Odin is defined with the proc keyword, following this `proc(input) -> (output) { ... }` as syntax:
+
+```odin
+// basic procedure example
+multiply :: proc(x: int, y: int) -> int {
+	return x * y
+}
+```
+
+List of all the ways to give inputs and outputs to a procedure:
+
+```odin
+// inputs (arguments)
+
+proc() // no arguments
+proc(x: int) // one argument
+proc(x: int, y: int) // two arguments
+proc(x, y: int) // equivelant to above
+proc(x := 10) // default value for argument
+proc(nums: ..int) // variable argument amount
+
+// outputs (return values)
+
+proc() // no return values
+proc() -> int // one return value
+proc() -> (int, int) // two return values
+proc() -> (a: int, b: int) // two named return values
+proc() -> (a, b: int) // equivelant to above
+proc() -> (a := 10) // default value for return value
+proc() -> (..int) // variable return value amount
+proc() -> (nums: ..int) // named variable return value amount
+```
+
+usage of default argument values:
+
+```odin
+foo :: proc(x := 10) { ... }
+a = foo() // uses default value
+b = foo(4) // overrides default value
+b = foo(x=4) // overrides default value by name
+```
+
+usage of varying number of arguments:
+
+```odin
+sum :: proc(nums: ..int) -> int {
+	for n in nums do result += n
+	return result
+}
+
+sum() // 0
+sum(1, 2) // 3
+sum(1, 2, 3, 4, 5) // 15
+sum(..slice) // passing by slice
+```
+
+usage of named outputs:
+```odin
+// without named output
+foo :: proc() -> int {
+	a := 10
+	return a
+}
+
+// with named output
+foo :: proc() -> (a: int) {
+	a = 10
+}
+
+// with named output and naked return statement
+foo :: proc() -> (a: int) {
+	a = 10
+	return // a return without arguments returns the named return value
+}
 ```
 
 ## Loops
