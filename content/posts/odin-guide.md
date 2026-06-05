@@ -368,6 +368,11 @@ dyn_array: [dynamic]int = [dynamic]int{1, 2, 3, 4} // error
 dyn_array := [dynamic]int{1, 2, 3, 4} // error
 dyn_array: [dynamic]int = {1, 2, 3, 4} // error
 
+// fixed capacity dynamic literals are however allowed
+capped_dyn_array: [dynamic;4]int = [dynamic;4]int{1, 2, 3, 4}
+capped_dyn_array := [dynamic;4]int{1, 2, 3, 4}
+capped_dyn_array: [dynamic;4]int = {1, 2, 3, 4}
+
 // get length of dynamic array
 length: int = len(array)
 
@@ -421,6 +426,8 @@ enum_array := [SomeEnum]int{
     .First = 1,
     .Second = 2,
 }
+
+value := enum_array[.First]
 ```
 
 ## Array Programming (Operator Overloading)
