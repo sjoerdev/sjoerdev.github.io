@@ -36,6 +36,14 @@ This is a table that hold a comparison of all fundamental types you should know 
 | type identifier          | `typeid`           | `Type`    |
 | null                     | `nil`              | `null`    |
 
+In odin types are first class, meaning types are values. 
+This means functions are values and can be assigned like any other value.
+All types like `int` and `float` are of type `typeid`.
+
+```odin
+a: typeid = int; // a is int
+b: a = 1; // b is now an int
+```
 
 ## Loops
 
