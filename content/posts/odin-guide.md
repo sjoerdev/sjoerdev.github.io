@@ -41,7 +41,7 @@ This means functions are values and can be assigned like any other value.
 All types like `int` and `float` are of type `typeid`.
 
 ```odin
-a :: = int; // a is int
+a :: int; // a is int
 b: a = 1; // b is now an int
 ```
 
@@ -135,6 +135,14 @@ foo = x when condition else y // compile time ternary
 ```
 
 ## References
+
+In odin there are no references like in C++ and no reference types like in C#, Odin is similar to C in that you need a pointer to reference variables.
+    
+When passing a value as an argument, it passes as a pointer if automatically if its more effecient
+this is enabled by the fact that all parameters are immutable in Odin, making it feel like everything is always copied like in c.
+Passing a pointer value makes a copy of the pointer, not the data it points to. 
+slices, dynamic arrays, and maps have no special considerations here, 
+they are normal structs with pointer fields, and are passed as such, in that regard they work like reference types.
 
 ## Memory
 
