@@ -145,13 +145,46 @@ foo = x when condition else y // compile time ternary
 
 In odin there are no references like in C++ and no reference types like in C#, Odin is similar to C in that you need a pointer to reference variables.
     
-When passing a value as an argument, it passes as a pointer if automatically if its more effecient
-this is enabled by the fact that all parameters are immutable in Odin, making it feel like everything is always copied like in c.
-Passing a pointer value makes a copy of the pointer, not the data it points to. 
+When passing a value as an argument, it passes as a pointer automatically if its more effecient
+this is enabled by the fact that all parameters are immutable in Odin, like a `const&` in cpp, making it feel like everything is always copied like in c.
+
+Passing a pointer value always makes a copy of the pointer, not the data it points to. 
+
 slices, dynamic arrays, and maps have no special considerations here, 
 they are normal structs with pointer fields, and are passed as such, in that regard they work like reference types.
 
 ## Memory
+
+Odin is a manual memory managed language, it requires you to allocate and free heap memory yourself. Stack memory is tied to its scope and freed automatically.
+
+`new()` -> allocates a value of the type given and returns a pointer:
+
+```odin
+ptr: ^int = new(int)
+```
+
+`free()` - frees the memory at the pointer given:
+
+```odin
+ptr: ^int = new(int)
+free(ptr)
+```
+
+`make()` - allocates memory for the backing data of either a slice, dynamic array, or map:
+
+```odin
+my_slice := make([]int, 100)
+my_dynamic_array := make([dynamic]int, 100)
+my_map := make(map[string]int, 100)
+```
+
+`delete()` - deletes the backing memory of a anything allocated with make:
+
+```odin
+delete(my_slice)
+delete(my_dynamic_array)
+delete(my_map)
+```
 
 ## Pointers
 
