@@ -53,7 +53,7 @@ for 1..10 {
     print("%", it); // it is the iteration
 }
 
-for i: 1..10 {
+for i : 1..10 {
     print("%", i); // you can name the iteration
 }
 
@@ -61,22 +61,22 @@ for foods {
     print("%, %", it_index, it); // if looping over a collection you can use it_index to get its index
 }
 
-for element, index: foods {
+for element, index : foods {
     print("%, %", index, element); // you can also name both the iteration and the index
 }
 
-for i: 0..10 {
-    for j: 0..10 {
+for i : 0..10 {
+    for j : 0..10 {
         print("%, %", i, j); // you can also have a nested loop
     }
 }
 
-for < i: 0..10 {
+for < i : 0..10 {
     print("%", i); // to do a for loop in reverse, add a < in front of the for loop
 }
 
 array := int.[1, 2, 3, 4, 5];
-for * element: array { // To iterate an array by pointer, add a * in front of the for loop.
+for *element : array { // To iterate an array by pointer, add a * in front of the for loop.
     element.* = 0; // Because you are taking a pointer to the array, you can modify the array elements.
 }
 
@@ -84,7 +84,7 @@ for array {
     print("%", it); // simple jai style array loop
 }
 
-for i: 0..array.count-1 {
+for i : 0..array.count-1 {
     print("%", array[i]); // c like verbose array loop
 }
 
