@@ -157,30 +157,30 @@ p^ = 2;
 ```
 
 There is no such thing as pointer aritmatic like in c, 
-because unlike in c arrays are not just pointers, 
+because unlike in c, arrays are not just pointers, 
 for pointer arritmatic like behaviour there are "multi pointers" of the `[^]T` type, 
 which are pointers that map to multiple items, and can be indexed like an array. 
-multi pointers are easiest to use with the `raw_data()` buildin call.
+multi pointers are easiest to use with the `raw_data()` buildin call. 
+the `raw_data` is a builtin which returns the underlying data of a builtin data type as a multi pointer.
 
 simple usage example of a multi pointer:
 
 ```odin
 ptr: [^]int
 arr := [3]int{10, 20, 30}
-ptr = raw_data(arr[:]) // get multi pointer to the array
+ptr = raw_data(arr[:]) // get multi pointer to a slice of the array
 fmt.println(ptr, ptr[1], arr) // 0x7FFCBE9FE688 20 [10, 20, 30]
 ```
 
 basic rules for indexing and slicing for multi pointers:
 
 ```odin
-x: [^]T
-
-x[i] -> T // indexing a multi ptr
-x[:] -> [^]T // slicing with full range
-x[i:] -> [^]T // slicing with specific start
-x[:n] -> []T // slicing with specific end
-x[i:n] -> []T // slicing with specific start and end
+mptr: [^]T
+mptr[i] -> T // indexing
+mptr[:] -> [^]T // slicing with full range
+mptr[i:] -> [^]T // slicing with specific start
+mptr[:n] -> []T // slicing with specific end
+mptr[i:n] -> []T // slicing with specific start and end
 ```
 
 what multi pointers support:
@@ -192,6 +192,17 @@ What multi pointers do not support:
 - dereferencing
 
 ## Modules And Imports
+
+Instead of headers of modules or namespaces, the Odin language uses packages. 
+Packages in odin are directory based, similar to how golang manages packages, 
+this makes using submodules usefull, and makes it so you dont need a package manager.
+In Odin a package is a directory of Odin code files, all of which have the same package declaration at the top.
+Make a file part of a package by putting the `package package_name` declaration at the top of the odin files in the package. 
+A directory cannot contain more than 1 package, so you can not have different package declarations in the same directory.
+To import a package (make it accesable), you use the `import` keyword.
+To import a standard library package you can use a prefex like `import "core:fmt"` where `core:` is the library prefix. 
+If no prefix is specified the package will be searched relative to the current file path.
+Packages can be namespaced by using the `import foo "core:fmt"` syntax.
 
 ## Standard Library
 
