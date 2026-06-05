@@ -41,8 +41,8 @@ This means functions are values and can be assigned like any other value.
 All types like `int` and `float` are of type `typeid`.
 
 ```odin
-a :: int; // a is int
-b: a = 1; // b is now an int
+a :: int // a is int
+b: a = 1 // b is now an int
 ```
 
 In Odin `typeid` is a bit of an overloaded term, because there is a difference between a compile time typeid and a runtime typeid.
@@ -199,9 +199,9 @@ int* p = &x;
 
 ```odin
 // odin
-x := 1;
-p: ^int = &x;
-p^ = 2;
+x := 1
+p: ^int = &x
+p^ = 2
 ```
 
 There is no such thing as pointer aritmatic like in c, 
@@ -303,9 +303,88 @@ int_to_string :: proc(i: int) -> string {
 to_string :: proc{bool_to_string, int_to_string}
 ```
 
-## Array Programming (Operator Overloading)
+## Static Arrays / Slices / Dynamic Arrays
 
-## Arrays / Slices
+In odin a static array is typed like `[N]T`, or `[?]T` for inferred size, and a slice like `[]T`, and a dynamic array like `[dynamic]T`, or `[dynamic;N]T` for a dynamic array with a fixed capacity.
+
+An array in odin is just like a struct in that its value type that contains all of its own data.
+
+A slice is just a view into an existing array, a slice is basically a pointer and length of an array. Any array can be turned into a slice using the `array[low:high]` syntax.
+
+Dynamic arrays are similar to slices, but their lengths may change during runtime. Dynamic arrays are resizeable and they are allocated when needed using the current context allocator.
+
+Slices and dynamic arrays are simple small structures with a pointer to an underlying array, therefore copying or passing a slice or dynamic array will not copy the underlying data. Because of this they work kinda like reference types.
+
+The zero value of a slice is nil. A nil slice has a length of 0 and does not point to any underlying memory. Slices can be compared against nil and nothing else.
+
+static arrays:
+```odin
+// basic usage
+array: [4]int // declare
+array: [4]int = [4]int{1, 2, 3, 4} // initialize with literal
+value: int = array[0] // index
+
+// other ways of initializing
+array: [4]int = [4]int{1, 2, 3, 4} // basic array literall
+array: [4]int = {1, 2, 3, 4} // inferred literal type
+array := [4]int{1, 2, 3, 4} // inferred type
+array := [?]int{1, 2, 3, 4} // inferred size
+```
+
+slices (array views):
+```odin
+// basic usage
+slice: []int // declare
+slice: []int = []int{1, 2, 3, 4} // initialize with literal
+slice: []int = array[:] // get slice from array
+value: int = slice[0] // index
+
+// the following slicing operations are all equivelant (if array has a lenghth of 6)
+slice := array[0:6]
+slice := array[:6]
+slice := array[0:]
+slice := array[:]
+```
+
+dynamic arrays:
+```odin
+// basic usage
+dyn_array: [dynamic]int // declare
+dyn_array: [dynamic; 16]int // declare with max capacity
+dyn_array := make([dynamic]int, 0, 4) // initialize with make
+value: int = dyn_array[0] // index
+
+// the following ways of initializing a dynamic array are not allowed (dynamic literals where removed)
+dyn_array: [dynamic]int = [dynamic]int{1, 2, 3, 4} // error
+dyn_array := [dynamic]int{1, 2, 3, 4} // error
+dyn_array: [dynamic]int = {1, 2, 3, 4} // error
+
+// get length of dynamic array
+length: int = len(array)
+
+// add to the dynamic array
+append(&array, 4)
+
+// remove third element from the dynamic array
+ordered_remove(&array, 2)
+
+// index the dynamic array
+value: int = array[0]
+
+// clear the dynamic array
+clear(&array)
+```
+
+multi dimensional arrays:
+```odin
+// creating a 2D static array
+// creating a 3D static array
+// initializing a 2D array
+// initializing a 2D array with inferred type
+// indexing a 2D array
+```
+
+## Array Programming (Operator Overloading)
 
 ## Polymorphism (Generics)
 
