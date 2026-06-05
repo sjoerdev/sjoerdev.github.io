@@ -438,8 +438,48 @@ value := enum_array[.First]
 
 ## Array Programming (Operator Overloading)
 
+Odin doesnt have traditional operator overloading, because operator overloading can cause a lot of hidden behaviour. 
+But for a lot of linear algebra, you still need to be able to do operations on complex types, like vectors and matrices. 
+This can be done with array programming.
+
+Arrays can represent complex structures, and in odin arrays can be used with operators:
+
+```odin
+Vector3 :: [3]f32
+a := Vector3{1, 2, 3}
+b := Vector3{1, 2, 3}
+c := a + b // {2, 4, 6}
+d := a * b // {1, 4, 9}
+```
+
+Build in fields like `xyzw` and `rgba` are available on any array with a length lower than 4 elements:
+
+```odin
+Vector3 :: [3]f32
+foo :: proc(a: Vector3) -> f32 {
+	return a.x + a.y + a.z // notice xyz is buildin
+}
+```
+
 ## Polymorphism (Generics)
 
 ## Strings
 
 ## Function Pointers / Function Types
+
+A procedure type is internally a pointer to a procedure in memory. nil is the zero value a procedure type. 
+Procedures are first class types, and can be passed as an argument to another procedure.
+
+```odin
+// custom function pointer type
+Callback :: proc(int, int) -> int // create custom type
+Callback :: proc(x: int, y: int) -> int // names are optional
+
+// usage of custom procedure type
+foo: Callback // declare a as callback procedure type
+foo = proc(x: int, y: int) -> int { return x + y } // assign behaviour to procedure variable
+
+// custom procedure type as argument
+bar :: proc(cb: Callback) { ... }
+bar :: proc(cb: proc(int, int) -> int) { ... } // this is equivelant
+```
