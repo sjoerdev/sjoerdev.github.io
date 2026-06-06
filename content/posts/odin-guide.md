@@ -36,6 +36,12 @@ This is a table that hold a comparison of all fundamental types you should know 
 | type identifier          | `typeid`           | `Type`    |
 | null                     | `nil`              | `null`    |
 
+This table doesn't show all of odin's types, odin has many build in types compared to other languages, 
+but all the important types are in this type table. Some examples of types that arent in the table are: 
+`b8`, `b16`, `b32`, `b64`, `string16`, `cstring16`, `rawptr`, `complex32`, `complex64`, 
+`complex128`, `quaternion64`, `quaternion128`, `quaternion256`, `matrix`, `map`, `array`. 
+But to be fair, you do not need to know what these types all are, i just mentioned them so that you know they exist.
+
 In odin types are first class, meaning types are values. 
 This means functions are values and can be assigned like any other value.
 All types like `int` and `float` are of type `typeid`.
@@ -96,8 +102,8 @@ proc() -> (int, int) // two return values
 proc() -> (a: int, b: int) // two named return values
 proc() -> (a, b: int) // equivelant to above
 proc() -> (a := 10) // default value for return value
-proc() -> (..int) // variable return value amount
-proc() -> (nums: ..int) // named variable return value amount
+proc() -> (..int) // error (odin doesnt support variadic returns)
+proc() -> (nums: ..int) // error (odin doesnt support variadic returns)
 ```
 
 usage of default argument values:
@@ -109,7 +115,9 @@ b = foo(4) // overrides default value
 b = foo(x=4) // overrides default value by name
 ```
 
-usage of varying number of arguments:
+usage of varying number of arguments (variadic parameters):
+
+> variadic parameters are just syntactic sugar for slices `..int` and `[]int` are identical in structure
 
 ```odin
 sum :: proc(nums: ..int) -> int {
@@ -131,15 +139,10 @@ foo :: proc() -> int {
     return a
 }
 
-// with named output
-foo :: proc() -> (a: int) {
-    a = 10
-}
-
 // with named output and naked return statement
 foo :: proc() -> (a: int) {
     a = 10
-    return // a return without arguments returns the named return value
+    return // return still required (returns the named return value)
 }
 ```
 
@@ -216,7 +219,7 @@ for &value in some_array {
     value = something // element can be modified
 }
 
-// map loop by referende (key can not be referenced)
+// map loop by reference (key can not be referenced)
 for key, &value in some_map {
     value += 1
 }
@@ -285,7 +288,7 @@ delete(my_map)
 
 ## Pointers
 
-pointers have the same semantics as in c, but not the same syntax. using `^type` as pointer types, `ptr^` as dereference syntax, and `&value` as the adress of operator.
+pointers have the same semantics as in c, but not the same syntax. using `^type` as pointer types, `ptr^` as dereference syntax, and `&value` as the address-of operator.
 
 ```c
 // c
@@ -301,12 +304,13 @@ p: ^int = &x
 p^ = 2
 ```
 
-There is no such thing as pointer aritmatic like in c, 
-because unlike in c, arrays are not just pointers, 
-for pointer arritmatic like behaviour there are "multi pointers" of the `[^]T` type, 
+There is no such thing as pointer arithmetic like in c, 
+because unlike in c, arrays are not just fancy pointers, but actual value types, 
+for pointer arithmetic like behaviour there are "multi pointers" of the `[^]T` type, 
 which are pointers that map to multiple items, and can be indexed like an array. 
-multi pointers are easiest to use with the `raw_data()` buildin call. 
+multi pointers are easiest to use with the `raw_data()` builtin call. 
 the `raw_data` is a builtin which returns the underlying data of a builtin data type as a multi pointer.
+the builtin `make()` procedure can also return multi pointers.
 
 simple usage example of a multi pointer:
 
@@ -340,12 +344,12 @@ What multi pointers do not support:
 
 Instead of headers of modules or namespaces, the Odin language uses packages. 
 Packages in odin are directory based, similar to how golang manages packages, 
-this makes using submodules usefull, and makes it so you dont need a package manager.
+this makes using submodules useful, and makes it so you dont need a package manager.
 In Odin a package is a directory of Odin code files, all of which have the same package declaration at the top.
 Make a file part of a package by putting the `package package_name` declaration at the top of the odin files in the package. 
 A directory cannot contain more than 1 package, so you can not have different package declarations in the same directory.
 To import a package (make it accesable), you use the `import` keyword.
-To import a standard library package you can use a prefex like `import "core:fmt"` where `core:` is the library prefix. 
+To import a standard library package you can use a prefix like `import "core:fmt"` where `core:` is the collection prefix. 
 If no prefix is specified the package will be searched relative to the current file path.
 Packages can be namespaced by using the `import foo "core:fmt"` syntax.
 
@@ -357,7 +361,7 @@ Packages can be namespaced by using the `import foo "core:fmt"` syntax.
 
 ## Casting
 
-In odin there is no implicit widening type conversion like in c, all types must be manually cast, luckily odin has a nice and simple syntax for type conversions and casting:
+In odin there is no implicit widening type conversion like in c, and only a [very short list of implicit conversions](https://odin-lang.org/docs/overview/#implicit-type-conversions) nearly all types must be manually cast, luckily odin has a nice and simple syntax for type conversions and casting:
 
 The expression `T(value)` converts `value` to the `T` type:
 ```odin
@@ -378,14 +382,11 @@ i: i64 = 123
 f: f64 = transmute(f64)i
 ```
 
-## Function Overloading
+## Prodecure (Function) Overloading
 
-Unlike in many other languages, operator overloading in Odin is explicit, 
-the reason being that procedures can be nested within procedures and, as a result, 
-determining which procedure should be used in the case of implicit overloading is complex, 
-therefore explicit overloading makes more sense.
+Unlike in many other languages, procedure overloading in Odin is explicit.
 
-Here is an example of how to do function overloading:
+Here is an example of how to do procedure overloading:
 
 ```odin
 bool_to_string :: proc(b: bool) -> string {
@@ -402,7 +403,7 @@ to_string :: proc{bool_to_string, int_to_string}
 
 ## Static Arrays / Slices / Dynamic Arrays
 
-In odin a static array is typed like `[N]T`, or `[?]T` for inferred size, and a slice like `[]T`, and a dynamic array like `[dynamic]T`, or `[dynamic;N]T` for a dynamic array with a fixed capacity.
+In odin a static array is typed like `[N]T`, or `[?]T` for inferred size (only in a literal), and a slice like `[]T`, and a dynamic array like `[dynamic]T`, or `[dynamic;N]T` for a dynamic array with a fixed capacity.
 
 An array in odin is just like a struct in that its value type that contains all of its own data.
 
@@ -415,13 +416,12 @@ Slices and dynamic arrays are simple small structures with a pointer to an under
 The zero value of a slice is nil. A nil slice has a length of 0 and does not point to any underlying memory. Slices can be compared against nil and nothing else.
 
 types of arrays:
-|               Type:               |     Syntax     |
-| --------------------------------- | -------------- |
-| static array                      | `[N]T`         |
-| static array (inferred type)      | `[?]T`         |
-| slice                             | `[]T`          |
-| dynamic array                     | `[dynamic]T`   |
-| dynamic array (explicit capacity) | `[dynamic;N]T` |
+|             Type:              |     Syntax     |
+| ------------------------------ | -------------- |
+| static array                   | `[N]T`         |
+| slice                          | `[]T`          |
+| dynamic array                  | `[dynamic]T`   |
+| dynamic array (fixed capacity) | `[dynamic;N]T` |
 
 static arrays:
 ```odin
@@ -434,7 +434,7 @@ value: int = array[0] // index
 array: [4]int = [4]int{1, 2, 3, 4} // explicit literal type
 array: [4]int = {1, 2, 3, 4} // inferred literal type
 array := [4]int{1, 2, 3, 4} // inferred type
-array := [?]int{1, 2, 3, 4} // inferred size
+array := [?]int{1, 2, 3, 4} // inferred literal size
 ```
 
 slices (array views):
@@ -461,6 +461,7 @@ dyn_array := make([dynamic]int, 0, 4) // initialize with make
 value: int = dyn_array[0] // index
 
 // dynamic literals are not allowed because they hide allocations
+// but they can be enabled by using #+feature dynamic-literals
 dyn_array := [dynamic]int{1, 2, 3, 4} // error
 
 // fixed capacity dynamic literals are however allowed
@@ -544,11 +545,13 @@ Build in fields like `xyzw` and `rgba` are available on any array with a length 
 ```odin
 Vector3 :: [3]f32
 foo :: proc(a: Vector3) -> f32 {
-    return a.x + a.y + a.z // notice xyz is buildin
+    return a.x + a.y + a.z // notice xyz is builtin
 }
 ```
 
 ## Polymorphism (Generics)
+
+The odin language specifically uses a form of generics called "Parametric Polymorphism"
 
 ## Strings
 
