@@ -553,6 +553,42 @@ foo :: proc(a: Vector3) -> f32 {
 
 The odin language specifically uses a form of generics called "Parametric Polymorphism"
 
+In odin you can specify that a variable or type needs to be a compile time constant by using the `$` dollar sign, which is often required for polymorphism.
+
+Both variables and types can be tagged with the `$` sign.
+
+Here are examples of how to do generics in the odin language:
+
+```odin
+proc($T: typeid) // T can be any type
+proc($N: int) // N has to be an integer value
+proc(x: $T) // T represents the type of the x variable inside the procedure scope
+proc($A: $B) // A can be of any type, B then represents the type of A inside the procedure scope
+
+// strucs can have polymorphic parameters
+SomeStruct :: struct($T: typeid) {
+    size: T
+}
+foo: SomeStruct(int)
+
+// "implicit" polymorphism implies that the type of a parameter is inferred from its input ($A: $B)
+foo :: proc($N: $I, $T: typeid) {
+	// N is the constant value passed
+	// I is the type of N
+	// T is the type passed
+}
+example := foo(4, int)
+
+// in some cases, you may want to specify that a type must be a specialization of a certain type, this is done with a slash
+proc(table: $T/Table) // allow types that are specializations of a table type
+proc($T: typeid/[]S) // allow types that are specializations of a slice
+proc($T: typeid/[]$S) // allow types that are specializations of a compile time (polymorphic) slice
+
+// where clauses can be used to constrain inputs
+proc(x: int) where len(x) > 1 {}
+proc(x: int) where type_of(x) == int {}
+```
+
 ## Strings
 
 ## Function Pointers / Function Types
