@@ -573,9 +573,9 @@ foo: SomeStruct(int)
 
 // "implicit" polymorphism implies that the type of a parameter is inferred from its input ($A: $B)
 foo :: proc($N: $I, $T: typeid) {
-	// N is the constant value passed
-	// I is the type of N
-	// T is the type passed
+    // N is the constant value passed
+    // I is the type of N
+    // T is the type passed
 }
 example := foo(4, int)
 
