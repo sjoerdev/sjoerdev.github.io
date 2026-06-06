@@ -416,38 +416,12 @@ Slices and dynamic arrays are simple small structures with a pointer to an under
 The zero value of a slice is nil. A nil slice has a length of 0 and does not point to any underlying memory. Slices can be compared against nil and nothing else.
 
 types of arrays:
-|             Type:              |     Syntax     |
-| ------------------------------ | -------------- |
-| static array                   | `[N]T`         |
-| slice                          | `[]T`          |
-| dynamic array                  | `[dynamic]T`   |
-| dynamic array (fixed capacity) | `[dynamic;N]T` |
-
-internal structure of array types inside `base/runtime/core.odin`:
-```odin
-// static array
-// just a linear strip of raw data
-
-// slice
-struct {
-    data: rawptr, // just a pointer, no actual data
-    len: int,
-}
-
-// dynamic array
-struct {
-    data: rawptr, // just a pointer, no actual data
-    len: int,
-    cap: int,
-    allocator: Allocator,
-}
-
-// fixed capacity dynamic array
-struct {
-    data: [capacity]T, // holds the actual raw data
-    len: int,
-}
-```
+|             Type:              |     Syntax     | Value Semantics |
+| ------------------------------ | -------------- | --------------- |
+| static array                   | `[N]T`         | holds data      |
+| slice                          | `[]T`          | points to data  |
+| dynamic array                  | `[dynamic]T`   | points to data  |
+| dynamic array (fixed capacity) | `[dynamic;N]T` | holds data      |
 
 static arrays:
 ```odin
