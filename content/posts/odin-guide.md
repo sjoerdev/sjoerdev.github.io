@@ -423,6 +423,32 @@ types of arrays:
 | dynamic array                  | `[dynamic]T`   |
 | dynamic array (fixed capacity) | `[dynamic;N]T` |
 
+internal structure of array types inside `base/runtime/core.odin`:
+```odin
+// static array
+// just a linear strip of raw data
+
+// slice
+struct {
+    data: rawptr, // just a pointer, no actual data
+    len: int,
+}
+
+// dynamic array
+struct {
+    data: rawptr, // just a pointer, no actual data
+    len: int,
+    cap: int,
+    allocator: Allocator,
+}
+
+// fixed capacity dynamic array
+struct {
+    data: [capacity]T, // holds the actual raw data
+    len: int,
+}
+```
+
 static arrays:
 ```odin
 // basic usage
