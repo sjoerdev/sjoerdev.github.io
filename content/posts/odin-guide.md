@@ -43,7 +43,7 @@ but all the important types are in this type table. Some examples of types that 
 But to be fair, you do not need to know what these types all are, i just mentioned them so that you know they exist.
 
 In odin types are first class, meaning types are values. 
-This means functions are values and can be assigned like any other value.
+This means procedures (functions) are values and can be assigned like any other value.
 All types like `int` and `float` are of type `typeid`.
 
 ```odin
