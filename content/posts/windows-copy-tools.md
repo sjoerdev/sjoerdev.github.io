@@ -1,3 +1,15 @@
+---
+title: "History of windows copy tools"
+date: "2026-06-01"
+description: This is a comparison and history of windows file copy tools.
+summary: "This is a comparison and history of windows file copy tools."
+ShowToc: true
+TocOpen: true
+ShowBreadCrumbs: true
+---
+
+## Tools
+
 | Release |        Program         |        Introduced in        |    Status    | GUI or CLI |    capabilities    |           official link            |
 | ------- | ---------------------- | --------------------------- | ------------ | ---------- | ------------------ | :--------------------------------- |
 | 1981    | COPY.COM               | MS-DOS 1.0                  | Discontinued | CLI        | copy               | buildin                            |
@@ -19,8 +31,7 @@
 | 2012    | rclone                 | thirdparty                  | Active       | CLI        | copy + move + sync | github.com/rclone/rclone           |
 | 2026    | BetterCopy             | thirdparty                  | Active       | Both       | copy + move        | github.com/articulite/BetterCopy   |
 
-
-dead-links:
+## Dead Links
 
 xxcopy official site:
 http://www.xxcopy.com/
@@ -34,8 +45,7 @@ https://technet.microsoft.com/en-us/magazine/2009.04.utilityspotlight.aspx
 microsoft synctoy official download:
 https://www.microsoft.com/en-US/download/details.aspx?id=15155
 
-archived-links:
-
+## Archived Links
 
 microsoft robocopy gui last archived official download 2020-11-12:
 https://web.archive.org/web/20201112034528/https://download.microsoft.com/download/f/d/0/fd05def7-68a1-4f71-8546-25c359cc0842/UtilitySpotlight2006_11.exe
