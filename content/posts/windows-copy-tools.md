@@ -1,6 +1,6 @@
 ---
 title: "History of windows copy tools"
-date: "2026-06-01"
+date: "2026-07-26"
 description: This is a comparison and history of windows file copy tools.
 summary: "This is a comparison and history of windows file copy tools."
 ShowToc: true
