@@ -639,15 +639,11 @@ proc(x: int) where type_of(x) == int {}
 
 ## Strings
 
-The ``string`` type represents an immutable sequence of 8-bit bytes.
-
-The ``cstring`` type represents an immutable sequence of 8-bit bytes that is null-terminated.
-
-The odin ``string`` type stores the pointer to the data and the length of the string.
-
-The odin ``cstring`` type stores the pointer to the data without the length of the string.
-
-The ``core:strings`` library provides utilities for building and manipulating utf-8 strings, including conversion, searching, splitting.
+- The ``string`` type represents an immutable sequence of 8-bit bytes.
+- The ``cstring`` type represents an immutable sequence of 8-bit bytes that is null-terminated.
+- The odin ``string`` type stores the pointer to the data and the length of the string.
+- The odin ``cstring`` type stores the pointer to the data without the length of the string.
+- The ``core:strings`` library provides utilities for building and manipulating utf-8 strings, including conversion, searching, splitting.
 
 Simple Examples:
 
