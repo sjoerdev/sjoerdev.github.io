@@ -355,7 +355,55 @@ Packages can be namespaced by using the `import foo "core:fmt"` syntax.
 
 ## Standard Library
 
+odin comes with 3 build in library collections:
+
+- base = minimal spec mandated implementation of compiler buildins and intrinsics
+- core = the practical everyday stdlib, assumes you have an operating system underneath
+- vendor = bindings to external things (raylib, opengl, sdl)
+
 ## Initialization
+
+Examples:
+```odin
+PI :: 3.141592 // compile time constant
+a := 3 // mutable
+b: int = 5 // explicit type
+c: int // default value (zero initialized)
+d: int = --- // uninitialized
+```
+
+Struct literals:
+```odin
+// explicit type
+point: Point = Point{1, 2}
+
+// inferred type
+point: Point = {1, 2}
+
+// named fields
+point: Point = {x = 1, y = 2}
+
+// default initialized
+point: Point = {}
+
+// uninitialized
+point: Point = ---
+```
+
+Array literals:
+```odin
+// explicit type
+arr: [4]int = [4]int{1, 2, 3, 4}
+
+// inferred type
+arr: [4]int = {1, 2, 3, 4}
+
+// default initialized
+arr: [4]int = {};
+
+// uninitialized
+arr: [4]int = ---;
+```
 
 ## Structs
 
@@ -590,6 +638,65 @@ proc(x: int) where type_of(x) == int {}
 ```
 
 ## Strings
+
+The ``string`` type represents an immutable sequence of 8-bit bytes.
+
+The ``cstring`` type represents an immutable sequence of 8-bit bytes that is null-terminated.
+
+The odin ``string`` type stores the pointer to the data and the length of the string.
+
+The odin ``cstring`` type stores the pointer to the data without the length of the string.
+
+The ``core:strings`` library provides utilities for building and manipulating utf-8 strings, including conversion, searching, splitting.
+
+Simple Examples:
+
+```odin
+str: string = "Hello, World!" // string
+cstr: cstring = "Hello, World!" // cstring
+
+str_length := len(str) // O(1)
+cstr_length := len(cstr) // O(n)
+
+str_ptr: ^u8 = raw_data(str) // get pointer to first byte
+cstr_ptr: ^u8 = raw_data(cstr) // get pointer to first byte
+
+// you can slice strings by byte index
+substring: string = str[0:5] // "Hello"
+
+str := string(cstr) // O(n) conversion as it requires search from the zero-terminator
+```
+
+When iterating a ``string``, the characters will be utf-8 runes and not bytes. ``for in`` assumes the string is utf encoded.
+
+```odin
+str: string = "test"
+
+// interate by rune
+for character in str {
+    isrune := type_of(character) == rune
+	assert(isrune)
+}
+
+// iterate by bytes
+for index in 0..<len(str) {
+	isbyte := type_of(str[index]) == u8
+	assert(isbyte)
+}
+```
+
+A ``cstring`` is not directly indexable, if you need to index a cstring, you can get its raw data first
+
+```odin
+ptr := raw_data(cstr)
+byte := ptr[0]
+```
+
+conclusion:
+- ``len(str)`` returns the number of bytes.
+- ``str[index]`` returns a ``byte``.
+- ``for character in str`` iterates over runes.
+- ``cstring`` is not indexable
 
 ## Function Pointers / Function Types
 
