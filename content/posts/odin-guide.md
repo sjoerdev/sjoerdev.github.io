@@ -693,9 +693,9 @@ byte := ptr[0]
 ```
 
 conclusion:
-- ``len(str)`` returns the number of bytes.
-- ``str[index]`` returns a ``byte``.
-- ``for character in str`` iterates over runes.
+- ``len(str)`` returns the number of bytes
+- ``str[index]`` returns a ``byte``
+- ``for character in str`` iterates over runes
 - ``cstring`` is not indexable
 
 ## Function Pointers / Function Types
