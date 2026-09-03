@@ -667,7 +667,7 @@ substring: string = str[0:5] // "Hello"
 str := string(cstr) // O(n) conversion as it requires search from the zero-terminator
 ```
 
-When iterating a ``string``, the characters will be utf-8 runes and not bytes. ``for in`` assumes the string is utf encoded.
+When iterating a ``string`` with ``for in``, odin decodes the string utf-8 and produces ``rune`` values rather than bytes.
 
 ```odin
 str: string = "test"
