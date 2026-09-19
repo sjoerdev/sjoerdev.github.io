@@ -180,6 +180,11 @@ for value in some_array {
     fmt.println(value)
 }
 
+// string loop (value is a rune not byte)
+for value in some_string {
+    fmt.println(value)
+}
+
 // named index array loop
 for value, index in some_array {
     fmt.println(index, value)
