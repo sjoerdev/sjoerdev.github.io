@@ -293,6 +293,8 @@ delete(my_map)
 
 ## Pointers
 
+**Basic Pointers**
+
 pointers have the same semantics as in c, but not the same syntax. using `^type` as pointer types, `ptr^` as dereference syntax, and `&value` as the address-of operator.
 
 ```c
@@ -309,11 +311,15 @@ p: ^int = &x
 p^ = 2
 ```
 
+**Multi Pointers**
+
 There is no such thing as pointer arithmetic like in c, 
 because unlike in c, arrays are not just fancy pointers, but actual value types, 
 for pointer arithmetic like behaviour there are "multi pointers" of the `[^]T` type, 
 which are pointers that map to multiple items, and can be indexed like an array. 
-multi pointers are easiest to use with the `raw_data()` builtin call. 
+multi pointers in odin are a way to describe foreign c-like pointers which act like arrays.
+
+multi pointers are easiest to use with the `raw_data()` builtin call.
 the `raw_data` is a builtin which returns the underlying data of a builtin data type as a multi pointer.
 the builtin `make()` procedure can also return multi pointers.
 
