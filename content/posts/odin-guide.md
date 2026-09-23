@@ -418,6 +418,52 @@ arr: [4]int = ---;
 
 ## Structs
 
+In odin a struct is just a collection of fields, like most other languages. 
+But fields are separated by comma and not by semicolon like in the c language.
+```odin
+Vector2 :: struct {
+    x: f32,
+    y: f32,
+}
+```
+
+In Odin fields can be implicitly dereferenced by a pointer to a struct.
+```odin
+pos := Vector2{2, 2}
+ptr := &pos
+ptr.x = 10
+```
+
+In Odin structs can be nested to create complex structures.
+```odin
+Foo :: struct {
+    a: int,
+    
+    bar: struct {
+        b: int
+    },
+
+    _: struct {
+        c: int,
+    }
+}
+
+foo: Foo := Foo{}
+foo.a = 10
+foo.bar.b = 10
+foo.c = 10
+```
+
+In Odin structs can be generic (have polymorphic parameters), similar to a c++ templated class
+```odin
+Foo :: struct($T: typeid) {
+    x: T
+}
+
+a := Foo(int){10}
+b := Foo(f32){3.14}
+```
+
 ## Casting
 
 In odin there is no implicit widening type conversion like in c, and only a [very short list of implicit conversions](https://odin-lang.org/docs/overview/#implicit-type-conversions) nearly all types must be manually cast, luckily odin has a nice and simple syntax for type conversions and casting:
