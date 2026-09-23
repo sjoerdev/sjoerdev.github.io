@@ -12,29 +12,29 @@ ShowBreadCrumbs: true
 
 This is a table that hold a comparison of all fundamental types you should know about compared to what they are in other languages:
 
-|          Type:           |        Odin        |    C#     |
-| ------------------------ | ------------------ | --------- |
-| 16 bit floating          | `f16`              |           |
-| 32 bit floating          | `f32`              | `float`   |
-| 64 bit floating          | `f64`              | `double`  |
-| 128 bit floating         |                    | `decimal` |
-| 8 bit integer signed     | `i8`               | `sbyte`   |
-| 8 bit integer unsigned   | `u8`               | `byte`    |
-| 16 bit integer signed    | `i16`              | `short`   |
-| 16 bit integer unsigned  | `u16`              | `ushort`  |
-| 32 bit integer signed    | `i32`              | `int`     |
-| 32 bit integer unsigned  | `u32`              | `uint`    |
-| 64 bit integer signed    | `i64`              | `long`    |
-| 64 bit integer unsigned  | `u64`              | `ulong`   |
-| 128 bit integer signed   | `s128`             |           |
-| 128 bit integer unsigned | `u128`             |           |
-| pointer sized integer    | `uintptr`          | `nint`    |
-| boolean                  | `bool`             | `bool`    |
-| character                | `rune`             | `char`    |
-| string                   | `string`/`cstring` | `string`  |
-| no type                  | `any`              | `object`  |
-| type identifier          | `typeid`           | `Type`    |
-| null                     | `nil`              | `null`    |
+|          Type:           |        Odin        |    C#     | C (stdint)  |
+| ------------------------ | ------------------ | --------- | ----------- |
+| 16 bit floating          | `f16`              |           |             |
+| 32 bit floating          | `f32`              | `float`   | `float`     |
+| 64 bit floating          | `f64`              | `double`  | `double`    |
+| 128 bit floating         |                    | `decimal` |             |
+| 8 bit integer signed     | `i8`               | `sbyte`   | `int8_t`    |
+| 8 bit integer unsigned   | `u8`               | `byte`    | `uint8_t`   |
+| 16 bit integer signed    | `i16`              | `short`   | `int16_t`   |
+| 16 bit integer unsigned  | `u16`              | `ushort`  | `uint16_t`  |
+| 32 bit integer signed    | `i32`              | `int`     | `int32_t`   |
+| 32 bit integer unsigned  | `u32`              | `uint`    | `uint32_t`  |
+| 64 bit integer signed    | `i64`              | `long`    | `int64_t`   |
+| 64 bit integer unsigned  | `u64`              | `ulong`   | `uint64_t`  |
+| 128 bit integer signed   | `s128`             |           |             |
+| 128 bit integer unsigned | `u128`             |           |             |
+| pointer sized integer    | `uintptr`          | `nint`    | `uintptr_t` |
+| boolean                  | `bool`             | `bool`    | `bool`      |
+| character                | `rune`             | `char`    | `char`      |
+| string                   | `string`/`cstring` | `string`  | `char*`     |
+| no type                  | `any`              | `object`  | `void*`     |
+| type identifier          | `typeid`           | `Type`    |             |
+| null                     | `nil`              | `null`    | `NULL`      |
 
 This table doesn't show all of odin's types, odin has many build in types compared to other languages, 
 but all the important types are in this type table. Some examples of types that arent in the table are: 
