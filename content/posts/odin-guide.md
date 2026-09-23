@@ -682,13 +682,13 @@ str: string = "test"
 // interate by rune
 for character in str {
     isrune := type_of(character) == rune
-	assert(isrune)
+    assert(isrune)
 }
 
 // iterate by bytes
 for index in 0..<len(str) {
-	isbyte := type_of(str[index]) == u8
-	assert(isbyte)
+    isbyte := type_of(str[index]) == u8
+    assert(isbyte)
 }
 ```
 
