@@ -134,6 +134,7 @@ But you can be sure that all major Linux distros come with the binaries of those
     <tr><th>Command</th><th>Project</th><th>Description</th><th>Example</th></tr>
   </thead>
   <tbody>
+    <tr><td>lsblk</td><td>util-linux</td><td>List storage devices and disk partitions</td><td>lsblk</td></tr>
     <tr><td>mount</td><td>util-linux</td><td>Mount disks or drive</td><td>mount /dev/sda1 /mnt/usb</td></tr>
     <tr><td>umount</td><td>util-linux</td><td>Unmount disks or drive</td><td>umount /mnt/usb</td></tr>
     <tr><td>fdisk</td><td>util-linux</td><td>Manages disks or drives</td><td>fdisk -l</td></tr>
