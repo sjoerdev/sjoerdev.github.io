@@ -313,11 +313,15 @@ p^ = 2
 
 **Multi Pointers**
 
-There is no such thing as pointer arithmetic like in c, 
-because unlike in c, arrays are not just fancy pointers, but actual value types, 
+There is no such thing as pointer arithmetic in odin like there is in c, because unlike in c, 
 for pointer arithmetic like behaviour there are "multi pointers" of the `[^]T` type, 
-which are pointers that map to multiple items, and can be indexed like an array. 
+which are pointers that can be indexed like an array, like c pointers. 
 multi pointers in odin are a way to describe foreign c-like pointers which act like arrays.
+
+in odin a multi pointer ``[^]T`` is basically just a normal pointer, 
+but it also allows pointer arithmatic (pointer indexing) like a c pointer would. 
+because unlike in c odin's regular pointers don't allow that. 
+jai however does allow it. and zig has a similar aproach to odin but with the ``[*]T`` syntax.
 
 multi pointers are easiest to use with the `raw_data()` builtin call.
 the `raw_data` is a builtin which returns the underlying data of a builtin data type as a multi pointer.
