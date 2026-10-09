@@ -148,7 +148,7 @@ foo :: proc() -> (a: int) {
 
 ## Loops
 
-**Simple for loops:**
+**Types of loops**
 
 Doing loops in Odin is very simple and c like, with some nice syntax choices, like merging for and while loops into one concept.
 
@@ -157,7 +157,7 @@ Types of loop syntaxes in odin language:
 - collection loop: `for value in collection` for collections like arrays.
 - traditional loop: `for init; condition; increment` for everything else.
 
-Various different loop examples:
+**Various Examples**
 
 ```odin
 // basic loop
@@ -175,29 +175,34 @@ for i in 0..<10 {
     fmt.println(i)
 }
 
-// array loop (array/slice/dynamic/string/map)
-for value in some_array {
-    fmt.println(value)
+// for-in loop (array/slice/dynamic/string/map)
+for element in some_array {
+    fmt.println(element)
 }
 
-// array loop by reference
-for &value in some_array {
-    value = something // element can be modified
+// for-in loop by reference
+for &element in some_array {
+    element = something // element can be modified
 }
 
 // string loop (value is a rune not byte)
-for value in some_string {
-    fmt.println(value)
+for character in some_string {
+    fmt.println(character)
 }
 
-// named index array loop
-for value, index in some_array {
-    fmt.println(index, value)
+// named index for-in loop
+for element, index in some_array {
+    fmt.println(index, element)
 }
 
-// named key and value map loop
+// key and value map loop
 for key, value in some_map {
     fmt.println(key, value)
+}
+
+// key and value map loop by reference (key can not be referenced)
+for key, &value in some_map {
+    value += 1
 }
 
 // infinite loop
@@ -212,7 +217,7 @@ for i := 0; i < 10; i += 1 {
     }
 }
 
-// nested array loop
+// nested for-in loop
 for outer in outer_array {
     for inner in inner_array {
         fmt.println(inner, outer)
@@ -224,16 +229,25 @@ for outer in outer_array {
     fmt.println(x)
 }
 
-// map loop by reference (key can not be referenced)
-for key, &value in some_map {
-    value += 1
-}
-
 // single line loops with scope block
 for i := 0; i < 10; i += 1 { }
 
 // single line loop (using the do keyword)
 for i := 0; i < 10; i += 1 do foo()
+```
+
+**Looping by reference**
+
+```odin
+// regular for-in loop
+for element in array {
+    // element is a copy of array[i]
+}
+
+// by reference for-in loop
+for &element in array {
+    // element is a reference to array[i]
+}
 ```
 
 ## Ternary Operator
