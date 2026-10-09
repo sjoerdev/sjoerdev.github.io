@@ -207,7 +207,7 @@ for key, &value in some_map {
 
 // infinite loop
 for {
-    fmt.println(i)
+    fmt.println("test")
 }
 
 // nested loop
@@ -238,6 +238,8 @@ for i := 0; i < 10; i += 1 do foo()
 
 **Looping by reference**
 
+this allows modifying an element in a for-in loop
+
 ```odin
 // regular for-in loop
 for element in array {
@@ -247,6 +249,11 @@ for element in array {
 // by reference for-in loop
 for &element in array {
     // element is a reference to array[i]
+}
+
+// by index for-in loop
+for _, index in array {
+    array[index] = something
 }
 ```
 
