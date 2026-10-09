@@ -180,6 +180,11 @@ for value in some_array {
     fmt.println(value)
 }
 
+// array loop by reference
+for &value in some_array {
+    value = something // element can be modified
+}
+
 // string loop (value is a rune not byte)
 for value in some_string {
     fmt.println(value)
@@ -217,11 +222,6 @@ for outer in outer_array {
 // reverse loop
 #reverse for x in array {
     fmt.println(x)
-}
-
-// array loop by reference
-for &value in some_array {
-    value = something // element can be modified
 }
 
 // map loop by reference (key can not be referenced)
