@@ -1746,6 +1746,35 @@ int main()
 }
 ```
 
+## Function Modifiers (Qualifiers and Specifiers)
+
+You can add function modifiers (qualifiers and specifiers) after a function's parameter list to control how a function behaves.
+
+They use the following syntax:
+
+```cpp
+void foo() const {}
+```
+
+These modifiers appear after the parameter list because they describe how the function behaves when called on an object, rather than describing the function's return type.
+
+The easiest way to distinguish between qualifiers and specifiers is:
+
+- **Qualifiers:** Specify restrictions or properties associated with a type or object.
+- **Specifiers:** Specify additional rules or properties governing a declaration.
+
+List of function modifiers:
+
+- `const` – prevents the function from modifying the object's member variables
+- `volatile` – marks the object as volatile, meaning its value may change unexpectedly
+- `&` – only allows the function to be called on a lvalue object
+- `&&` – only allows the function to be called on a rvalue object
+- `noexcept` – promises that the function will not throw exceptions
+- `override` – indicates that the function overrides an inherited virtual function.
+- `final` – prevents a virtual function from being overridden by further derived classes.
+
+Note that `const`, `volatile`, `&`, `&&` are only available on non-static member functions, and `override`, `final` apply to virtual member functions.
+
 ## Plain C Exclusive Features
 
 people often say that all C code is valid C++ code, but that is hardly true, there are many things C can do that C++ can not do.
