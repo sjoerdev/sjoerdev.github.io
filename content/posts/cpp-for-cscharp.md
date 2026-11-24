@@ -699,14 +699,17 @@ char c2 = char(x);
 // static cast
 double d = 3.14;
 float f = static_cast<float>(d); // explicit narrowing conversion (may lose precision)
+float f = (float)d; // c-style equivelant
 
 // bit cast
 float f = 3.14f;
 int bits = std::bit_cast<int>(f); // copy over the bits to a type the same size
+int bits = *(int*)&f; // c-style equivelant
 
 // reinterpret cast (changes the pointer type)
 float f = 3.14f;
 int* i = reinterpret_cast<int*>(&f);  // reinterprets the same bits in memory as another type
+int* i = (int*)&f; // c-style equivelant
 
 // dynamic cast
 BaseType* base = new DerivedType();
