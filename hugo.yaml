@@ -11,7 +11,7 @@ menu:
     - name: Blog
       url: posts
     - name: Resume
-      url: resume
+      url: /docs/resume.pdf
     - name: Projects
       url: projects
 
@@ -41,7 +41,7 @@ params:
       - name: Blog
         url: posts
       - name: Resume
-        url: resume
+        url: /docs/resume.pdf
       - name: Projects
         url: projects
 
