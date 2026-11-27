@@ -32,7 +32,7 @@ This is a table that hold a comparison of all fundamental types you should know 
 | boolean                  | `bool`             | `bool`            | `bool`    | `bool`     |
 | character                | `rune`             | `u8`              | `char`    | `char`     |
 | string                   | `string`/`cstring` | `string`          | `string`  | `char*`    |
-| no type                  | `any`              | `Any`             | `object`  | `void*`    |
+| any                      | `any`              | `Any`             | `object`  | `void*`    |
 | type identifier          | `typeid`           | `Type`            | `Type`    |            |
 | null                     | `nil`              | `null`            | `null`    | `NULL`     |
 
