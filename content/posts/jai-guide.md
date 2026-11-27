@@ -12,26 +12,25 @@ ShowBreadCrumbs: true
 
 This is a table that hold a comparison of all fundamental types you should know about compared to what they are in other languages:
 
-|          Type:          |        Jai        |     C#      | C (stdint) |
-| ----------------------- | ----------------- | ----------- | ---------- |
-| 32 bit floating         | `float32`/`float` | ``float``   | `float`    |
-| 64 bit floating         | `float64`         | ``double``  | `double`   |
-| 128 bit floating        | `f128`            | ``decimal`` |            |
-| 8 bit integer signed    | `s8`              | ``sbyte``   | `int8_t`   |
-| 8 bit integer unsigned  | `u8`              | ``byte``    | `uint8_t`  |
-| 16 bit integer signed   | `s16`             | ``short``   | `int16_t`  |
-| 16 bit integer unsigned | `u16`             | ``ushort``  | `uint16_t` |
-| 32 bit integer signed   | `s32`             | ``int``     | `int32_t`  |
-| 32 bit integer unsigned | `u32`             | ``uint``    | `uint32_t` |
-| 64 bit integer signed   | `s64`/`int`       | ``long``    | `int64_t`  |
-| 64 bit integer unsigned | `u64`             | ``ulong``   | `uint64_t` |
-| pointer sized integer   | -                 | ``nint``    | `intptr_t` |
-| boolean                 | `bool`            | ``bool``    | `bool`     |
-| character               | `u8`              | ``char``    | `char`     |
-| string                  | `string`          | ``string``  | `char*`    |
-| no type                 | `Any`             | ``object``  | `void*`    |
-| type identifier         | `Type`            | ``Type``    |            |
-| null                    | `null`            | ``null``    | `NULL`     |
+|          Type:           |        Jai        |        Odin        |    C#     | C (stdint) |
+| ------------------------ | ----------------- | ------------------ | --------- | ---------- |
+| 32 bit floating          | `float32`/`float` | `f32`              | `float`   | `float`    |
+| 64 bit floating          | `float64`         | `f64`              | `double`  | `double`   |
+| 128 bit floating         |                   |                    | `decimal` |            |
+| 8 bit integer signed     | `s8`              | `i8`               | `sbyte`   | `int8_t`   |
+| 8 bit integer unsigned   | `u8`              | `u8`               | `byte`    | `uint8_t`  |
+| 16 bit integer signed    | `s16`             | `i16`              | `short`   | `int16_t`  |
+| 16 bit integer unsigned  | `u16`             | `u16`              | `ushort`  | `uint16_t` |
+| 32 bit integer signed    | `s32`             | `i32`              | `int`     | `int32_t`  |
+| 32 bit integer unsigned  | `u32`             | `u32`              | `uint`    | `uint32_t` |
+| 64 bit integer signed    | `s64`/`int`       | `i64`              | `long`    | `int64_t`  |
+| 64 bit integer unsigned  | `u64`             | `u64`              | `ulong`   | `uint64_t` |
+| boolean                  | `bool`            | `bool`             | `bool`    | `bool`     |
+| character                | `u8`              | `rune`             | `char`    | `char`     |
+| string                   | `string`          | `string`/`cstring` | `string`  | `char*`    |
+| no type                  | `Any`             | `any`              | `object`  | `void*`    |
+| type identifier          | `Type`            | `typeid`           | `Type`    |            |
+| null                     | `null`            | `nil`              | `null`    | `NULL`     |
 
 In jai types are first class, meaning types are values. 
 This means functions are values and can be assigned like any other value.
