@@ -37,7 +37,7 @@ This means functions are values and can be assigned like any other value.
 All types like `int` and `float` are of type `Type`.
 
 ```jai
-a: Type = int; // a is int
+a :: int; // a is int
 b: a = 1; // b is now an int
 ```
 
@@ -74,7 +74,7 @@ List of all the ways to give inputs and outputs to a procedure:
 () -> int // one return value
 () -> int, int // two return values
 () -> a: int, b: int // two named return values
-() -> a, b: int // equivalent to above
+() -> a, b: int // error (unlike in odin, jai doesnt support this for return args)
 () -> ..int // error (jai doesnt support variadic returns)
 () -> nums: ..int // error (jai doesnt support variadic returns)
 ```
@@ -475,7 +475,7 @@ unlike in c, arrays store their length in jai, you can get it by the `array.coun
 
 you can get the memory adress of the first element in an array using the `array.data` member.
 
-both static arrays and dynamic arrays are automatically casted to array views (slices) if the array view is a parameter.
+Both static and dynamic arrays are automatically converted to array views when passed to a parameter typed as an array view.
 
 regular arrays:
 ```jai
