@@ -367,7 +367,7 @@ arr: [4]int = int.[ 1, 2, 3, 4 ]; // T.[]
 // inferred type
 arr: [4]int = .[ 1, 2, 3, 4 ]; // .[]
 
-// inferred type (since beta 0.2.022)
+// inferred type (since beta 0.2.031)
 arr: [4]int = [ 1, 2, 3, 4 ]; // []
 
 // default initialized
