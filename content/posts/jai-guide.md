@@ -77,6 +77,15 @@ List of all the ways to give inputs and outputs to a procedure:
 () -> a, b: int // equivalent to above
 ```
 
+usage of default argument values:
+
+```jai
+foo :: (x: int = 10) { ... }
+a = foo(); // uses default value
+b = foo(4); // overrides default value
+b = foo(x = 4); // overrides default value by name
+```
+
 usage of varying number of arguments (variadic parameters):
 
 > Jai collects variadic arguments into an array view: a `..int` parameter is received as a `[]int` array view.

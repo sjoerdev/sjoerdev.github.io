@@ -110,9 +110,9 @@ usage of default argument values:
 
 ```odin
 foo :: proc(x := 10) { ... }
-a = foo() // uses default value
-b = foo(4) // overrides default value
-b = foo(x=4) // overrides default value by name
+foo() // uses default value
+foo(4) // overrides default value
+foo(x=4) // overrides default value by name
 ```
 
 usage of varying number of arguments (variadic parameters):
