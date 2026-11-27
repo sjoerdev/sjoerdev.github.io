@@ -44,6 +44,39 @@ b: a = 1; // b is now an int
 If a `Type` is constant (in other words, known at compile time), you can declare other variables of that `Type`.
 In general, the kinds of things you would do with 'generics' in other languages, we just do with constant Type variables. 
 
+## Procedures (Functions)
+
+In Jai a function is called a procedure. A procedure declaration uses the `name :: (inputs) -> outputs` syntax.
+
+A basic procedure:
+
+```jai
+multiply :: (x: int, y: int) -> int {
+    return x * y;
+}
+```
+
+List of all the ways to give inputs and outputs to a procedure:
+
+```jai
+// inputs (arguments)
+
+() // no arguments
+(x: int) // one argument
+(x: int, y: int) // two arguments
+(x, y: int) // equivalent to above
+(x: int = 10) // default value
+(nums: ..int) // variable argument amount
+
+// outputs (return values)
+
+() // no return values
+() -> int // one return value
+() -> int, int // two return values
+() -> a: int, b: int // two named return values
+() -> a, b: int // equivelant to above
+```
+
 ## Loops
 
 **Simple for loops:**
