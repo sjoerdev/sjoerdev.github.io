@@ -365,6 +365,9 @@ arr: [4]int = int.[ 1, 2, 3, 4 ]; // T.[]
 // inferred type
 arr: [4]int = .[ 1, 2, 3, 4 ]; // .[]
 
+// inferred type (since beta 0.2.022)
+arr: [4]int = [ 1, 2, 3, 4 ]; // []
+
 // default initialized
 arr: [4]int = .[];
 ```
@@ -464,7 +467,7 @@ operator * :: (a: Vector3, b: float) -> Vector3 #symmetric {
 
 ## Arrays / Lists
 
-in jai a normal array is typed like ``[size]T``, and a slice like ``[]T``, and a dynamic array like ``[..]T``.
+in jai a normal array is typed like ``[size]T``, and an array view (slice) like ``[]T``, and a dynamic array like ``[..]T``.
 
 unlike in c, arrays store their length in jai, you can get it by the `array.count` member.
 
