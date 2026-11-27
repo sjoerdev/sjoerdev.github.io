@@ -105,6 +105,14 @@ sum(); // 0
 sum(1, 2); // 3
 sum(1, 2, 3, 4, 5); // 15
 sum(..array); // passing an array
+
+the following all bass an array as variadic args:
+
+sum(..(int.[1, 2, 3]));
+sum(..int.[1, 2, 3]);
+sum(...[1, 2, 3]);
+sum(..[1, 2, 3]); // (since beta 0.2.031)
+sum([1, 2, 3]); // (since beta 0.2.031)
 ```
 
 ## Loops
