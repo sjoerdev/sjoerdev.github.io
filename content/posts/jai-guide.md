@@ -64,7 +64,7 @@ List of all the ways to give inputs and outputs to a procedure:
 () // no arguments
 (x: int) // one argument
 (x: int, y: int) // two arguments
-(x, y: int) // equivalent to above
+(x, y: int) // error (jai doesnt support this syntax for args)
 (x: int = 10) // default value
 (nums: ..int) // variadic arguments
 
@@ -75,6 +75,8 @@ List of all the ways to give inputs and outputs to a procedure:
 () -> int, int // two return values
 () -> a: int, b: int // two named return values
 () -> a, b: int // equivalent to above
+() -> ..int // error (jai doesnt support variadic returns)
+() -> nums: ..int // error (jai doesnt support variadic returns)
 ```
 
 usage of default argument values:
