@@ -29,7 +29,7 @@ This is a table that hold a comparison of all fundamental types you should know 
 | boolean                 | `bool`            | ``bool``    | `bool`     |
 | character               | `u8`              | ``char``    | `char`     |
 | string                  | `string`          | ``string``  | `char*`    |
-| no type                 | `void`/`Any`      | ``object``  | `void*`    |
+| no type                 | `Any`             | ``object``  | `void*`    |
 | type identifier         | `Type`            | ``Type``    |            |
 | null                    | `null`            | ``null``    | `NULL`     |
 
