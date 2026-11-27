@@ -64,7 +64,7 @@ List of all the ways to give inputs and outputs to a procedure:
 () // no arguments
 (x: int) // one argument
 (x: int, y: int) // two arguments
-(x, y: int) // error (jai doesnt support this syntax for args)
+(x, y: int) // error (unlike in odin, jai doesnt support this for args)
 (x: int = 10) // default value
 (nums: ..int) // variadic arguments
 
