@@ -484,6 +484,7 @@ array: [4]int; // create empty
 
 array: [4]int = int.[1, 2, 3, 4]; // initialize with explicit type using array litteral
 array: [4]int = .[1, 2, 3, 4]; // initialize with inferred type using array litteral
+array: [4]int = [1, 2, 3, 4]; // initialize with inferred type using array litteral (since beta 0.2.031)
 
 value: int = array[0]; // index
 ```
