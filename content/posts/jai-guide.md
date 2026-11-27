@@ -66,7 +66,7 @@ List of all the ways to give inputs and outputs to a procedure:
 (x: int, y: int) // two arguments
 (x, y: int) // equivalent to above
 (x: int = 10) // default value
-(nums: ..int) // variable argument amount
+(nums: ..int) // variadic arguments
 
 // outputs (return values)
 
@@ -74,7 +74,26 @@ List of all the ways to give inputs and outputs to a procedure:
 () -> int // one return value
 () -> int, int // two return values
 () -> a: int, b: int // two named return values
-() -> a, b: int // equivelant to above
+() -> a, b: int // equivalent to above
+```
+
+usage of varying number of arguments (variadic parameters):
+
+> Jai collects variadic arguments into an array view: a `..int` parameter is received as a `[]int` array view.
+
+```jai
+sum :: (nums: ..int) -> int {
+    result := 0;
+    for nums {
+        result += it;
+    }
+    return result;
+}
+
+sum(); // 0
+sum(1, 2); // 3
+sum(1, 2, 3, 4, 5); // 15
+sum(..array); // passing an array
 ```
 
 ## Loops
