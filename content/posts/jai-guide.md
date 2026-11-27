@@ -28,6 +28,8 @@ This is a table that hold a comparison of all fundamental types you should know 
 | boolean                    | `bool`            | ``bool``        | ``bool``                  | -                |
 | character                  | `u8`              | ``char``        | ``char``                  | ``char16_t``     |
 | string                     | `string`          | ``string``      | ``string``                | -                |
+| no type                    | `void`/`Any`      | ``object``      | ``void*``                 | -                |
+| type identifier            | `Type`            | ``Type``        | -                         | -                |
 | null                       | `null`            | ``null``        | ``nullptr``               | -                |
 
 In jai types are first class, meaning types are values. 
